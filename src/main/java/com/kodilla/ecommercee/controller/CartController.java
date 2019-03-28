@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.domain.Product;
@@ -28,7 +28,7 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getElemementsFromEmptyCart")
-    public List<Product> getProductssFromEmptyCart(@RequestParam Long cartId) {
+    public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
         // return cartService.getProductsFromCart(cartId);
         return new ArrayList<>();
     }
