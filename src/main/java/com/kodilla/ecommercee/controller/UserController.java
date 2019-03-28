@@ -31,7 +31,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getUser")
     public UserDto getUser(@RequestParam Long userId) throws UserNotFoundException {
-        return userMapper.mapToUserDto(userService.getUser(userId).orElseThrow(UserNotFoundException::new));
+//        return userMapper.mapToUserDto(userService.getUser(userId).orElseThrow(UserNotFoundException::new));
+        return new UserDto(1L, "user1", "Not Blocked", 11L);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createUser", consumes = APPLICATION_JSON_VALUE)
@@ -41,7 +42,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
     public UserDto blockUser(@RequestParam Long userId, @RequestBody UserDto userDto) {
-        return new UserDto(userId, userDto.getUserName(), "Blocked", userDto.getUserIdKey());
+//        return new UserDto(userId, userDto.getUserName(), "Blocked", userDto.getUserIdKey());
+        return new UserDto(2L, "user2", "Blocked", 12L);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "generateUserIdKey")
