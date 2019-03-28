@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private Long userId;
-    private String userName;
-    private String isBlocked;
-    private Long userIdKey;
+public class ProductDto {
+    private Long id;
+    private String name;
+    private Double price;
 }
