@@ -11,6 +11,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     List<User> findAll();
 
+    @Override
     Optional<User> findById(Long id);
 
     @Override

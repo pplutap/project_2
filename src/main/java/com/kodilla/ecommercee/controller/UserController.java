@@ -25,13 +25,11 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getUsers")
     public List<UserDto> getUsers() {
-//        return userMapper.mapToUserDtoList(userService.getUsersList());
         return new ArrayList<>();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getUser")
     public UserDto getUser(@RequestParam Long userId) throws UserNotFoundException {
-//        return userMapper.mapToUserDto(userService.getUser(userId).orElseThrow(UserNotFoundException::new));
         return new UserDto(1L, "user1", "Not Blocked", 11L);
     }
 
@@ -42,7 +40,6 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
     public UserDto blockUser(@RequestParam Long userId, @RequestBody UserDto userDto) {
-//        return new UserDto(userId, userDto.getUserName(), "Blocked", userDto.getUserIdKey());
         return new UserDto(2L, "user2", "Blocked", 12L);
     }
 
