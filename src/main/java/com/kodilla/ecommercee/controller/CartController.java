@@ -7,7 +7,6 @@ import com.kodilla.ecommercee.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -29,8 +28,7 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getElemementsFromEmptyCart")
     public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
-        // return cartService.getProductsFromCart(cartId);
-        return new ArrayList<>();
+        return cartService.getProductsFromCart(cartId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "addProductToCart")
@@ -45,13 +43,11 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.GET, value = "createOrder")
     public CartDto createOrder(@RequestParam Long cartId) {
-        // return cartMapper.mapToCartDto(cartService.getCart(cartId));
-        return new CartDto(1L);
+        return cartMapper.mapToCartDto(cartService.getCart(cartId));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getAllCarts")
     public List<CartDto> getAllCarts() {
-        // return cartMapper.mapToCartDtoList(cartService.getAllCarts());
-        return new ArrayList<>();
+        return cartMapper.mapToCartDtoList(cartService.getAllCarts());
     }
 }

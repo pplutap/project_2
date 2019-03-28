@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CartDto {
     private Long cartId;
     private List<Product> productsList = new ArrayList<>();

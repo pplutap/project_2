@@ -18,7 +18,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getProduct")
     public ProductDto getProduct(@RequestParam Long productId) {
-        return new ProductDto(1L, "Test Product Name", 10.0);
+        return new ProductDto();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createProduct", consumes = APPLICATION_JSON_VALUE)
@@ -27,7 +27,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateProduct")
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return new ProductDto(1L, "Edited Test Product Name", 20.0);
+        return new ProductDto();
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteProduct")
