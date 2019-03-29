@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.controller;
 import com.kodilla.ecommercee.domain.UserDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.service.UserService;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,28 +22,28 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUsers")
+    @GetMapping("getUsers")
     public List<UserDto> getUsers() {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUser")
-    public UserDto getUser(@RequestParam Long userId) throws UserNotFoundException {
+    @GetMapping("getUser")
+    public UserDto getUser(@RequestParam Long userId) {
         return new UserDto(1L, "user1", "Not Blocked", 11L);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createUser", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping("createUser")
     public void createUser(@RequestBody UserDto userDto) {
         userService.createUser(userMapper.mapToUser(userDto));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
+    @PutMapping("blockUser")
     public UserDto blockUser(@RequestParam Long userId, @RequestBody UserDto userDto) {
         return new UserDto(2L, "user2", "Blocked", 12L);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "generateUserIdKey")
-    public Long generateUserIdKey(@RequestParam Long userId) throws UserNotFoundException {
+    @GetMapping("generateUserIdKey")
+    public Long generateUserIdKey(@RequestParam Long userId) {
         Long randomKey = new Random().nextLong();
         return userId + randomKey;
     }
