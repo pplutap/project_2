@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 
-import com.kodilla.ecommercee.cart.domain.UserDto;
+import com.kodilla.ecommercee.user.domain.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @RequestMapping(method = RequestMethod.POST, value = "createUser")
     public Long createUser(@RequestBody String userName) {
-        UserDto userDto = new UserDto(1L, userName);
+        UserDto userDto = new UserDto(1L, userName, "1", 12345L);
         return userDto.getUserId();
     }
 
