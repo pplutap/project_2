@@ -9,23 +9,21 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProductMapper {
-
-
     public Product mapToProduct(ProductDto productDto) {
         return new Product(productDto.getId(),
                 productDto.getName(),
                 productDto.getPrice());
     }
 
-    public ProductDto mapToProductDto(Product product){
+    public ProductDto mapToProductDto(Product product) {
         return new ProductDto(product.getId(),
                 product.getName(),
                 product.getPrice());
     }
 
-    public List<ProductDto> mapToProductDtoList(List<Product> productList){
+    public List<ProductDto> mapToProductDtoList(List<Product> productList) {
         return productList.stream()
-                .map(t -> new ProductDto(t.getId(),t.getName(),t.getPrice()))
+                .map(t -> new ProductDto(t.getId(), t.getName(), t.getPrice()))
                 .collect(Collectors.toList());
     }
 }
