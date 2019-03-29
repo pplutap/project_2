@@ -1,6 +1,4 @@
 package com.kodilla.ecommercee.domain;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,5 +8,4 @@ public class Order {
     private Long id;
     private Product product;
     private int quantity;
-
 }
