@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "generateKey")
-    public String generateKey(@RequestParam Long userId) {
-        return "12345678qwertyuiop";
+    public Long generateKey(@RequestParam Long userId) {
+        return 12345678L;
     }
 }
