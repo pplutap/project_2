@@ -42,7 +42,7 @@ jobs:
       - run: ./gradlew build
 
       # run sonar:
-      - ./gradlew sonarqube \
+      - check_sonar: ./gradlew sonarqube \
         -Dsonar.projectKey=interceptor2048_project-jdp-1903-03 \
         -Dsonar.organization=interceptor2048-github \
         -Dsonar.host.url=https://sonarcloud.io \
