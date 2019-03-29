@@ -21,32 +21,32 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "createEmptyCart", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createEmptyCart", consumes = APPLICATION_JSON_VALUE)
     public void createEmptyCart(@RequestBody CartDto cartDto) {
         cartService.createEmptyCart(cartMapper.mapToCart(cartDto));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getElemementsFromEmptyCart")
+    @GetMapping(value = "getElemementsFromEmptyCart")
     public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
         return cartService.getProductsFromCart(cartId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "addProductToCart")
+    @PutMapping(value = "addProductToCart")
     public void addProductToCart(@RequestParam Long cartId, @RequestBody Product product) {
         cartService.getProductsFromCart(cartId).add(product);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "deleteProductFromCart")
+    @PutMapping(value = "deleteProductFromCart")
     public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody Product product) {
         cartService.getProductsFromCart(cartId).remove(product);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "createOrder")
+    @GetMapping(value = "createOrder")
     public CartDto createOrder(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(cartService.getCart(cartId));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getAllCarts")
+    @GetMapping(value = "getAllCarts")
     public List<CartDto> getAllCarts() {
         return cartMapper.mapToCartDtoList(cartService.getAllCarts());
     }

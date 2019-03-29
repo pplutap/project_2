@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Setter
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "product")
 public class Product {
 
@@ -27,4 +27,12 @@ public class Product {
 
     @Column(name = "price")
     private Double price;
+
+    public Product(Long id, String name, Double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+
 }

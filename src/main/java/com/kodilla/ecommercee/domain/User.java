@@ -11,8 +11,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "id",unique = true)
     private Long userId;
 
     @Column(name = "username")

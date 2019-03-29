@@ -16,7 +16,7 @@ public class Cart {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "id", unique = true)
     private Long cartId;
 
     @OneToMany(mappedBy = "cart")
