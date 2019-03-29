@@ -5,8 +5,8 @@ import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class CartMapper {
@@ -24,8 +24,8 @@ public class CartMapper {
     }
 
     public List<CartDto> mapToCartDtoList(final List<Cart> cartList) {
-        List<CartDto> cartDtoList = new ArrayList<>();
-        cartDtoList.addAll(cartDtoList);
-        return cartDtoList;
+        return cartList.stream()
+                .map(cart -> mapToCartDto(cart))
+                .collect(Collectors.toList());
     }
 }
