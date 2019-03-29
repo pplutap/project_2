@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.domain.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
