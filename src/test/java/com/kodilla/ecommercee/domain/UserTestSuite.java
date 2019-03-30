@@ -33,6 +33,7 @@ public class UserTestSuite {
 
         //When
         List<User> usersList = userRepository.findAll();
+        System.out.println(user1.getUserId());
 
         //Then
         Assert.assertEquals(3, usersList.size());
@@ -74,5 +75,4 @@ public class UserTestSuite {
         //Then
         Assert.assertEquals(3, userRepository.count());
     }
-
 }

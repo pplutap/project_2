@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping("getUser")
     public UserDto getUser(@RequestParam Long userId) {
-        return new UserDto("user1", false, 11L);
+        return new UserDto(1L, "user1", false, 11L);
     }
 
     @PostMapping("createUser")
@@ -37,7 +37,7 @@ public class UserController {
 
     @PutMapping("blockUser")
     public UserDto blockUser(@RequestParam Long userId, @RequestBody UserDto userDto) {
-        return new UserDto("user2", true, 12L);
+        return new UserDto(1L, "user2", true, 12L);
     }
 
     @GetMapping("generateUserIdKey")

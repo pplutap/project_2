@@ -1,23 +1,19 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Entity
 @Table(name = "users")
 public class User {
-
-    public User() {
-    }
-
-    public User(String userName, Boolean isBlocked, Long userIdKey) {
-        this.userName = userName;
-        this.isBlocked = isBlocked;
-        this.userIdKey = userIdKey;
-    }
 
     @Id
     @NotNull
@@ -26,12 +22,11 @@ public class User {
     private Long userId;
 
     @Column(name = "username")
-    private String userName;
+    private final String userName;
 
     @Column(name = "isblocked")
-    private Boolean isBlocked;
+    private final Boolean isBlocked;
 
     @Column(name = "useridkey")
-    private Long userIdKey;
+    private final Long userIdKey;
 }
-
