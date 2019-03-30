@@ -1,6 +1,9 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.ProductDto;
+import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,9 +13,15 @@ import java.util.List;
 @RequestMapping("v1/product")
 public class ProductController {
 
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    ProductMapper productMapper;
+
     @GetMapping("getProducts")
     public List<ProductDto> getProducts() {
-        return new ArrayList<>();
+        return productMapper.mapToProductDtoList(productService.getAllProducts());
     }
 
     @GetMapping("getProduct")
