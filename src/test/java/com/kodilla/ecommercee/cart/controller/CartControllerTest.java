@@ -2,7 +2,6 @@ package com.kodilla.ecommercee.cart.controller;
 
 import com.kodilla.ecommercee.cart.domain.CartDto;
 import com.kodilla.ecommercee.cart.domain.UserDto;
-import com.kodilla.ecommercee.product.controller.ProductController;
 import com.kodilla.ecommercee.product.dto.ProductDto;
 import org.junit.Test;
 
