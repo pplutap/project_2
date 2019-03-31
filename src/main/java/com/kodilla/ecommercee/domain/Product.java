@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Getter
 @Entity
+@Getter
 @Table(name = "products")
 public class Product {
 
