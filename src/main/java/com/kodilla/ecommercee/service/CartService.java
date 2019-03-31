@@ -25,7 +25,7 @@ public class CartService {
     }
 
     public List<Cart> getAllCarts() {
-        return cartRepository.findAll();
+        return Optional.ofNullable(cartRepository.findAll()).orElse(new ArrayList<>());
     }
 
     public List<Product> getProductsFromCart(Long cartId) {
