@@ -71,12 +71,12 @@ public class CartTestSuite {
 
         Long id = cart.getCartId();
 
-        cartService.getProductsFromCart(id).add(product);
-        cartService.getProductsFromCart(id).add(product2);
-        cartService.getProductsFromCart(id).add(product3);
+        cartService.getCart(id).getProductsList().add(product);
+        cartService.getCart(id).getProductsList().add(product2);
+        cartService.getCart(id).getProductsList().add(product3);
 
         //When
-        List<Product> productListRead = cartService.getProductsFromCart(id);
+        List<Product> productListRead = cartService.getCart(id).getProductsList();
 
         //Then
         Assert.assertEquals(productList, productListRead);
@@ -95,12 +95,12 @@ public class CartTestSuite {
 
         Long id = cart.getCartId();
 
-        cartService.getProductsFromCart(id).add(product);
-        cartService.getProductsFromCart(id).add(product2);
-        cartService.getProductsFromCart(id).add(product3);
+        cartService.getCart(id).getProductsList().add(product);
+        cartService.getCart(id).getProductsList().add(product2);
+        cartService.getCart(id).getProductsList().add(product3);
 
         //When
-        List<Product> productList = cartService.getProductsFromCart(id);
+        List<Product> productList = cartService.getCart(id).getProductsList();
 
         //Then
         Assert.assertEquals(3, productList.size());

@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +26,4 @@ public class CartService {
     public List<Cart> getAllCarts() {
         return Optional.ofNullable(cartRepository.findAll()).orElse(new ArrayList<>());
     }
-
-    public List<Product> getProductsFromCart(Long cartId) {
-        return Optional.ofNullable(cartRepository.findById(cartId).get().getProductsList()).orElse(new ArrayList<>());
-    }
-
 }
