@@ -6,8 +6,9 @@ import com.kodilla.ecommercee.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -28,7 +29,7 @@ public class CartService {
     }
 
     public List<Product> getProductsFromCart(Long cartId) {
-        return cartRepository.findById(cartId).get().getProductsList();
+        return Optional.ofNullable(cartRepository.findById(cartId).get().getProductsList()).orElse(new ArrayList<>());
     }
 
 }

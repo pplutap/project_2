@@ -1,7 +1,5 @@
-package com.kodilla.ecommercee.cart;
+package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.service.CartService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -60,10 +58,9 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-
-        Product product = new Product(1L, "Apple", 20.0);
-        Product product2 = new Product(2L, "Ham", 20.0);
-        Product product3 = new Product(3L, "Peach", 5.0);
+        Product product = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         List<Product> productList = new ArrayList<>();
         productList.add(product);
@@ -90,9 +87,9 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-        Product product = new Product(1L, "Apple", 20.0);
-        Product product2 = new Product(2L, "Ham", 20.0);
-        Product product3 = new Product(3L, "Peach", 5.0);
+        Product product = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         cartService.createEmptyCart(cart);
 
@@ -107,6 +104,26 @@ public class CartTestSuite {
 
         //Then
         Assert.assertEquals(3, productList.size());
+    }
+
+    @Test
+    public void testGetAllCarts() {
+        //Given
+        Cart cart = new Cart();
+        Cart cart2 = new Cart();
+        Cart cart3 = new Cart();
+        Cart cart4 = new Cart();
+
+        cartService.createEmptyCart(cart);
+        cartService.createEmptyCart(cart2);
+        cartService.createEmptyCart(cart3);
+        cartService.createEmptyCart(cart4);
+
+        //When
+        List<Cart> cartList = cartService.getAllCarts();
+
+        //Then
+        Assert.assertEquals(4, cartList.size());
     }
 
 }

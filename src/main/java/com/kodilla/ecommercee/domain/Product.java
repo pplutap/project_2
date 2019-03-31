@@ -1,38 +1,32 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-@Setter
 @Getter
-@NoArgsConstructor
-@Entity(name = "product")
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Entity
+@Table(name = "products")
 public class Product {
 
     @ManyToOne
     private Cart cart;
 
     @Id
-    @Column(name = "id", unique = true)
+    @Column(name = "id")
+    @GeneratedValue
+    @NotNull
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    private final String name;
 
     @Column(name = "price")
-    private Double price;
-
-    public Product(Long id, String name, Double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-
-
+    private final Double price;
 }
+

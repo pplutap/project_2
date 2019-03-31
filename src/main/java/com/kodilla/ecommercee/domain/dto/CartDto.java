@@ -1,9 +1,9 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.domain.dto;
 
+import com.kodilla.ecommercee.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
