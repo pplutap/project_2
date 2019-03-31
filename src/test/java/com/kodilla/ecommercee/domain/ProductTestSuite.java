@@ -28,6 +28,26 @@ public class ProductTestSuite {
 
     @Transactional
     @Test
+    public void testDeleteById() {
+
+        //Given
+        Product product1 = new Product("product1", 10.0);
+        Product product2 = new Product("product2", 15.0);
+        Product product3 = new Product("product3", 20.0);
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.save(product3);
+
+        //When
+        productRepository.deleteById(product1.getId());
+
+        //Then
+        Assert.assertEquals(2, productRepository.count());
+
+    }
+
+    @Transactional
+    @Test
     public void testSave() {
 
         //Given
@@ -83,25 +103,6 @@ public class ProductTestSuite {
         Assert.assertEquals(Optional.of(product1), productOptional);
     }
 
-    @Transactional
-    @Test
-    public void testDeleteById() {
-
-        //Given
-        Product product1 = new Product("product1", 10.0);
-        Product product2 = new Product("product2", 15.0);
-        Product product3 = new Product("product3", 20.0);
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
-
-        //When
-        productRepository.deleteById(product1.getId());
-
-        //Then
-        Assert.assertEquals(2, productRepository.count());
-
-    }
 
     @Transactional
     @Test
@@ -120,6 +121,7 @@ public class ProductTestSuite {
     }
 
 
+    @Transactional
     @Test
     public void testMapToProductDtoList() {
 
