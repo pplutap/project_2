@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.user.controller.UserController;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
