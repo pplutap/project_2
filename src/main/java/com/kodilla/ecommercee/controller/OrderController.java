@@ -1,9 +1,8 @@
 package com.kodilla.ecommercee.controller;
 
 
-import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.domain.dto.OrderDto;
 import com.kodilla.ecommercee.domain.Product;
-import com.kodilla.ecommercee.domain.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ public class OrderController {
 
     @GetMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam Long orderId) {
+        throw new UnsupportedOperationException("This operation is not yet supported.");
     }
 
     @GetMapping(value = "updateOrder")
@@ -36,5 +36,6 @@ public class OrderController {
 
     @GetMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
     public void createOrder(@RequestBody OrderDto orderDto) {
+        throw new UnsupportedOperationException("This operation is not yet supported.");
     }
 }

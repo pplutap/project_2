@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "products")
 @AllArgsConstructor
 public class Product {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
