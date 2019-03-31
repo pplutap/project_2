@@ -2,23 +2,27 @@ package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-@Getter
-@Entity
-@Table(name = "products")
 @AllArgsConstructor
+@RequiredArgsConstructor
+@Entity
+@Getter
+@Table(name = "products")
 public class Product {
 
     @Id
+    @NotNull
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    private final String name;
 
     @Column(name = "price")
-    private Double price;
+    private final Double price;
 }
