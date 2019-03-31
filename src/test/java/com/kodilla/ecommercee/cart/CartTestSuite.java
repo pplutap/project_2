@@ -25,13 +25,13 @@ public class CartTestSuite {
     @Test
     public void testCartSave() {
         //Given
-        Cart cart = new Cart(1L);
+        Cart cart = new Cart();
 
         cartService.createEmptyCart(cart);
 
         //When
         Long id = cart.getCartId();
-        Cart readCart = cartService.getCart(1L);
+        Cart readCart = cartService.getCart(id);
 
         //Then
         Assert.assertEquals(id, readCart.getCartId());
@@ -40,9 +40,9 @@ public class CartTestSuite {
     @Test
     public void testCartFindByAll() {
         //Given
-        Cart cart = new Cart(1L);
-        Cart cart2 = new Cart(2L);
-        Cart cart3 = new Cart(3L);
+        Cart cart = new Cart();
+        Cart cart2 = new Cart();
+        Cart cart3 = new Cart();
 
         cartService.createEmptyCart(cart);
         cartService.createEmptyCart(cart2);
@@ -58,8 +58,8 @@ public class CartTestSuite {
     @Test
     public void testProductsFromCart() {
         //Given
-        Cart cart = new Cart(1L);
-        Long id = cart.getCartId();
+        Cart cart = new Cart();
+
 
         Product product = new Product(1L, "Apple", 20.0);
         Product product2 = new Product(2L, "Ham", 20.0);
@@ -72,12 +72,14 @@ public class CartTestSuite {
 
         cartService.createEmptyCart(cart);
 
+        Long id = cart.getCartId();
+
         cartService.getProductsFromCart(id).add(product);
         cartService.getProductsFromCart(id).add(product2);
         cartService.getProductsFromCart(id).add(product3);
 
         //When
-        List<Product> productListRead = cartService.getProductsFromCart(1L);
+        List<Product> productListRead = cartService.getProductsFromCart(id);
 
         //Then
         Assert.assertEquals(productList, productListRead);
@@ -86,8 +88,7 @@ public class CartTestSuite {
     @Test
     public void testProductsSizeFromCart() {
         //Given
-        Cart cart = new Cart(1L);
-        Long id = cart.getCartId();
+        Cart cart = new Cart();
 
         Product product = new Product(1L, "Apple", 20.0);
         Product product2 = new Product(2L, "Ham", 20.0);
@@ -95,12 +96,14 @@ public class CartTestSuite {
 
         cartService.createEmptyCart(cart);
 
+        Long id = cart.getCartId();
+
         cartService.getProductsFromCart(id).add(product);
         cartService.getProductsFromCart(id).add(product2);
         cartService.getProductsFromCart(id).add(product3);
 
         //When
-        List<Product> productList = cartService.getProductsFromCart(1L);
+        List<Product> productList = cartService.getProductsFromCart(id);
 
         //Then
         Assert.assertEquals(3, productList.size());
