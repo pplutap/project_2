@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.cart.domain;
+package com.kodilla.ecommercee.cart.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
