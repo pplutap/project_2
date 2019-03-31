@@ -21,7 +21,8 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createOrder")
-    public void createOrder(@RequestBody OrderDto orderDto) {
+    public OrderDto createOrder(@RequestBody OrderDto orderDto) {
+        return orderDto;
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateOrder")
