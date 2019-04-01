@@ -12,9 +12,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class EcommerceeApplicationTests {
 
     @Test
-    public void contextLoads() {
+    public void testIfCartIdIsNull() {
+        //Given
         Cart cart = new Cart();
-        Assert.assertEquals(null, cart.getCartId());
+        //When
+        Long cartId = cart.getCartId();
+        //Then
+        Assert.assertEquals(null, cartId);
     }
 
 }
