@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.cart.controller;
 
 import com.kodilla.ecommercee.cart.dto.CartDto;
-import com.kodilla.ecommercee.cart.dto.UserDto;
 import com.kodilla.ecommercee.product.dto.ProductDto;
+import com.kodilla.ecommercee.user.domain.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,29 +11,29 @@ import java.util.List;
 @RestController
 @RequestMapping("ecommercee/cart")
 public class CartController {
-    @RequestMapping(method = RequestMethod.POST, value = "createNewCart")
+    @PostMapping(value = "createNewCart")
     public Long createNewCart(@RequestBody UserDto user) {
         CartDto cartDto = new CartDto(25L);
         return cartDto.getCartId();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getItemsFromCart")
+    @GetMapping(value = "getItemsFromCart")
     public List<ProductDto> getProductsFromCart(@RequestParam Long cartId) {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "addItemToCart")
+    @PutMapping(value = "addItemToCart")
     public CartDto addProductToCart(@RequestParam Long productId, @RequestParam Long cartId) {
         return new CartDto(cartId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteItem")
+    @DeleteMapping(value = "deleteItem")
     public void deleteItemFromCart(@RequestParam Long productId, @RequestParam Long cartId) {
-
+        //This method will be deleting Products from Cart
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createOrder")
+    @PostMapping(value = "createOrder")
     public void createOrder(@RequestParam Long cartId) {
-
+        //This method will be creating new order based upon Cart's current content
     }
 }
