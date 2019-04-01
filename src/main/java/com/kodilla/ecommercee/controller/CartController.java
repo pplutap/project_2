@@ -28,17 +28,17 @@ public class CartController {
 
     @GetMapping(value = "getElemementsFromEmptyCart")
     public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
-        return cartService.getCart(cartId).getProductsList();
+        return cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList();
     }
 
     @PutMapping(value = "addProductToCart")
     public void addProductToCart(@RequestParam Long cartId, @RequestBody Product product) {
-        cartService.getCart(cartId).getProductsList().add(product);
+        cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList().add(product);
     }
 
     @PutMapping(value = "deleteProductFromCart")
     public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody Product product) {
-        cartService.getCart(cartId).getProductsList().remove(product);
+        cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList().remove(product);
     }
 
     @GetMapping(value = "createOrder")
