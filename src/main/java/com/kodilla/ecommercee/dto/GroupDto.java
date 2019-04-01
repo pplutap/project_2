@@ -6,7 +6,7 @@ public class GroupDto {
     private Long groupId;
     private String name;
     private String description;
-    private List<GroupDto> groupDtoList;
+   private List<GroupDto> groupDtoList;
 
 
     public GroupDto(Long groupId, String name, String description, List<GroupDto> groupDtoList) {

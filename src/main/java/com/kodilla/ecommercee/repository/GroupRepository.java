@@ -14,6 +14,4 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
     Group save(Group group);
 
     Optional<Group> findById(Long id);
-
-
 }

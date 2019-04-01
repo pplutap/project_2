@@ -14,21 +14,21 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("ecommerce/group")
 public class GroupController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getGroups")
+    @GetMapping(value = "getGroups")
     public List<GroupDto> getGroups() {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getGroup")
+    @GetMapping( value = "getGroup")
     public GroupDto getGroup(@RequestParam Long id) {
         return new GroupDto();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createGroup", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createGroup", consumes = APPLICATION_JSON_VALUE)
     public void createGroup(@RequestBody GroupDto groupDto) {
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateGroup", consumes = APPLICATION_JSON_VALUE)
+    @PutMapping( value = "updateGroup", consumes = APPLICATION_JSON_VALUE)
     public void updateGroup(@RequestBody GroupDto groupDto) {
 
     }
