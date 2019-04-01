@@ -19,7 +19,6 @@ public class OrderController {
 
     @GetMapping(value = "getOrder")
     public OrderDto getOrder(@RequestParam Long orderId) {
-        // return new OrderDto(1L, new Product("apple", 20.0), 12);
         return new OrderDto();
     }
 
@@ -30,7 +29,6 @@ public class OrderController {
 
     @GetMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        // return new OrderDto(1L, new Product(new Cart(),"ham", 10.0), 23);
         return new OrderDto();
     }
 

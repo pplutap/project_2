@@ -20,7 +20,7 @@ public class CartMapper {
 
     public List<CartDto> mapToCartDtoList(final List<Cart> cartList) {
         return cartList.stream()
-                .map(cart -> mapToCartDto(cart))
+                .map(cart -> new CartDto(cart.getCartId(), cart.getProductsList()))
                 .collect(Collectors.toList());
     }
 }
