@@ -58,9 +58,9 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-        Product product = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 40.0);
-        Product product3 = new Product("washing machine", 500.50);
+        Product product = new Product(cart, 1L, "apple", 20.0);
+        Product product2 = new Product(cart, 2L, "ham", 40.0);
+        Product product3 = new Product(cart, 3L, "washing machine", 500.50);
 
         List<Product> productList = new ArrayList<>();
         productList.add(product);
@@ -87,9 +87,9 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-        Product product = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 40.0);
-        Product product3 = new Product("washing machine", 500.50);
+        Product product = new Product(cart, 1L, "apple", 20.0);
+        Product product2 = new Product(cart, 2L, "ham", 40.0);
+        Product product3 = new Product(cart, 3L, "washing machine", 500.50);
 
         cartService.createEmptyCart(cart);
 

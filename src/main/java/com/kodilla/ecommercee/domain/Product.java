@@ -2,14 +2,14 @@ package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
@@ -24,9 +24,9 @@ public class Product {
     private Long id;
 
     @Column(name = "name")
-    private final String name;
+    private String name;
 
     @Column(name = "price")
-    private final Double price;
+    private Double price;
 }
 

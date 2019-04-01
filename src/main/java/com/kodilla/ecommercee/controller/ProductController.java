@@ -1,6 +1,4 @@
-
 package com.kodilla.ecommercee.controller;
-
 
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +18,7 @@ public class ProductController {
 
     @GetMapping("getProduct")
     public ProductDto getProduct(@RequestParam Long productId) {
-        return new ProductDto(1L, "Test Product Name", 10.0);
+        return new ProductDto();
     }
 
     @PostMapping("createProduct")
@@ -30,7 +28,7 @@ public class ProductController {
 
     @PutMapping("updateProduct")
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return new ProductDto(1L, "Edited Test Product Name", 20.0);
+        return new ProductDto();
     }
 
     @DeleteMapping("deleteProduct")
