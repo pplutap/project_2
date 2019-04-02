@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @RunWith(SpringRunner.class)
@@ -29,10 +30,10 @@ public class CartTestSuite {
 
         //When
         Long id = cart.getCartId();
-        Cart readCart = cartService.getCart(id);
+        Optional readCart = cartService.getCart(id);
 
         //Then
-        Assert.assertEquals(id, readCart.getCartId());
+        Assert.assertEquals(Optional.of(cart), readCart);
     }
 
     @Test
@@ -58,9 +59,9 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-        Product product = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 2L, "ham", 40.0);
-        Product product3 = new Product(cart, 3L, "washing machine", 500.50);
+        Product product = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         List<Product> productList = new ArrayList<>();
         productList.add(product);
@@ -71,12 +72,12 @@ public class CartTestSuite {
 
         Long id = cart.getCartId();
 
-        cartService.getCart(id).getProductsList().add(product);
-        cartService.getCart(id).getProductsList().add(product2);
-        cartService.getCart(id).getProductsList().add(product3);
+        cartService.getCart(id).get().getProductsList().add(product);
+        cartService.getCart(id).get().getProductsList().add(product2);
+        cartService.getCart(id).get().getProductsList().add(product3);
 
         //When
-        List<Product> productListRead = cartService.getCart(id).getProductsList();
+        List<Product> productListRead = cartService.getCart(id).get().getProductsList();
 
         //Then
         Assert.assertEquals(productList, productListRead);
@@ -87,20 +88,20 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-        Product product = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 2L, "ham", 40.0);
-        Product product3 = new Product(cart, 3L, "washing machine", 500.50);
+        Product product = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         cartService.createEmptyCart(cart);
 
         Long id = cart.getCartId();
 
-        cartService.getCart(id).getProductsList().add(product);
-        cartService.getCart(id).getProductsList().add(product2);
-        cartService.getCart(id).getProductsList().add(product3);
+        cartService.getCart(id).get().getProductsList().add(product);
+        cartService.getCart(id).get().getProductsList().add(product2);
+        cartService.getCart(id).get().getProductsList().add(product3);
 
         //When
-        List<Product> productList = cartService.getCart(id).getProductsList();
+        List<Product> productList = cartService.getCart(id).get().getProductsList();
 
         //Then
         Assert.assertEquals(3, productList.size());

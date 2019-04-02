@@ -13,7 +13,6 @@ public class ProductMapper {
         return new Product(productDto.getCart(), productDto.getId(),
                 productDto.getName(),
                 productDto.getPrice());
-
     }
 
     public ProductDto mapToProductDto(final Product product) {

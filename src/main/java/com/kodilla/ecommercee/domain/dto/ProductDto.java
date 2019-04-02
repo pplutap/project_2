@@ -4,14 +4,15 @@ import com.kodilla.ecommercee.domain.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class ProductDto {
     private Cart cart;
-    private Long id;
-    private String name;
-    private Double price;
+    private final Long id;
+    private final String name;
+    private final Double price;
 }
 

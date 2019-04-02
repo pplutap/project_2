@@ -18,7 +18,7 @@ public class ProductController {
 
     @GetMapping("getProduct")
     public ProductDto getProduct(@RequestParam Long productId) {
-        return new ProductDto();
+        return new ProductDto(1L, "Test Product Name", 10.0);
     }
 
     @PostMapping("createProduct")
@@ -28,7 +28,7 @@ public class ProductController {
 
     @PutMapping("updateProduct")
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return new ProductDto();
+        return new ProductDto(1L, "Test Product Name", 10.0);
     }
 
     @DeleteMapping("deleteProduct")

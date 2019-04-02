@@ -3,6 +3,8 @@ package com.kodilla.ecommercee.domain;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.ProductRepository;
+import com.kodilla.ecommercee.service.CartService;
+import com.kodilla.ecommercee.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductTestSuite {
@@ -23,99 +26,100 @@ public class ProductTestSuite {
     ProductMapper productMapper;
 
     @Autowired
+    ProductService productService;
+
+    @Autowired
     ProductRepository productRepository;
 
-    @Transactional
+    @Autowired
+    CartService cartService;
+
     @Test
     public void testDeleteById() {
         //Given
-        Cart cart = new Cart();
-        Product product1 = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 1L, "apple", 20.0);
-        Product product3 = new Product(cart, 1L, "apple", 20.0);
+        Product product1 = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 5.0);
+        Product product3 = new Product("peper", 10.0);
 
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
+        productService.saveProduct(product1);
+        productService.saveProduct(product2);
+        productService.saveProduct(product3);
+
+        productService.deleteProduct(product1.getId());
 
         //When
-        productRepository.deleteById(product1.getId());
+        int size = productService.getAllProducts().size();
 
         //Then
-        Assert.assertEquals(2, productRepository.count());
+        Assert.assertEquals(2, size);
 
     }
 
-    @Transactional
     @Test
     public void testSave() {
-        //Given
-        Cart cart = new Cart();
-        Product product1 = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 1L, "apple", 20.0);
-        Product product3 = new Product(cart, 1L, "apple", 20.0);
+        Product product1 = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 5.0);
+        Product product3 = new Product("peper", 10.0);
+
+        productService.saveProduct(product1);
+        productService.saveProduct(product2);
+        productService.saveProduct(product3);
+
+        productService.saveProduct(product1);
+        productService.saveProduct(product2);
+        productService.saveProduct(product3);
 
         //When
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
+        int size = productService.getAllProducts().size();
 
         //Then
-        Assert.assertEquals(3, productRepository.count());
+        Assert.assertEquals(3, size);
     }
 
-    @Transactional
     @Test
     public void testFindAll() {
         //Given
-        Cart cart = new Cart();
+        Product product1 = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 5.0);
+        Product product3 = new Product("peper", 10.0);
 
-        Product product1 = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 1L, "apple", 20.0);
-        Product product3 = new Product(cart, 1L, "apple", 20.0);
-
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
+        productService.saveProduct(product1);
+        productService.saveProduct(product2);
+        productService.saveProduct(product3);
 
         //When
-        List<Product> productList = productRepository.findAll();
+        List<Product> productList = productService.getAllProducts();
 
         //Then
         Assert.assertEquals(3, productList.size());
     }
 
-    @Transactional
     @Test
     public void testFindById() {
-        //Given
-        Cart cart = new Cart();
+        Product product1 = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 5.0);
+        Product product3 = new Product("peper", 10.0);
 
-        Product product1 = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 1L, "apple", 20.0);
-        Product product3 = new Product(cart, 1L, "apple", 20.0);
-
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
+        productService.saveProduct(product1);
+        productService.saveProduct(product2);
+        productService.saveProduct(product3);
 
         //When
-        Optional<Product> productOptional = productRepository.findById(product1.getId());
+        Optional<Product> productOptional = productService.getProduct(product1.getId());
 
         //Then
         Assert.assertEquals(Optional.of(product1), productOptional);
     }
 
-
-    @Transactional
     @Test
     public void testMapProductToProductDto() {
-        //Given
-        Cart cart = new Cart();
+        Product product1 = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 5.0);
+        Product product3 = new Product("peper", 10.0);
 
-        Product product1 = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 1L, "apple", 20.0);
-        Product product3 = new Product(cart, 1L, "apple", 20.0);
+        productService.saveProduct(product1);
+        productService.saveProduct(product2);
+        productService.saveProduct(product3);
 
         //When
         ProductDto productDto = productMapper.mapToProductDto(product1);
@@ -124,20 +128,11 @@ public class ProductTestSuite {
         Assert.assertEquals(product1.getId(), productDto.getId());
     }
 
-
-    @Transactional
     @Test
     public void testMapToProductDtoList() {
-        //Given
-        Cart cart = new Cart();
-
-        Product product1 = new Product(cart, 1L, "apple", 20.0);
-        Product product2 = new Product(cart, 1L, "apple", 20.0);
-        Product product3 = new Product(cart, 1L, "apple", 20.0);
-
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
+        Product product1 = new Product("apple", 20.0);
+        Product product2 = new Product("ham", 5.0);
+        Product product3 = new Product("peper", 10.0);
 
         //When
         List<Product> productList = new ArrayList<>();
