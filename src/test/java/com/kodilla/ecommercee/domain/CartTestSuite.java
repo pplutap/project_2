@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @RunWith(SpringRunner.class)
@@ -30,10 +29,10 @@ public class CartTestSuite {
 
         //When
         Long id = cart.getCartId();
-        Optional readCart = cartService.getCart(id);
+        Cart readCart = cartService.getCart(id);
 
         //Then
-        Assert.assertEquals(Optional.of(cart), readCart);
+        Assert.assertEquals(cart, readCart);
     }
 
     @Test
@@ -72,12 +71,12 @@ public class CartTestSuite {
 
         Long id = cart.getCartId();
 
-        cartService.getCart(id).get().getProductsList().add(product);
-        cartService.getCart(id).get().getProductsList().add(product2);
-        cartService.getCart(id).get().getProductsList().add(product3);
+        cartService.getCart(id).getProductsList().add(product);
+        cartService.getCart(id).getProductsList().add(product2);
+        cartService.getCart(id).getProductsList().add(product3);
 
         //When
-        List<Product> productListRead = cartService.getCart(id).get().getProductsList();
+        List<Product> productListRead = cartService.getCart(id).getProductsList();
 
         //Then
         Assert.assertEquals(productList, productListRead);
@@ -96,12 +95,12 @@ public class CartTestSuite {
 
         Long id = cart.getCartId();
 
-        cartService.getCart(id).get().getProductsList().add(product);
-        cartService.getCart(id).get().getProductsList().add(product2);
-        cartService.getCart(id).get().getProductsList().add(product3);
+        cartService.getCart(id).getProductsList().add(product);
+        cartService.getCart(id).getProductsList().add(product2);
+        cartService.getCart(id).getProductsList().add(product3);
 
         //When
-        List<Product> productList = cartService.getCart(id).get().getProductsList();
+        List<Product> productList = cartService.getCart(id).getProductsList();
 
         //Then
         Assert.assertEquals(3, productList.size());

@@ -28,22 +28,22 @@ public class CartController {
 
     @GetMapping(value = "getElemementsFromEmptyCart")
     public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
-        return cartMapper.mapToCartDto(cartService.getCart(cartId).get()).getProductsList();
+        return cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList();
     }
 
     @PutMapping(value = "addProductToCart")
     public void addProductToCart(@RequestParam Long cartId, @RequestBody Product product) {
-        cartMapper.mapToCartDto(cartService.getCart(cartId).get()).getProductsList().add(product);
+        cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList().add(product);
     }
 
     @PutMapping(value = "deleteProductFromCart")
     public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody Product product) {
-        cartMapper.mapToCartDto(cartService.getCart(cartId).get()).getProductsList().remove(product);
+        cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList().remove(product);
     }
 
     @GetMapping(value = "createOrder")
     public CartDto createOrder(@RequestParam Long cartId) {
-        return cartMapper.mapToCartDto(cartService.getCart(cartId).get());
+        return cartMapper.mapToCartDto(cartService.getCart(cartId));
     }
 
     @GetMapping(value = "getAllCarts")
