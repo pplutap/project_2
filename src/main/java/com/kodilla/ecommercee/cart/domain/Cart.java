@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 public class Cart {
     private Long cartId;
     private List<Product> productList = new ArrayList<>();
-
-    @OneToOne(targetEntity = User.class, mappedBy = "cart")
     private User user;
 
     @OneToOne(targetEntity = Order.class, mappedBy = "cart")
@@ -69,5 +67,13 @@ public class Cart {
         this.order = order;
     }
 
+    @OneToOne
+    @JoinColumn(name = "USER_ID")
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
