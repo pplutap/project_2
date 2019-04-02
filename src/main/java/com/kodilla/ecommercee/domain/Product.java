@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -16,14 +15,13 @@ public class Product {
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue
-    @NotNull
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    private String name = null;
 
     @Column(name = "price")
-    private Double price;
+    private Double price = null;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cart cart;
