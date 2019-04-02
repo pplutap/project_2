@@ -1,21 +1,17 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "products")
 public class Product {
-
-    @ManyToOne
-    private Cart cart;
 
     @Id
     @Column(name = "id", unique = true)
@@ -24,7 +20,16 @@ public class Product {
     private Long id;
 
     @Column(name = "name")
-    private final String name;
+    private String name;
+
     @Column(name = "price")
-    private final Double price;
+    private Double price;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cart cart;
+
+    public Product(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
 }

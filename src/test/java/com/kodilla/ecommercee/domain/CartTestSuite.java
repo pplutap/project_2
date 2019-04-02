@@ -25,11 +25,10 @@ public class CartTestSuite {
         //Given
         Cart cart = new Cart();
 
-        cartService.createEmptyCart(cart);
+        cartService.saveCart(cart);
 
         //When
-        Long id = cart.getCartId();
-        Cart readCart = cartService.getCart(id);
+        Cart readCart = cartService.getCart(cart.getCartId());
 
         //Then
         Assert.assertEquals(cart, readCart);
@@ -42,9 +41,9 @@ public class CartTestSuite {
         Cart cart2 = new Cart();
         Cart cart3 = new Cart();
 
-        cartService.createEmptyCart(cart);
-        cartService.createEmptyCart(cart2);
-        cartService.createEmptyCart(cart3);
+        cartService.saveCart(cart);
+        cartService.saveCart(cart2);
+        cartService.saveCart(cart3);
 
         //When
         List<Cart> cartList = cartService.getAllCarts();
@@ -67,19 +66,19 @@ public class CartTestSuite {
         productList.add(product2);
         productList.add(product3);
 
-        cartService.createEmptyCart(cart);
+        cartService.saveCart(cart);
 
-        Long id = cart.getCartId();
+        cartService.getCart(1L).getProductsList().add(product);
+        cartService.getCart(1L).getProductsList().add(product2);
+        cartService.getCart(1L).getProductsList().add(product3);
 
-        cartService.getCart(id).getProductsList().add(product);
-        cartService.getCart(id).getProductsList().add(product2);
-        cartService.getCart(id).getProductsList().add(product3);
+        cartService.saveCart(cart);
 
         //When
-        List<Product> productListRead = cartService.getCart(id).getProductsList();
+        List<Product> productListRead = cartService.getCart(1L).getProductsList();
 
         //Then
-        Assert.assertEquals(productList, productListRead);
+        Assert.assertEquals(productList.size(), productListRead.size());
     }
 
     @Test
@@ -91,13 +90,15 @@ public class CartTestSuite {
         Product product2 = new Product("ham", 40.0);
         Product product3 = new Product("washing machine", 500.50);
 
-        cartService.createEmptyCart(cart);
+        cartService.saveCart(cart);
 
         Long id = cart.getCartId();
 
         cartService.getCart(id).getProductsList().add(product);
         cartService.getCart(id).getProductsList().add(product2);
         cartService.getCart(id).getProductsList().add(product3);
+
+        cartService.saveCart(cartService.getCart(id));
 
         //When
         List<Product> productList = cartService.getCart(id).getProductsList();
@@ -114,10 +115,10 @@ public class CartTestSuite {
         Cart cart3 = new Cart();
         Cart cart4 = new Cart();
 
-        cartService.createEmptyCart(cart);
-        cartService.createEmptyCart(cart2);
-        cartService.createEmptyCart(cart3);
-        cartService.createEmptyCart(cart4);
+        cartService.saveCart(cart);
+        cartService.saveCart(cart2);
+        cartService.saveCart(cart3);
+        cartService.saveCart(cart4);
 
         //When
         List<Cart> cartList = cartService.getAllCarts();

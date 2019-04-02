@@ -15,7 +15,7 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public void createEmptyCart(Cart cart) {
+    public void saveCart(Cart cart) {
         cartRepository.save(cart);
     }
 

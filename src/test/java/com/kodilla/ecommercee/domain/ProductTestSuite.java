@@ -38,8 +38,8 @@ public class ProductTestSuite {
     public void testDeleteById() {
         //Given
         Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 5.0);
-        Product product3 = new Product("peper", 10.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         productService.saveProduct(product1);
         productService.saveProduct(product2);
@@ -58,12 +58,8 @@ public class ProductTestSuite {
     @Test
     public void testSave() {
         Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 5.0);
-        Product product3 = new Product("peper", 10.0);
-
-        productService.saveProduct(product1);
-        productService.saveProduct(product2);
-        productService.saveProduct(product3);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         productService.saveProduct(product1);
         productService.saveProduct(product2);
@@ -80,8 +76,8 @@ public class ProductTestSuite {
     public void testFindAll() {
         //Given
         Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 5.0);
-        Product product3 = new Product("peper", 10.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         productService.saveProduct(product1);
         productService.saveProduct(product2);
@@ -96,9 +92,10 @@ public class ProductTestSuite {
 
     @Test
     public void testFindById() {
+        //Given
         Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 5.0);
-        Product product3 = new Product("peper", 10.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         productService.saveProduct(product1);
         productService.saveProduct(product2);
@@ -108,14 +105,15 @@ public class ProductTestSuite {
         Optional<Product> productOptional = productService.getProduct(product1.getId());
 
         //Then
-        Assert.assertEquals(Optional.of(product1), productOptional);
+        Assert.assertEquals(product1.getId(), productOptional.get().getId());
     }
 
     @Test
     public void testMapProductToProductDto() {
+        //Given
         Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 5.0);
-        Product product3 = new Product("peper", 10.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         productService.saveProduct(product1);
         productService.saveProduct(product2);
@@ -130,9 +128,10 @@ public class ProductTestSuite {
 
     @Test
     public void testMapToProductDtoList() {
+        //Given
         Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 5.0);
-        Product product3 = new Product("peper", 10.0);
+        Product product2 = new Product("ham", 40.0);
+        Product product3 = new Product("washing machine", 500.50);
 
         //When
         List<Product> productList = new ArrayList<>();

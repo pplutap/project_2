@@ -21,12 +21,12 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping(value = "createEmptyCart", consumes = APPLICATION_JSON_VALUE)
-    public void createEmptyCart(@RequestBody CartDto cartDto) {
-        cartService.createEmptyCart(cartMapper.mapToCart(cartDto));
+    @PostMapping(value = "saveCart", consumes = APPLICATION_JSON_VALUE)
+    public void saveCart(@RequestBody CartDto cartDto) {
+        cartService.saveCart(cartMapper.mapToCart(cartDto));
     }
 
-    @GetMapping(value = "getElemementsFromEmptyCart")
+    @GetMapping(value = "getProductsFromEmptyCart")
     public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList();
     }
