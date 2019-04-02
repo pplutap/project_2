@@ -20,11 +20,6 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void testShouldGetOrder() {
-
-    }
-
-    @Test
     public void testShouldCreateOrder() {
         //Given
         ProductDto product = new ProductDto();
@@ -32,39 +27,8 @@ public class OrderControllerTest {
         productList.add(product);
         OrderDto orderDto = new OrderDto(1L, "Test Order", productList);
         //When
+        String orderDescription = orderDto.getOrderDescription();
         //Then
-        Assert.assertEquals(1L, orderDto.getOrderId(), 0.01);
-    }
-
-    @Test
-    public void testShouldUpdateOrder() {
-        //Given
-        ProductDto product = new ProductDto();
-        ProductDto newProduct = new ProductDto(1L, "iPhone", "Mobile phone", 2799.00, 1L);
-        List<ProductDto> productList = new ArrayList<>();
-        productList.add(product);
-        List<ProductDto> newProductList = new ArrayList<>();
-        newProductList.add(newProduct);
-        OrderDto orderDto = new OrderDto(1L, "Test Order", productList);
-        //When
-        OrderDto editedOrder = orderController.updateOrder(new OrderDto(1L, "Edited Test Order", newProductList));
-        //Then
-        //Assert.assertNotEquals(orderDto, editedOrder);
-        //Assert.assertEquals("Edited Test Order", editedOrder.getOrderDescription());
-    }
-
-    @Test
-    public void testShouldDeleteOrder() {
-        //Given
-        ProductDto product = new ProductDto();
-        List<ProductDto> productDtoList = new ArrayList<>();
-        productDtoList.add(product);
-        OrderDto orderDto = new OrderDto(1L, "Test Order", productDtoList);
-        List<OrderDto> orderDtoList = new ArrayList<>();
-        orderDtoList.add(orderDto);
-        //When
-        orderController.deleteOrder(1L);
-        //Then
-       //Assert.assertEquals(0, orderDtoList.size());
+        Assert.assertEquals("Test Order", orderDescription);
     }
 }
