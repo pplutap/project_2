@@ -68,17 +68,19 @@ public class CartTestSuite {
 
         cartService.saveCart(cart);
 
-        cartService.getCart(1L).getProductsList().add(product);
-        cartService.getCart(1L).getProductsList().add(product2);
-        cartService.getCart(1L).getProductsList().add(product3);
+        Long id = cart.getCartId();
+
+        cartService.getCart(id).getProductsList().add(product);
+        cartService.getCart(id).getProductsList().add(product2);
+        cartService.getCart(id).getProductsList().add(product3);
 
         cartService.saveCart(cart);
 
         //When
-        List<Product> productListRead = cartService.getCart(1L).getProductsList();
+        List<Product> productListRead = cartService.getCart(id).getProductsList();
 
         //Then
-        Assert.assertEquals(productList.size(), productListRead.size());
+        Assert.assertEquals(productList.size(),productListRead.size());
     }
 
     @Test
