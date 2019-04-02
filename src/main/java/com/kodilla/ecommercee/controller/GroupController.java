@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 
-import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.domain.GroupEntity;
 import com.kodilla.ecommercee.dto.GroupDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("ecommerce/group")
+@RequestMapping("ecommerce/group/")
 public class GroupController {
 
     @GetMapping(value = "getGroups")
