@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.cart.controller;
 
 import com.kodilla.ecommercee.cart.dto.CartDto;
-import com.kodilla.ecommercee.cart.dto.UserDto;
 import com.kodilla.ecommercee.product.dto.ProductDto;
+import com.kodilla.ecommercee.user.dto.UserDto;
 import org.junit.Test;
 
 import java.util.List;

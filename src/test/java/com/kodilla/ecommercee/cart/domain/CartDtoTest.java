@@ -10,16 +10,25 @@ public class CartDtoTest {
 
     @Test
     public void getCartId() {
+        //Given
+        //When
+        //Then
         assertEquals(null, cart.getCartId());
     }
 
     @Test
     public void getProductDtoList() {
-        assertEquals(null, cart.getProductDtoList());
+        //Given
+        //When
+        //Then
+        assertEquals(null, cart.getProductList());
     }
 
     @Test
     public void getUserDto() {
-        assertEquals(null, cart.getProductDtoList());
+        //Given
+        //When
+        //Then
+        assertEquals(null, cart.getProductList());
     }
 }
