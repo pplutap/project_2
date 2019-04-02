@@ -18,10 +18,10 @@ public class Product {
     private Long id;
 
     @Column(name = "name")
-    private String name = null;
+    private String name;
 
     @Column(name = "price")
-    private Double price = null;
+    private Double price;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cart cart;
