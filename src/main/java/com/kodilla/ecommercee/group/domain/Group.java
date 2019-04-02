@@ -1,13 +1,12 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.group.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-@Table(name = "group_entity")
-public final class GroupEntity {
+@Table(name = "groups")
+public final class Group {
 
     @Id
     @GeneratedValue
@@ -15,32 +14,31 @@ public final class GroupEntity {
     @Column(name = "ID", unique = true)
     private Long idGroup;
 
+    @Column(name = "NAME")
+    private String nameOfGroup;
+
+    @Column(name = "DESCRIPTION")
+    private String descriptionOfGroup;
+
+    public Group() {
+
+    }
+
+    public Group(String nameOfGroup, String descriptionOfGroup) {
+        this.nameOfGroup = nameOfGroup;
+        this.descriptionOfGroup = descriptionOfGroup;
+    }
+
     public Long getIdGroup() {
         return idGroup;
     }
-
-    @Column(name = "NAME")
-    private String nameOfGroup;
 
     public String getNameOfGroup() {
         return nameOfGroup;
     }
 
-
-    @Column(name = "DESCRIPTION")
-    private String descriptionOfGroup;
-
     public String getDescriptionOfGroup() {
         return descriptionOfGroup;
-    }
-
-    public GroupEntity() {
-
-    }
-
-    public GroupEntity(String nameOfGroup, String descriptionOfGroup) {
-        this.nameOfGroup = nameOfGroup;
-        this.descriptionOfGroup = descriptionOfGroup;
     }
 
     public void setIdGroup(Long idGroup) {
