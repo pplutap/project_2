@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-//@Table(name = "group_entity")
+@Table(name = "group_entity")
 public final class GroupEntity {
 
     @Id
