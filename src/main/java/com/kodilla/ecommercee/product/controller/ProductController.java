@@ -10,29 +10,31 @@ import java.util.List;
 @RequestMapping("ecommercee/product")
 public class ProductController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getProducts")
+    @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getProduct")
+    @GetMapping(value = "getProduct")
     public ProductDto getProduct(@RequestParam int id) {
         return new ProductDto();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addProduct", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "addProduct", consumes = APPLICATION_JSON_VALUE)
     public void addProduct(@RequestBody ProductDto productDto) {
-
+        //TODO
+        //add final code
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateProduct", consumes = APPLICATION_JSON_VALUE)
+    @PutMapping(value = "updateProduct", consumes = APPLICATION_JSON_VALUE)
     public ProductDto editProduct(@RequestBody ProductDto productDto) {
         return new ProductDto();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteProduct")
+    @DeleteMapping(value = "deleteProduct")
     public void deleteProduct(@RequestParam int id) {
-
+        //TODO
+        //add final code
     }
 }
 
