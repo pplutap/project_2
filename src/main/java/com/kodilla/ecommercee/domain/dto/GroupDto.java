@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class UserDto {
-    private Long userId;
-    private String userName;
-    private Boolean isBlocked;
-    private Long userIdKey;
+public class GroupDto {
+    private Long groupId;
+    private String groupName;
 }
