@@ -15,14 +15,12 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Entity(name = "CARTS")
 public class Cart {
     private Long cartId;
     private List<Product> productList = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
+    @OneToOne(targetEntity = User.class, mappedBy = "cart")
     private User user;
 
     @OneToOne(targetEntity = Order.class, mappedBy = "cart")

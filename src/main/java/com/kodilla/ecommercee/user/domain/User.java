@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
@@ -16,15 +15,13 @@ import javax.validation.constraints.NotNull;
 @Entity(name = "USERS")
 public class User {
     @Id
-    @GeneratedValue
-    @NotNull
-    @Column(name = "USER_ID", unique = true)
     private Long userId;
     private String userName;
     private String status;
     private Long userKey;
 
-    @OneToOne(targetEntity = Cart.class, mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "CART_ID")
     private Cart cart;
 
     public Cart getCart() {
