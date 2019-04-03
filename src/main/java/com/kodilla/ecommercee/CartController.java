@@ -16,12 +16,12 @@ public class CartController {
     @PutMapping(name="addProductToCart")
     public CartDto addProductToCart() {
 
-        return null;
+        return new CartDto();
     }
     @PostMapping(name="createEmptyCart")
     public CartDto createEmptyCart() {
 
-        return null;
+        return new CartDto();
     }
     @DeleteMapping(name="deleteProductFromCart")
     public void deleteProductFromCart() {
@@ -30,7 +30,7 @@ public class CartController {
     @PostMapping(name="createOrderFromCart")
     public OrderDto createOrderFromCart() {
 
-        return null;
+        return new OrderDto();
     }
 }
 
