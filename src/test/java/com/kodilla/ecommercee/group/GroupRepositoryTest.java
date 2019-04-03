@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroupRepositoryTest {
@@ -24,11 +25,13 @@ public class GroupRepositoryTest {
 
         //when
         groupRepository.save(group);
+
         //then
-        Assert.assertEquals(1, 1);
+        Assert.assertNotNull(group.getIdGroup());
 
         //cleanup
         groupRepository.deleteAll();
+
     }
 
     @Test
