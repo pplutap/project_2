@@ -2,7 +2,9 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.CartDto;
+import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
+import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private ProductMapper productMapper;
+
     @PostMapping(value = "saveCart", consumes = APPLICATION_JSON_VALUE)
     public void saveCart(@RequestBody CartDto cartDto) {
         cartService.saveCart(cartMapper.mapToCart(cartDto));
@@ -32,13 +37,13 @@ public class CartController {
     }
 
     @PutMapping(value = "addProductToCart")
-    public void addProductToCart(@RequestParam Long cartId, @RequestBody Product product) {
-        cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList().add(product);
+    public void addProductToCart(@RequestParam Long cartId, @RequestBody ProductDto productDto) {
+        cartService.getCart(cartId).getProductsList().add(productMapper.mapToProduct(productDto));
     }
 
     @PutMapping(value = "deleteProductFromCart")
-    public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody Product product) {
-        cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList().remove(product);
+    public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody ProductDto productDto) {
+        cartService.getCart(cartId).getProductsList().remove(productMapper.mapToProduct(productDto));
     }
 
     @GetMapping(value = "createOrder")
