@@ -1,43 +1,37 @@
 package com.kodilla.ecommercee;
 
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("carts")
-
 public class CartController {
+    @GetMapping(name = "getProductsFromCart")
+    public List<ProductDto> getProductsFromCart(@RequestParam Long cartID) {
 
-    @RequestMapping( method = RequestMethod.GET, value = "getProductsFromCart")
-    public String getProductsFromCart(@RequestParam Long cartID) {
-
-        return "cloth , paper";
+        return new ArrayList<>();
     }
+    @PutMapping(name="addProductToCart")
+    public CartDto addProductToCart() {
 
-    @RequestMapping(method = RequestMethod.PUT,value = "addProductToCart")
-    public String addProductToCart() {
-
-        return "producr added";
+        return null;
     }
+    @PostMapping(name="createEmptyCart")
+    public CartDto createEmptyCart() {
 
-    @RequestMapping(method = RequestMethod.POST, value = "createEmptyCart")
-    public String createEmptyCart() {
-
-        return "cart created";
+        return null;
     }
+    @DeleteMapping(name="deleteProductFromCart")
+    public void deleteProductFromCart() {
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteProductFromCart")
-    public String deleteProductFromCart() {
-
-        return "product removed";
     }
+    @PostMapping(name="createOrderFromCart")
+    public OrderDto createOrderFromCart() {
 
-    @RequestMapping(method = RequestMethod.POST, value = "createOrderFromCart")
-    public String createOrderFromCart() {
-
-        return "order created";
+        return null;
     }
-
 }
 
 
