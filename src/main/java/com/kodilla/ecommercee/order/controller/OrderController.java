@@ -10,28 +10,28 @@ import java.util.List;
 @RequestMapping("ecommercee/order")
 public class OrderController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getOrders")
+    @GetMapping(value = "getOrders")
     public List<OrderDto> getOrders() {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getOrder")
+    @GetMapping(value = "getOrder")
     public OrderDto getOrder(@RequestParam Long id) {
         return new OrderDto();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createOrder")
-    public OrderDto createOrder(@RequestBody OrderDto orderDto) {
+    @PostMapping(value = "createOrder")
+    public void createOrder(@RequestBody OrderDto orderDto) {
+        // TODO
+    }
+
+    @PutMapping(value = "updateOrder")
+    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return orderDto;
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateOrder")
-    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        return new OrderDto();
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteOrder")
+    @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam Long id) {
-
+        // TODO
     }
 }
