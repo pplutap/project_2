@@ -27,7 +27,7 @@ public class GroupRepositoryTest {
         //then
         Assert.assertEquals(1, 1);
 
-//cleanup
+        //cleanup
         groupRepository.deleteAll();
     }
 

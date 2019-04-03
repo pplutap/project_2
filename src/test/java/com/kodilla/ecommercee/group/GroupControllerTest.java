@@ -12,9 +12,7 @@ public class GroupControllerTest {
 
     @Test
     public void testGetGroups() {
-        //given
-
-        //then
+        //when
         List<GroupDto> groups = groupController.getGroups();
 
         //then
@@ -23,10 +21,9 @@ public class GroupControllerTest {
 
     @Test
     public void testGetGroup() {
-        //then
-
         //when
         GroupDto groupDto = groupController.getGroup(1L);
+
         //then
         Assert.assertEquals(null, groupDto.getDescription());
         Assert.assertEquals(null, groupDto.getName());
