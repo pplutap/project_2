@@ -13,10 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class OrderControllerTest {
 
-    private OrderController orderController = new OrderController();
+    @Autowired
+    private OrderController orderController;
 
     @Test
     public void testShouldGetOrders() {
