@@ -16,7 +16,7 @@ public class ProductController {
 
     @GetMapping("{id}")
     public String getProduct(@PathVariable("id") Long productId) {
-        return null;
+        return "get product";
     }
 
     @DeleteMapping("id")
@@ -25,12 +25,12 @@ public class ProductController {
     }
 
     @PutMapping()
-    public String updateTask(@RequestBody String string){
-        return null;
+    public String updateProduct(@RequestBody String string){
+        return "update product";
     }
 
     @PostMapping(consumes = "application/json")
-    public void createTask(@RequestBody String string){
+    public void createProduct(@RequestBody String string){
 
     }
 }
