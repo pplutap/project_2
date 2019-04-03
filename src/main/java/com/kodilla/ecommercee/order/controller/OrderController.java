@@ -22,7 +22,7 @@ public class OrderController {
 
     @PostMapping(value = "createOrder")
     public void createOrder(@RequestBody OrderDto orderDto) {
-        // TODO
+
     }
 
     @PutMapping(value = "updateOrder")
@@ -32,6 +32,6 @@ public class OrderController {
 
     @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam Long id) {
-        // TODO
+
     }
 }
