@@ -1,18 +1,16 @@
 package com.kodilla.ecommercee.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Entity
-@Table(name = "groups")
+@Table(name = "productgroups")
 public class Group {
 
     @Id
@@ -22,5 +20,5 @@ public class Group {
     private Long groupId;
 
     @Column(name = "groupname")
-    private String groupName;
+    private final String groupName;
 }

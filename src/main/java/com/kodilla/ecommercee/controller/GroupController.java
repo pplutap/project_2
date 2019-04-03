@@ -6,8 +6,9 @@ import com.kodilla.ecommercee.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("v1/group")
@@ -21,21 +22,21 @@ public class GroupController {
 
     @GetMapping("getGroups")
     public List<GroupDto> getGroups() {
-        return new ArrayList<>();
+        return groupMapper.mapToGroupDtoList(groupService.getGroupsList());
     }
 
     @GetMapping("getGroup")
-    public GroupDto getGroup(@RequestParam Long groupId) {
-        return new GroupDto(1L, "group1");
+    public GroupDto getGroup(@RequestParam Long groupId) throws GroupNotFoundException {
+        return groupMapper.mapToGroupDto(groupService.getGroup(groupId).orElseThrow(GroupNotFoundException::new));
     }
 
-    @PostMapping("createGroup")
+    @PostMapping(value = "createGroup", consumes = APPLICATION_JSON_VALUE)
     public void createGroup(@RequestBody GroupDto groupDto) {
         groupService.createGroup(groupMapper.mapToGroup(groupDto));
     }
 
     @PutMapping("updateGroup")
-    public GroupDto updateGroup(@RequestBody GroupDto groupDto, @RequestParam Long groupId) {
-        return new GroupDto(1L, "updatedGroup1");
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
+        return groupMapper.mapToGroupDto(groupService.saveGroup(groupMapper.mapToGroup(groupDto)));
     }
 }
