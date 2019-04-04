@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "CARTS")
+@Entity
+@Table(name = "CARTS")
 public class Cart {
     private Long cartId;
     private List<Product> productList = new ArrayList<>();

@@ -7,6 +7,7 @@ import com.kodilla.ecommercee.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import javax.persistence.*;
@@ -15,7 +16,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Entity(name = "ORDERS")
 public class Order {
     @Id
@@ -23,15 +23,31 @@ public class Order {
     private String orderDescription;
     //private List<Product> productList = new ArrayList<>();
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
     @OneToOne
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public String getOrderDescription() {
+        return orderDescription;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setOrderDescription(String orderDescription) {
+        this.orderDescription = orderDescription;
+    }
+
     public Cart getCart() {
         return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

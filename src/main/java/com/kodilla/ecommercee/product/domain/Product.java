@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-//@Entity(name = "PRODUCTS")
 public class Product {
     private Long id;
     private String name;
