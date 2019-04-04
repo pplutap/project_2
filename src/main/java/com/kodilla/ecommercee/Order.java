@@ -1,31 +1,26 @@
 package com.kodilla.ecommercee;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import javax.persistence.*;
 
+@Setter(AccessLevel.PRIVATE)
 @Entity
 @Table(name = "ORDERS")
 public class Order  {
 
+    private Long id;
     private Cart cart;
-    private long id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="CART_ID")
     public Cart getCart() {
         return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }

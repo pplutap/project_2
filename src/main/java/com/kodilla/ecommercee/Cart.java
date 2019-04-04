@@ -1,18 +1,18 @@
 package com.kodilla.ecommercee;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Setter(AccessLevel.PRIVATE)
 @Entity
 @Table(name="CARTS")
 public class Cart   {
 
-
-    private List<Product> products;
-   // private Order connectedOrder;
     private Long id;
+    private List<Product> products;
 
     public Cart() {
         products = new ArrayList<>();
@@ -20,7 +20,6 @@ public class Cart   {
 
     @OneToMany( targetEntity = Product.class,
                 mappedBy = "cart",
-                cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     public List<Product> getProducts() {
         return products;
@@ -28,17 +27,7 @@ public class Cart   {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ID")
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
 }

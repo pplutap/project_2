@@ -1,13 +1,16 @@
 package com.kodilla.ecommercee;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import javax.persistence.*;
 
+@Setter(AccessLevel.PRIVATE)
 @Entity
 @Table(name="PRODUCTS")
 public class Product {
 
+    private Long id;
     private Cart cart;
-    private long id;
 
     @ManyToOne
     @JoinColumn(name="CART_ID")
@@ -15,18 +18,9 @@ public class Product {
         return cart;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getId() {
+    public Long getId() {
         return id;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
 }
