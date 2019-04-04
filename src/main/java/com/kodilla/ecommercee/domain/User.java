@@ -22,10 +22,10 @@ public class User {
 
     @Column(name = "username")
     private final String userName;
-
     @Column(name = "isblocked")
     private final Boolean isBlocked;
-
     @Column(name = "useridkey")
     private final Long userIdKey;
+
 }
+
