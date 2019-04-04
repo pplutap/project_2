@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -21,4 +23,7 @@ public class Group {
 
     @Column(name = "groupname")
     private final String groupName;
+
+    @OneToMany(mappedBy = "group")
+    private List<Product> productsList = new ArrayList<>();
 }
