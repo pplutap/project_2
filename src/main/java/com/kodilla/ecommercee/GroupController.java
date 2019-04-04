@@ -9,22 +9,22 @@ import java.util.List;
 @RequestMapping("/v1/group")
 public class GroupController {
     @GetMapping
-    public List<String> getGroups(){
+    public List<GroupDto> getGroups(){
         return new ArrayList<>();
     }
 
     @GetMapping("{id}")
-    public String getGroup(@PathVariable("id") Long productId) {
-        return "get group";
+    public GroupDto getGroup(@PathVariable("id") Long productId) {
+        return new GroupDto();
     }
 
     @PutMapping()
-    public String updateGroup(@RequestBody String string){
-        return "update product";
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto){
+        return new GroupDto();
     }
 
     @PostMapping(consumes = "application/json")
-    public void createGroup(@RequestBody String string){
-
+    public void createGroup(@RequestBody GroupDto groupDto){
+        System.out.println("Group is created");
     }
 }
