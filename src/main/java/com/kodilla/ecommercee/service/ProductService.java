@@ -22,7 +22,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public Product saveProduct(Product product) {
+    public Product saveProductOrUpdate(Product product) {
         return productRepository.save(product);
     }
 

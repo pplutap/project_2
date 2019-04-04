@@ -1,8 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
-
 import com.kodilla.ecommercee.domain.dto.OrderDto;
-import com.kodilla.ecommercee.domain.Product;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ public class OrderController {
 
     @GetMapping(value = "getOrder")
     public OrderDto getOrder(@RequestParam Long orderId) {
-        return new OrderDto(1L, new Product(1L, "First product", 12.00), 12);
+        return new OrderDto();
     }
 
     @GetMapping(value = "deleteOrder")
@@ -31,7 +29,7 @@ public class OrderController {
 
     @GetMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        return new OrderDto(1L, new Product(1L, "First product", 12.00), 23);
+        return new OrderDto();
     }
 
     @GetMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
