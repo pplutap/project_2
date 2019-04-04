@@ -16,5 +16,4 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
 
     @Override
     Cart save(Cart cart);
-
 }

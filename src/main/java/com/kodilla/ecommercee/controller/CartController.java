@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.CartDto;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
@@ -32,7 +31,7 @@ public class CartController {
     }
 
     @GetMapping(value = "getProductsFromCart")
-    public List<Product> getProductsFromCart(@RequestParam Long cartId) {
+    public List<ProductDto> getProductsFromCart(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList();
     }
 

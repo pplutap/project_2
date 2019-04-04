@@ -36,4 +36,12 @@ public class ProductMapper {
                         t.getPrice(), t.getCart().getCartId()))
                 .collect(Collectors.toList());
     }
+
+    public List<Product> mapToProductList(final List<ProductDto> productDtoList){
+        return productDtoList.stream().map(
+                productDto -> new Product(productDto.getId(),
+                productDto.getName(),productDto.getPrice(),
+                cartService.getCart(productDto.getCartId())))
+                .collect(Collectors.toList());
+    }
 }

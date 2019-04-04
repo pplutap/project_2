@@ -80,7 +80,7 @@ public class CartTestSuite {
         List<Product> productListRead = cartService.getCart(id).getProductsList();
 
         //Then
-        Assert.assertEquals(productList.size(),productListRead.size());
+        Assert.assertEquals(productList.size(), productListRead.size());
     }
 
     @Test
