@@ -37,15 +37,15 @@ public class ProductTestSuite {
     @Test
     public void testDeleteById() {
         //Given
-        Product product1 = new Product("apple", 20.0);
+        Product product = new Product("apple", 20.0);
         Product product2 = new Product("ham", 40.0);
         Product product3 = new Product("washing machine", 500.50);
 
-        productService.saveProduct(product1);
-        productService.saveProduct(product2);
-        productService.saveProduct(product3);
+        productService.saveProductOrUpdate(product);
+        productService.saveProductOrUpdate(product2);
+        productService.saveProductOrUpdate(product3);
 
-        productService.deleteProduct(product1.getId());
+        productService.deleteProduct(product.getId());
 
         //When
         int size = productService.getAllProducts().size();
@@ -57,13 +57,13 @@ public class ProductTestSuite {
 
     @Test
     public void testSave() {
-        Product product1 = new Product("apple", 20.0);
+        Product product = new Product("apple", 20.0);
         Product product2 = new Product("ham", 40.0);
         Product product3 = new Product("washing machine", 500.50);
 
-        productService.saveProduct(product1);
-        productService.saveProduct(product2);
-        productService.saveProduct(product3);
+        productService.saveProductOrUpdate(product);
+        productService.saveProductOrUpdate(product2);
+        productService.saveProductOrUpdate(product3);
 
         //When
         int size = productService.getAllProducts().size();
@@ -75,13 +75,13 @@ public class ProductTestSuite {
     @Test
     public void testFindAll() {
         //Given
-        Product product1 = new Product("apple", 20.0);
+        Product product = new Product("apple", 20.0);
         Product product2 = new Product("ham", 40.0);
         Product product3 = new Product("washing machine", 500.50);
 
-        productService.saveProduct(product1);
-        productService.saveProduct(product2);
-        productService.saveProduct(product3);
+        productService.saveProductOrUpdate(product);
+        productService.saveProductOrUpdate(product2);
+        productService.saveProductOrUpdate(product3);
 
         //When
         List<Product> productList = productService.getAllProducts();
@@ -93,57 +93,19 @@ public class ProductTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Product product1 = new Product("apple", 20.0);
+        Product product = new Product("apple", 20.0);
         Product product2 = new Product("ham", 40.0);
         Product product3 = new Product("washing machine", 500.50);
 
-        productService.saveProduct(product1);
-        productService.saveProduct(product2);
-        productService.saveProduct(product3);
+        productService.saveProductOrUpdate(product);
+        productService.saveProductOrUpdate(product2);
+        productService.saveProductOrUpdate(product3);
 
         //When
-        Optional<Product> productOptional = productService.getProduct(product1.getId());
+        Optional<Product> productOptional = productService.getProduct(product.getId());
 
         //Then
-        Assert.assertEquals(product1.getId(), productOptional.get().getId());
+        Assert.assertEquals(product.getId(), productOptional.get().getId());
     }
-
-    @Test
-    public void testMapProductToProductDto() {
-        //Given
-        Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 40.0);
-        Product product3 = new Product("washing machine", 500.50);
-
-        productService.saveProduct(product1);
-        productService.saveProduct(product2);
-        productService.saveProduct(product3);
-
-        //When
-        ProductDto productDto = productMapper.mapToProductDto(product1);
-
-        //Then
-        Assert.assertEquals(product1.getId(), productDto.getId());
-    }
-
-    @Test
-    public void testMapToProductDtoList() {
-        //Given
-        Product product1 = new Product("apple", 20.0);
-        Product product2 = new Product("ham", 40.0);
-        Product product3 = new Product("washing machine", 500.50);
-
-        //When
-        List<Product> productList = new ArrayList<>();
-        productList.add(product1);
-        productList.add(product2);
-        productList.add(product3);
-
-        List<ProductDto> productDtoList = productMapper.mapToProductDtoList(productList);
-
-        //Then
-        Assert.assertEquals(3, productDtoList.size());
-    }
-
 
 }

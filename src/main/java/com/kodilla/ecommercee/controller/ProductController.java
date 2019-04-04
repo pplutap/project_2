@@ -1,9 +1,11 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.dto.ProductDto;
+import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,29 +13,30 @@ import java.util.List;
 @RequestMapping("v1/product")
 public class ProductController {
 
+    @Autowired
+    ProductMapper productMapper;
+
+    @Autowired
+    ProductService productService;
+
     @GetMapping("getProducts")
     public List<ProductDto> getProducts() {
-        return new ArrayList<>();
+        return productMapper.mapToProductDtoList(productService.getAllProducts());
     }
 
     @GetMapping("getProduct")
     public ProductDto getProduct(@RequestParam Long productId) {
-        return new ProductDto(1L, "Test Product Name", 10.0);
+        return productMapper.mapToProductDto(productService.getProduct(productId).orElse(null));
     }
 
     @PostMapping("createProduct")
-    public void createProduct(@RequestBody ProductDto productDto) {
-        throw new UnsupportedOperationException("This operation is not yet supported.");
-    }
-
-    @PutMapping("updateProduct")
-    public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return new ProductDto(1L, "Test Product Name", 10.0);
+    public void createProductOrUpdate(@RequestBody ProductDto productDto) {
+        productService.saveProductOrUpdate(productMapper.mapToProduct(productDto));
     }
 
     @DeleteMapping("deleteProduct")
     public void deleteProduct(@RequestParam Long productId) {
-        throw new UnsupportedOperationException("This operation is not yet supported.");
+        productService.deleteProduct(productId);
     }
 }
 

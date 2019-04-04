@@ -31,8 +31,8 @@ public class CartController {
         cartService.saveCart(cartMapper.mapToCart(cartDto));
     }
 
-    @GetMapping(value = "getProductsFromEmptyCart")
-    public List<Product> getProductsFromEmptyCart(@RequestParam Long cartId) {
+    @GetMapping(value = "getProductsFromCart")
+    public List<Product> getProductsFromCart(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList();
     }
 

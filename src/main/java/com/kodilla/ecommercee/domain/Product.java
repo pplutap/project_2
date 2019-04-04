@@ -1,12 +1,11 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "products")
@@ -23,7 +22,8 @@ public class Product {
     @Column(name = "price")
     private Double price;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id",referencedColumnName = "id")
     private Cart cart;
 
     public Product(String name, Double price) {

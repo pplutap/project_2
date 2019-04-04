@@ -14,16 +14,18 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 public class User {
 
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long userId;
+
     @Column(name = "username")
     private final String userName;
     @Column(name = "isblocked")
     private final Boolean isBlocked;
     @Column(name = "useridkey")
     private final Long userIdKey;
-    @Id
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long userId;
+
 }
 
