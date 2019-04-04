@@ -10,10 +10,19 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "USER")
-@NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Setter
 public class UserOwn {
+
+    public UserOwn(Long id, String login, String password, String uuid, boolean isBlocked, LocalTime beginValidityOfUuid, LocalTime endValidityOfUuid) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.uuid = uuid;
+        this.isBlocked = isBlocked;
+        this.beginValidityOfUuid = beginValidityOfUuid;
+        this.endValidityOfUuid = endValidityOfUuid;
+    }
 
     private Long id;
     private String login;
@@ -64,10 +73,25 @@ public class UserOwn {
         return endValidityOfUuid;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
+    public void setBeginValidityOfUuid(LocalTime beginValidityOfUuid) {
+        this.beginValidityOfUuid = beginValidityOfUuid;
+    }
+
+    public void setEndValidityOfUuid(LocalTime endValidityOfUuid) {
+        this.endValidityOfUuid = endValidityOfUuid;
+    }
+
 }
 //jwt token
-//czy isBlocked powinno być przypisane do klasy, czy można je zainicjować jako static i implementacja i klasa User
-//2. zwracanie sztucznych danych
-//4. paczki
-//1. rest api a endpointy
-//3. operacje na branchach, czy sam pull request tworzymy na stronie, czy rebase trzeba tworzyć po pull request, łączenie commitów, czy fix typo już istnieje
