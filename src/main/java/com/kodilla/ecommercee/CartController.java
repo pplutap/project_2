@@ -10,26 +10,26 @@ import java.util.List;
 public class CartController {
     @GetMapping(value =  "getProductsFromCart")
     public List<ProductDto> getProductsFromCart(@RequestParam Long cartID) {
-
         return new ArrayList<>();
     }
+
     @PutMapping(value = "addProductToCart")
     public CartDto addProductToCart() {
-
         return new CartDto();
     }
+
     @PostMapping(value = "createEmptyCart")
     public CartDto createEmptyCart() {
-
         return new CartDto();
     }
+
     @DeleteMapping(value = "deleteProductFromCart")
     public void deleteProductFromCart() {
 
     }
+
     @PostMapping(value = "createOrderFromCart")
     public OrderDto createOrderFromCart() {
-
         return new OrderDto();
     }
 }
