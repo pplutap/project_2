@@ -26,4 +26,16 @@ public class GroupService {
         return groupRepository.findById(groupId);
     }
 
+    public Group saveGroup(final Group group) {
+        return groupRepository.save(group);
+    }
+
+    public void deleteById(Long groupId) {
+        groupRepository.deleteById(groupId);
+    }
+
+    public Group findByGroupName(String groupName) {
+        return groupRepository.findByGroupName(groupName).orElse(new Group("Empty Group Name"));
+    }
+
 }
