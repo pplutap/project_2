@@ -10,27 +10,27 @@ import java.util.List;
 public class ProductController {
 
     @GetMapping
-    public List<String> getProducts(){
+    public List<ProductDto> getProducts(){
         return new ArrayList<>();
     }
 
     @GetMapping("{id}")
-    public String getProduct(@PathVariable("id") Long productId) {
-        return "get product";
+    public ProductDto getProduct(@PathVariable("id") Long productId) {
+        return new ProductDto();
     }
 
     @DeleteMapping("id")
     public void deleteProduct(@PathVariable("id") Long productId){
-
+        System.out.println("Product is deleted");
     }
 
     @PutMapping()
-    public String updateProduct(@RequestBody String string){
-        return "update product";
+    public ProductDto updateProduct(@RequestBody ProductDto productDto){
+        return new ProductDto();
     }
 
     @PostMapping(consumes = "application/json")
-    public void createProduct(@RequestBody String string){
-
+    public void createProduct(@RequestBody ProductDto productDto){
+        System.out.println("Product is created");
     }
 }
