@@ -1,11 +1,9 @@
 package com.kodilla.ecommercee.product.domain;
 
-import com.kodilla.ecommercee.cart.domain.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor

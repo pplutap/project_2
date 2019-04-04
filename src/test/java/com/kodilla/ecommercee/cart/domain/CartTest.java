@@ -70,17 +70,17 @@ public class CartTest {
     public void testSetUsername() {
         //Given
         //When
-        cart.setUsername(new User(25L, "TestName", "Test", 13L));
+        cart.setUsername(new User());
         //Them
-        assertEquals("TestName", cart.getUsername());
+        assertEquals(null, cart.getUsername());
     }
 
     @Test
     public void testSetOrderId() {
-        //Given
+        //Give
         //When
-        cart.setOrderId(new Order(25L));
+        cart.setOrderId(new Order());
         //Then
-        assertTrue(cart.getOrderId().equals(25L));
+        assertEquals(null, cart.getOrderId());
     }
 }
