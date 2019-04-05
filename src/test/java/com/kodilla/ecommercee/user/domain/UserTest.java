@@ -88,14 +88,11 @@ public class UserTest {
     }
 
     @Test
-    public void setCart() {
+    public void setCarts() {
         //Given
         //When
-        user.setCart(new Cart(25L, new ArrayList<>(), new User(), new Order()));
+        user.setCarts(new ArrayList<>());
         //Then
-        assertTrue(user.getCart().getCartId().equals(25L));
-        assertEquals(0, user.getCart().getProducts().size());
-        assertEquals(null, user.getCart().getOrderId());
-        assertEquals(null, user.getCart().getUser().getUserId());
+        assertEquals(0, user.getCarts().size());
     }
 }

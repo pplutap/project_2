@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,14 +19,11 @@ public class Cart {
     private Long cartId;
     private List<Product> productList = new ArrayList<>();
     private User user;
-
-    @OneToOne(targetEntity = Order.class, mappedBy = "cart")
     private Order order;
 
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "CART_ID", unique = true)
+    @Column(name = "CART_ID")
     public Long getCartId() {
         return cartId;
     }
@@ -46,9 +42,15 @@ public class Cart {
         return user.getUserName();
     }
 
-    @Column(name = "ORDER_ID")
-    public Long getOrderId() {
-        return order.getOrderId();
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    public User getUser() {
+        return user;
+    }
+
+    @OneToOne(targetEntity = Order.class, mappedBy = "cart")
+    public Order getOrder() {
+        return order;
     }
 
     public void setCartId(Long cartId) {
@@ -63,14 +65,8 @@ public class Cart {
         this.user = user;
     }
 
-    public void setOrderId(Order order) {
+    public void setOrder(Order order) {
         this.order = order;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "USER_ID")
-    public User getUser() {
-        return user;
     }
 
     public void setUser(User user) {

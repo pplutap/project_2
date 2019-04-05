@@ -42,9 +42,9 @@ public class CartTest {
         //Given
         Order order = new Order();
         //When
-        cart.setOrderId(order);
+        cart.setOrder(order);
         //Then
-        assertNull(cart.getOrderId());
+        assertNull(cart.getOrder().getOrderId());
     }
 
     @Test
@@ -79,8 +79,8 @@ public class CartTest {
     public void testSetOrderId() {
         //Give
         //When
-        cart.setOrderId(new Order());
+        cart.setOrder(new Order());
         //Then
-        assertEquals(null, cart.getOrderId());
+        assertEquals(null, cart.getOrder().getOrderId());
     }
 }

@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
-
     private Long userId;
     private String userName;
     private String status;
     private Long userKey;
-
 }

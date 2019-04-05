@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,31 +19,33 @@ public class User {
     private String userName;
     private String status;
     private Long userKey;
-    private Cart cart;
+    private List<Cart> carts;
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "USER_ID")
     public Long getUserId() {
         return userId;
     }
 
+    @Column(name = "USERNAME")
     public String getUserName() {
         return userName;
     }
 
+    @Column(name = "USER_STATUS")
     public String getStatus() {
         return status;
     }
 
+    @Column(name = "USER_KEY")
     public Long getUserKey() {
         return userKey;
     }
 
-    @OneToOne(mappedBy = "user", targetEntity = Cart.class)
-    public Cart getCart() {
-        return cart;
+    @OneToMany(mappedBy = "user", targetEntity = Cart.class)
+    public List<Cart> getCarts() {
+        return carts;
     }
 
     public void setUserId(Long userId) {
@@ -61,7 +64,7 @@ public class User {
         this.userKey = userKey;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
     }
 }
