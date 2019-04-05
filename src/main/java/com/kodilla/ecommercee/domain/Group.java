@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "productgroups")
@@ -22,8 +22,12 @@ public class Group {
     private Long groupId;
 
     @Column(name = "groupname")
-    private final String groupName;
+    private String groupName;
 
     @OneToMany(mappedBy = "group")
     private List<Product> productsList = new ArrayList<>();
+
+    public Group(String groupName) {
+        this.groupName = groupName;
+    }
 }
