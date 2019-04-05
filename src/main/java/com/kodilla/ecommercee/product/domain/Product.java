@@ -6,10 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
@@ -26,21 +25,25 @@ public class Product {
         return id;
     }
 
+    @NotNull
     @Column(name = "PRODUCT_NAME")
     public String getName() {
         return name;
     }
 
+    @NotNull
     @Column(name = "PRODUCT_DESCRIPTION")
     public String getDescription() {
         return description;
     }
 
+    @NotNull
     @Column(name = "PRODUCT_PRICE")
     public Double getPrice() {
         return price;
     }
 
+    @NotNull
     @Column(name = "GROUP_ID")
     public Long getGroupId() {
         return groupId;
