@@ -14,7 +14,7 @@ public final class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID")
     private Long idGroup;
 
     @Column(name = "NAME")

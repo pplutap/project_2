@@ -21,11 +21,14 @@ public class OrderRepositoryTest {
     public void testShouldFindAllOrders() {
         //Given
         Order testOrder = new Order();
+        Order testOrder2 = new Order();
         orderRepository.save(testOrder);
+        orderRepository.save(testOrder2);
+
         //When
         List<Order> result = orderRepository.findAll();
         //Then
-        Assert.assertEquals(1, result.size());
+        Assert.assertEquals(2, result.size());
         //CleanUp
         orderRepository.delete(testOrder);
     }
