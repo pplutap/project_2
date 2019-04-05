@@ -11,7 +11,7 @@ public final class Group {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID")
     private Long idGroup;
 
     @Column(name = "NAME")
@@ -19,13 +19,13 @@ public final class Group {
 
     @Column(name = "DESCRIPTION")
     private String descriptionOfGroup;
+    public Group(){
+
+    }
 
     public Group(String nameOfGroup, String descriptionOfGroup) {
         this.nameOfGroup = nameOfGroup;
         this.descriptionOfGroup = descriptionOfGroup;
-    }
-    public Group(){
-
     }
 
     public Long getIdGroup() {
