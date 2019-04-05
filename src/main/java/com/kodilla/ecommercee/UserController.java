@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.time.LocalTime;
 import java.util.List;
 
 
@@ -23,33 +22,33 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getUsers")
     public List<UserDto> getUsers() {
-        return userMapper.mapToTaskDtoList(service.getAllUsers());
+        return userMapper.mapToUserDtoList(service.getAllUsers());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getUserById")
-    public UserDto getTaskById(final Long id) throws UserNotFoundException {
+    public UserDto getUserById(final Long id) throws UserNotFoundException {
         return userMapper.mapToUserDto(service.getUserById(id).orElseThrow(() -> new UserNotFoundException("User not found")));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteUser")
-    public void delete(Long userId) {
-        service.delete(userId);
+    public void deleteById(Long userId) {
+        service.deleteById(userId);
     }
 
 
     @RequestMapping(method = RequestMethod.POST, value = "createUser", consumes = APPLICATION_JSON_VALUE)
     public void createUser(@RequestBody UserDto userDto) {
-        service.generateKey(userMapper.mapToTask(userDto));
+        service.generateKey(userMapper.mapToUser(userDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "authorizationUser", consumes = APPLICATION_JSON_VALUE)
     public void authorizationUser(@RequestBody UserDto userDto, @RequestParam String key, @RequestParam String name, @RequestParam String password) {
-        service.keyDeliveryProcessIsPossible(userMapper.mapToTask(userDto), key, name, password);
+        service.keyDeliveryProcessIsPossible(userMapper.mapToUser(userDto), key, name, password);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "changeKey", consumes = APPLICATION_JSON_VALUE)
     public void changeKey(@RequestBody UserDto userDto, @RequestParam String name, @RequestParam String password) {
-        service.changeKey(userMapper.mapToTask(userDto), name, password);
+        service.changeKey(userMapper.mapToUser(userDto), name, password);
     }
 }
 
