@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
@@ -17,5 +18,6 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
     @Override
     Order save(Order order);
 
-    Order findByOrderId(Long orderId);
+    @Override
+    Optional<Order> findById(Long orderId);
 }

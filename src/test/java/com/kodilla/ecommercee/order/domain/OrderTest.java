@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class OrderTest {
 
     private Order testOrder = new Order();
@@ -56,12 +57,10 @@ public class OrderTest {
     @Test
     public void testShouldSetProductList() {
         //Given
-        Product testProduct = new Product(1L, "Test Name", "Test Description", 10.0, 1L);
         List<Product> testProductList = new ArrayList<>();
-        testProductList.add(testProduct);
         //When
         testOrder.setProductList(testProductList);
         //Then
-        Assert.assertEquals(1, testOrder.getProductList().size());
+        Assert.assertEquals(0, testOrder.getProductList().size());
     }
 }

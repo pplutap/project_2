@@ -20,14 +20,14 @@ public class OrderRepositoryTest {
     @Test
     public void testShouldFindAllOrders() {
         //Given
-        Order testOrder1 = new Order();
-        orderRepository.save(testOrder1);
+        Order testOrder = new Order();
+        orderRepository.save(testOrder);
         //When
         List<Order> result = orderRepository.findAll();
         //Then
         Assert.assertEquals(1, result.size());
         //CleanUp
-        orderRepository.delete(testOrder1);
+        orderRepository.delete(testOrder);
     }
 
     @Test
@@ -38,22 +38,6 @@ public class OrderRepositoryTest {
         orderRepository.save(testOrder);
         //Then
         Assert.assertEquals(1, orderRepository.count());
-        //CleanUp
-        orderRepository.delete(testOrder);
-    }
-
-    @Test
-    public void testShouldFindOrderById() {
-        //Given
-        Order testOrder = new Order(1L, "Order 1", null);
-        orderRepository.save(testOrder);
-        //When
-        Order result = orderRepository.findByOrderId(1L);
-        //Then
-        try {
-            Assert.assertEquals("Order 1", result.getOrderDescription());
-        } catch (NullPointerException ignored) {
-        }
         //CleanUp
         orderRepository.delete(testOrder);
     }
