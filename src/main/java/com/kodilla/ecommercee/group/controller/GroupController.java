@@ -11,7 +11,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("ecommercee/group/")
 public class GroupController {
-
     @GetMapping(value = "groups")
     public List<GroupDto> getGroups() {
         return new ArrayList<>();
