@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.group;
 
 import com.kodilla.ecommercee.group.domain.Group;
-import com.kodilla.ecommercee.group.repository.GroupRepository;
+import com.kodilla.ecommercee.group.dao.GroupDao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import java.util.List;
 @SpringBootTest
 public class GroupRepositoryTest {
     @Autowired
-    private GroupRepository groupRepository;
+    private GroupDao groupDao;
 
     @Test
     public void saveGroupRepository() {
@@ -24,33 +24,33 @@ public class GroupRepositoryTest {
         Group group = new Group("test", "test");
 
         //when
-        groupRepository.save(group);
+        groupDao.save(group);
 
         //then
         Assert.assertNotNull(group.getIdGroup());
 
         //cleanup
-        groupRepository.deleteAll();
-
+        groupDao.delete(group);
     }
 
     @Test
     public void testFindAll() {
         //given
         Group group = new Group("test", "test");
-        Group group1 = new Group("test", "test");
-        Group group2 = new Group("test", "test");
+        Group group1 = new Group("test1", "test1");
+        Group group2 = new Group("test2", "test2");
+        groupDao.save(group);
+        groupDao.save(group1);
+        groupDao.save(group2);
 
         //when
-        List<Group> showGroup = groupRepository.findAll();
-        showGroup.add(group);
-        showGroup.add(group1);
-        showGroup.add(group2);
+        List<Group> showGroups = groupDao.findAll();
 
         //then
-        Assert.assertEquals(3, showGroup.size());
+        Assert.assertEquals(3, showGroups.size());
+
         //cleanUp
-        groupRepository.deleteAll();
+        groupDao.deleteAll(showGroups);
 
     }
 }

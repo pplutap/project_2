@@ -20,13 +20,12 @@ public final class Group {
     @Column(name = "DESCRIPTION")
     private String descriptionOfGroup;
 
-    public Group() {
-
-    }
-
     public Group(String nameOfGroup, String descriptionOfGroup) {
         this.nameOfGroup = nameOfGroup;
         this.descriptionOfGroup = descriptionOfGroup;
+    }
+    public Group(){
+
     }
 
     public Long getIdGroup() {
@@ -52,4 +51,6 @@ public final class Group {
     public void setDescriptionOfGroup(String descriptionOfGroup) {
         this.descriptionOfGroup = descriptionOfGroup;
     }
+
+
 }
