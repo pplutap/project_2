@@ -62,7 +62,7 @@ public class OrderTest {
         order.setCart(cart);
         //Then
         assertTrue(order.getCart().getCartId().equals(25L));
-        assertEquals(0, order.getCart().getProducts().size());
+        assertEquals(0, order.getCart().getProductList().size());
         assertEquals(null, order.getCart().getOrder().getOrderId());
         assertEquals(null, order.getCart().getUser().getUserId());
     }

@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 public class CartDto {
     private Long cartId;
-    private List<ProductDto> productList;
+    private List<ProductDto> productDtoList;
     private UserDto userDto;
 
     public CartDto(Long cartId) {

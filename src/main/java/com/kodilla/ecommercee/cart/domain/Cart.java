@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CARTS")
+@Table(name = "carts")
 public class Cart {
     private Long cartId;
     private List<Product> productList = new ArrayList<>();
@@ -23,27 +23,25 @@ public class Cart {
 
     @Id
     @GeneratedValue
-    @Column(name = "CART_ID")
+    @Column(name = "cart_id")
     public Long getCartId() {
         return cartId;
     }
 
-    @Transient
-    @Column(name = "PRODUCTS_LIST")
-    @ElementCollection
-    public List<String> getProducts() {
+    @Column(name = "products_list")
+    public String getListOfProducts() {
         return productList.stream()
                 .map(product -> product.getName())
-                .collect(Collectors.toList());
+                .collect(Collectors.joining(", "));
     }
 
-    @Column(name = "USER")
+    @Column(name = "user")
     public String getUsername() {
         return user.getUserName();
     }
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
@@ -53,11 +51,21 @@ public class Cart {
         return order;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name = "join_carts_products",
+            joinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
+    )
+    public List<Product> getProductList() {
+        return productList;
+    }
+
     public void setCartId(Long cartId) {
         this.cartId = cartId;
     }
 
-    public void setProductList(Product product) {
+    public void setListOfProducts(Product product) {
         productList.add(product);
     }
 
@@ -71,5 +79,9 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

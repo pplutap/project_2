@@ -6,6 +6,9 @@ import com.kodilla.ecommercee.product.domain.Product;
 import com.kodilla.ecommercee.user.domain.User;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class CartTest {
@@ -24,7 +27,7 @@ public class CartTest {
         //Given
         //When
         //Then
-        assertEquals(0, cart.getProducts().size());
+        assertEquals(0, cart.getProductList().size());
     }
 
     @Test
@@ -48,22 +51,29 @@ public class CartTest {
     }
 
     @Test
+    public void testGetItemsFromProductList() {
+        //Given
+        //When
+        //Then
+        assertEquals("", cart.getListOfProducts());
+    }
+
+    @Test
+    public void testAddProductToProductList() {
+        //Given
+        //When
+        cart.setListOfProducts(new Product(2L, "Test name", "Test desc", 13.2, 12L, new ArrayList<>()));
+        //Then
+        assertEquals("Test name", cart.getListOfProducts());
+    }
+
+    @Test
     public void testSetCartId() {
         //Given
         //When
         cart.setCartId(12L);
         //Then
         assertTrue(cart.getCartId().equals(12L));
-    }
-
-    @Test
-    public void testSetProductList() {
-        //Given
-        //When
-        cart.setProductList(new Product(2L, "Test name", "Test desc", 13.2, 12L));
-        //Then
-        assertEquals(1, cart.getProducts().size());
-        assertEquals("Test name", cart.getProducts().get(0));
     }
 
     @Test
@@ -77,10 +87,21 @@ public class CartTest {
 
     @Test
     public void testSetOrderId() {
-        //Give
+        //Given
         //When
         cart.setOrder(new Order());
         //Then
         assertEquals(null, cart.getOrder().getOrderId());
+    }
+
+    @Test
+    public void setProductList() {
+        //Given
+        List<Product> list = new ArrayList<>();
+        list.add(new Product());
+        //When
+        cart.setProductList(list);
+        //Then
+        assertEquals(1, cart.getProductList().size());
     }
 }
