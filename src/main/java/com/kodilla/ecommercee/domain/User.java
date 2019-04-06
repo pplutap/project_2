@@ -1,9 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,84 +12,50 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter(value = AccessLevel.PRIVATE)
+@Getter
 public class User {
-
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private LocalDate birthDate;
-    private String adress;
-    private String login;
-    private String password;
-    private boolean isBlocked;
-    private String uuid;
-    private LocalTime beginValidityOfUuid;
-    private LocalTime endValidityOfUuid;
-
 
     @Column(name = "ID")
     @Id
     @GeneratedValue
-    public Long getId() {
-        return id;
-    }
+    private Long id;
 
     @Column(name = "FIRSTNAME")
     @NotNull
-    public String getFirstName() {
-        return firstName;
-    }
+    private String firstName;
 
     @Column(name = "LASTNAME")
     @NotNull
-    public String getLastName() {
-        return lastName;
-    }
+    private String lastName;
 
     @Column(name = "BIRTHDATE")
     @NotNull
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
+    private LocalDate birthDate;
 
     @Column(name = "ADRESS")
-    public String getAdress() {
-        return adress;
-    }
+    private String adress;
 
     @Column(name = "LOGIN")
     @NotNull
-    public String getLogin() {
-        return login;
-    }
+    private String login;
 
     @Column(name = "PASSWORD")
     @NotNull
-    public String getPassword() {
-        return password;
-    }
+    private String password;
 
     @Column(name = "IS_BLOCKED")
     @NotNull
-    public boolean isBlocked() {
-        return isBlocked;
-    }
+    private boolean isBlocked;
 
     @Column(name = "UUID")
     @NotNull
-    public String getUuid() {
-        return uuid;
-    }
+    private String uuid;
 
     @Column(name = "BEGIN_VALIDITY_UUID")
     @NotNull
-    public LocalTime getBeginValidityOfUuid() {
-        return beginValidityOfUuid;
-    }
+    private LocalTime beginValidityOfUuid;
 
     @Column(name = "END_VALIDITY_UUID")
     @NotNull
-    public LocalTime getEndValidityOfUuid() {
-        return endValidityOfUuid;
-    }
+    private LocalTime endValidityOfUuid;
 }
