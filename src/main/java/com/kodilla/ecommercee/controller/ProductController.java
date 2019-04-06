@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+
 @RestController
 @RequestMapping("v1/product")
 public class ProductController {
@@ -24,11 +26,11 @@ public class ProductController {
     }
 
     @GetMapping("getProduct")
-    public ProductDto getProduct(@RequestParam Long productId) {
-        return productMapper.mapToProductDto(productService.getProduct(productId).orElse(null));
+    public ProductDto getProduct(@RequestParam Long productId) throws ProductNotFoundException {
+        return productMapper.mapToProductDto(productService.getProduct(productId).orElseThrow(ProductNotFoundException::new));
     }
 
-    @PostMapping("createProduct")
+    @PostMapping(value = "createProduct", consumes = APPLICATION_JSON_VALUE)
     public void createProductOrUpdate(@RequestBody ProductDto productDto) {
         productService.saveProductOrUpdate(productMapper.mapToProduct(productDto));
     }

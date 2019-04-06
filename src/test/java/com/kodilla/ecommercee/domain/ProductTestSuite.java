@@ -105,5 +105,4 @@ public class ProductTestSuite {
         //Then
         Assert.assertEquals(product.getId(), productOptional.get().getId());
     }
-
 }
