@@ -20,37 +20,37 @@ public class Product {
     private Order order;
 
     @Id
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "product_id")
     public Long getId() {
         return id;
     }
 
     @NotNull
-    @Column(name = "PRODUCT_NAME")
+    @Column(name = "product_name")
     public String getName() {
         return name;
     }
 
     @NotNull
-    @Column(name = "PRODUCT_DESCRIPTION")
+    @Column(name = "product_description")
     public String getDescription() {
         return description;
     }
 
     @NotNull
-    @Column(name = "PRODUCT_PRICE")
+    @Column(name = "product_price")
     public Double getPrice() {
         return price;
     }
 
     @NotNull
-    @Column(name = "GROUP_ID")
+    @Column(name = "group_id")
     public Long getGroupId() {
         return groupId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
+    @JoinColumn(name = "order_id")
     public Order getOrder() {
         return order;
     }

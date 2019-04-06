@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "orders")
 public class Order {
 
     private Long orderId;
@@ -20,12 +20,12 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ORDER_ID")
+    @Column(name = "order_id")
     public Long getOrderId() {
         return orderId;
     }
 
-    @Column(name = "ORDER_DESCRIPTION")
+    @Column(name = "order_description")
     public String getOrderDescription() {
         return orderDescription;
     }
@@ -36,7 +36,7 @@ public class Order {
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
-    @Column(name = "PRODUCTS_LIST")
+    @Column(name = "products_list")
     public List<Product> getProductList() {
         return productList;
     }
