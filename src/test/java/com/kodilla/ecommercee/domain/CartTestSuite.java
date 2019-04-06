@@ -58,6 +58,7 @@ public class CartTestSuite {
         Cart cart = new Cart();
 
         Product product = new Product("apple", 20.0);
+        Product product4 = new Product("apple", 20.0);
         Product product2 = new Product("ham", 40.0);
         Product product3 = new Product("washing machine", 500.50);
 
@@ -65,6 +66,7 @@ public class CartTestSuite {
         productList.add(product);
         productList.add(product2);
         productList.add(product3);
+        productList.add(product4);
 
         cartService.saveCart(cart);
 
@@ -73,6 +75,7 @@ public class CartTestSuite {
         cartService.getCart(id).getProductsList().add(product);
         cartService.getCart(id).getProductsList().add(product2);
         cartService.getCart(id).getProductsList().add(product3);
+        cartService.getCart(id).getProductsList().add(product4);
 
         cartService.saveCart(cart);
 
@@ -128,5 +131,4 @@ public class CartTestSuite {
         //Then
         Assert.assertEquals(4, cartList.size());
     }
-
 }
