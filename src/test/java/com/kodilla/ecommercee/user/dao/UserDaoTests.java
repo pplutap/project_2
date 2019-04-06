@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserDaoTests {
@@ -60,16 +62,15 @@ public class UserDaoTests {
         userDao.save(janeDoe);
         userDao.save(clarkKent);
         long userCount = userDao.count();
+        List<User> users = userDao.findAll();
 
         //Then
-        userDao.findAll().forEach(System.out::println);
         Assert.assertEquals(3, userCount);
+        Assert.assertEquals(3, users.size());
 
         //Cleanup
         try {
-            userDao.delete(johnSmith);
-            userDao.delete(janeDoe);
-            userDao.delete(clarkKent);
+            userDao.deleteAll(users);
         } catch (Exception e) {
             System.out.println("Error during cleanup");
         }

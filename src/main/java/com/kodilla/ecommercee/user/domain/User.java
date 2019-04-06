@@ -12,11 +12,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long userId;
 
     @Column(name = "NAME")
@@ -25,16 +26,7 @@ public class User {
     @Column(name = "STATUS")
     private String status;
 
-    @Column(name = "USERKEY")
+    @Column(name = "USER_KEY")
     private Long userKey;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", status='" + status + '\'' +
-                ", userKey=" + userKey +
-                '}';
-    }
 }
