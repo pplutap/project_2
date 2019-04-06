@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity(name = "USERS")
+@Entity(name = "users")
 public class User {
     private Long userId;
     private String userName;
@@ -23,22 +23,22 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "USER_ID")
+    @Column(name = "user_id")
     public Long getUserId() {
         return userId;
     }
 
-    @Column(name = "USERNAME")
+    @Column(name = "username")
     public String getUserName() {
         return userName;
     }
 
-    @Column(name = "USER_STATUS")
+    @Column(name = "user_status")
     public String getStatus() {
         return status;
     }
 
-    @Column(name = "USER_KEY")
+    @Column(name = "user_key")
     public Long getUserKey() {
         return userKey;
     }

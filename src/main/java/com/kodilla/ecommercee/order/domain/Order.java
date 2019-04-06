@@ -13,7 +13,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "ORDERS")
+@Entity(name = "orders")
 public class Order {
     private Long orderId;
     private String orderDescription;
@@ -22,18 +22,18 @@ public class Order {
 
     @Id
     @GeneratedValue
-    @Column(name = "ORDER_ID")
+    @Column(name = "order_id")
     public Long getOrderId() {
         return orderId;
     }
 
-    @Column(name = "ORDER_DESCRIPTION")
+    @Column(name = "order_description")
     public String getOrderDescription() {
         return orderDescription;
     }
 
     @OneToOne
-    @JoinColumn(name = "CART_ID")
+    @JoinColumn(name = "cart_id")
     public Cart getCart() {
         return cart;
     }
