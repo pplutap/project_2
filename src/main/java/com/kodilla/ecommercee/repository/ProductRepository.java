@@ -19,4 +19,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Override
     void deleteById(Long id);
+
+    Optional<Product> findProductByName(String productName);
 }

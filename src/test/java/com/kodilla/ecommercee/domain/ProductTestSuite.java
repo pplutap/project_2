@@ -106,4 +106,69 @@ public class ProductTestSuite {
         Assert.assertEquals(product.getId(), productOptional.get().getId());
     }
 
+    @Test
+    public void testGetAllProducts() {
+        //Given
+        Product product1 = new Product("Product1", 20.);
+        productService.saveProductOrUpdate(product1);
+        Product product2 = new Product("Product2", 25.5);
+        productService.saveProductOrUpdate(product2);
+        Product product3 = new Product("Product3", 30.2);
+        productService.saveProductOrUpdate(product3);
+        //When
+        List<Product> listProducts = productService.getAllProducts();
+        //Then
+        Assert.assertEquals(3, listProducts.size());
+    }
+
+    @Test
+    public void testGetProduct() {
+        Product product4 = new Product("Product4", 40.3);
+        productService.saveProductOrUpdate(product4);
+        Long idProduct4 = productService.findByProductName("Product4").getId();
+        //When
+        Product receivedProduct4 = productService.getProduct(idProduct4).get();
+        //Then
+        Assert.assertEquals(product4, receivedProduct4);
+    }
+    @Test
+    public void testCreateProduct() {
+        //Given
+        List<Product> emptyProductList = productService.getAllProducts();
+        Product product5 = new Product("Product5" , 45.6);
+        productService.saveProductOrUpdate(product5);
+        Long idProduct5 = productService.findByProductName("Product5").getId();
+        //When
+        List<Product> listCreatedProducts = productService.getAllProducts();
+        //Then
+        Assert.assertEquals(emptyProductList.size()+1, listCreatedProducts.size());
+    }
+
+    @Test
+    public void testUpdateProduct() {
+        //Given
+        Product product6 = new Product("Product6", 45.8);
+        productService.saveProductOrUpdate(product6);
+        Long idProduct6 = productService.findByProductName("Product6").getId();
+        //When
+        Product product6Updated = new Product(idProduct6, "Product6 modified", 58.9, null, null);
+        productService.saveProductOrUpdate(product6Updated);
+        String product6UpdatedName = productService.getProduct(idProduct6).get().getName();
+        //Then
+        Assert.assertEquals(product6UpdatedName, "Product6 modified");
+    }
+
+    @Test
+    public void testDeleteProduct() {
+        //Given
+        Product product7 = new Product("Product7", 55.4);
+        productService.saveProductOrUpdate(product7);
+        List<Product> listProducts = productService.getAllProducts();
+        Long idProduct7 = productService.findByProductName("Product7").getId();
+        //When
+        productService.deleteProduct(idProduct7);
+        List<Product> emptyList = productService.getAllProducts();
+        //Then
+        Assert.assertEquals(listProducts.size()-1, emptyList.size());
+    }
 }

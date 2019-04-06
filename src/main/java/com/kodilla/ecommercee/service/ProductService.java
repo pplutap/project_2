@@ -30,4 +30,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public Product findByProductName(String productName) {
+        return productRepository.findProductByName(productName).orElse(new Product("Empty Product", 0.0));
+    }
 }
