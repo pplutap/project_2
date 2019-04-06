@@ -45,8 +45,10 @@ public class CartController {
     }
 
     @PutMapping(value = "deleteProductFromCart")
-    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
-        cartService.getCart(cartId).getProductsList().remove(productService.getProduct(productId));
+    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) throws ProductNotFoundException {
+        cartService.getCart(cartId).getProductsList()
+                .remove(productService.getProduct(productId)
+                        .orElseThrow(ProductNotFoundException::new));
     }
 
     @GetMapping(value = "createOrder")
