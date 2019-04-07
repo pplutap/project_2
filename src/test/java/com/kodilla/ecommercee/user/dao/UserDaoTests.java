@@ -48,12 +48,12 @@ public class UserDaoTests {
         johnSmith.setUserKey(12345L);
 
         User janeDoe = new User();
-        janeDoe.setUserName("janeDoe");
+        janeDoe.setUserName("janedoe");
         janeDoe.setStatus("1");
         janeDoe.setUserKey(54321L);
 
         User clarkKent = new User();
-        clarkKent.setUserName("clarkKent");
+        clarkKent.setUserName("clarkkent");
         clarkKent.setStatus("1");
         clarkKent.setUserKey(67890L);
 
@@ -62,15 +62,96 @@ public class UserDaoTests {
         userDao.save(janeDoe);
         userDao.save(clarkKent);
         long userCount = userDao.count();
-        List<User> users = userDao.findAll();
 
         //Then
         Assert.assertEquals(3, userCount);
+
+        //Cleanup
+        try {
+            userDao.delete(johnSmith);
+            userDao.delete(janeDoe);
+            userDao.delete(clarkKent);
+        } catch (Exception e) {
+            System.out.println("Error during cleanup");
+        }
+    }
+
+    @Test
+    public void testFindAll() {
+        //Given
+        User johnSmith = new User();
+        johnSmith.setUserName("johnsmith");
+        johnSmith.setStatus("1");
+        johnSmith.setUserKey(12345L);
+
+        User janeDoe = new User();
+        janeDoe.setUserName("janedoe");
+        janeDoe.setStatus("1");
+        janeDoe.setUserKey(54321L);
+
+        User clarkKent = new User();
+        clarkKent.setUserName("clarkkent");
+        clarkKent.setStatus("1");
+        clarkKent.setUserKey(67890L);
+
+        //When
+        userDao.save(johnSmith);
+        userDao.save(janeDoe);
+        userDao.save(clarkKent);
+        List<User> users = userDao.findAll();
+
+        //Then
         Assert.assertEquals(3, users.size());
 
         //Cleanup
         try {
             userDao.deleteAll(users);
+        } catch (Exception e) {
+            System.out.println("Error during cleanup");
+        }
+    }
+
+
+    @Test
+    public void testFindById() {
+        //Given
+        User johnSmith = new User();
+        johnSmith.setUserName("johnsmith");
+        johnSmith.setStatus("1");
+        johnSmith.setUserKey(12345L);
+
+        User janeDoe = new User();
+        janeDoe.setUserName("janedoe");
+        janeDoe.setStatus("1");
+        janeDoe.setUserKey(54321L);
+
+        User clarkKent = new User();
+        clarkKent.setUserName("clarkkent");
+        clarkKent.setStatus("1");
+        clarkKent.setUserKey(67890L);
+
+        //When
+        userDao.save(johnSmith);
+        userDao.save(janeDoe);
+        userDao.save(clarkKent);
+        Long johnSmithId = johnSmith.getUserId();
+        Long janeDoeId = janeDoe.getUserId();
+        Long clarkKentId = clarkKent.getUserId();
+
+        User foundUser1 = userDao.findById(johnSmithId).get();
+        User foundUser2 = userDao.findById(janeDoeId).get();
+        User foundUser3 = userDao.findById(clarkKentId).get();
+
+        //Then
+        Assert.assertEquals("johnsmith", foundUser1.getUserName());
+        Assert.assertEquals("janedoe", foundUser2.getUserName());
+        Assert.assertEquals("clarkkent", foundUser3.getUserName());
+
+        //Cleanup
+        try {
+            userDao.delete(johnSmith);
+            userDao.delete(janeDoe);
+            userDao.delete(clarkKent);
         } catch (Exception e) {
             System.out.println("Error during cleanup");
         }
