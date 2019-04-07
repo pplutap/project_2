@@ -26,9 +26,9 @@ public class OrderRepositoryTest {
     @Test
     public void testShouldFindAllOrders() {
         //Given
-        Order testOrder = new Order();
+        Order testOrder1 = new Order();
         Order testOrder2 = new Order();
-        orderRepository.save(testOrder);
+        orderRepository.save(testOrder1);
         orderRepository.save(testOrder2);
 
         //When
@@ -36,7 +36,8 @@ public class OrderRepositoryTest {
         //Then
         Assert.assertEquals(2, result.size());
         //CleanUp
-        orderRepository.delete(testOrder);
+        orderRepository.delete(testOrder1);
+        orderRepository.delete(testOrder2);
     }
 
     @Test
@@ -50,7 +51,6 @@ public class OrderRepositoryTest {
         Order testOrder = new Order(1L, "Test", testProductList);
         //When
         orderRepository.save(testOrder);
-        System.out.println(orderRepository.findById(1L).get().getProductList().size());
         //Then
         Assert.assertEquals(1, orderRepository.count());
         //CleanUp

@@ -2,7 +2,9 @@ package com.kodilla.ecommercee.order.domain;
 
 import com.kodilla.ecommercee.product.domain.Product;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,25 +12,19 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Order {
 
-    private Long orderId;
-    private String orderDescription;
-    private List<Product> productList = new ArrayList<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
-    public Long getOrderId() {
-        return orderId;
-    }
+    private Long orderId;
 
     @Column(name = "order_description")
-    public String getOrderDescription() {
-        return orderDescription;
-    }
+    private String orderDescription;
 
     @OneToMany(
             targetEntity = Product.class,
@@ -36,19 +32,5 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public void setOrderDescription(String orderDescription) {
-        this.orderDescription = orderDescription;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
+    private List<Product> productList = new ArrayList<>();
 }
