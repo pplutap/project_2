@@ -47,10 +47,12 @@ public class CartRepositoryTest {
         Optional<Cart> foundCart;
         //When
         cartRepository.save(cart);
+        Long cartId = cart.getCartId();
         //Then
         try {
             LOGGER.info("CART FOUND");
-            foundCart = cartRepository.findById(1L);
+            foundCart = cartRepository.findById(cartId);
+            assertNotNull(foundCart);
         } catch (Exception e) {
             LOGGER.error("CART NOT FOUND");
         }
