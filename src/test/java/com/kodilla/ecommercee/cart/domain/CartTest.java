@@ -3,7 +3,7 @@ package com.kodilla.ecommercee.cart.domain;
 
 import com.kodilla.ecommercee.order.domain.Order;
 import com.kodilla.ecommercee.product.domain.Product;
-import com.kodilla.ecommercee.user.domain.User;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -31,16 +31,6 @@ public class CartTest {
     }
 
     @Test
-    public void testGetUsername() {
-        //Given
-        User user = new User();
-        //When
-        cart.setUsername(user);
-        //Then
-        assertNull(cart.getUsername());
-    }
-
-    @Test
     public void testGetOrderId() {
         //Given
         Order order = new Order();
@@ -51,38 +41,12 @@ public class CartTest {
     }
 
     @Test
-    public void testGetItemsFromProductList() {
-        //Given
-        //When
-        //Then
-        assertEquals("", cart.getListOfProducts());
-    }
-
-    @Test
-    public void testAddProductToProductList() {
-        //Given
-        //When
-        cart.setListOfProducts(new Product(2L, "Test name", "Test desc", 13.2, 12L, new ArrayList<>()));
-        //Then
-        assertEquals("Test name", cart.getListOfProducts());
-    }
-
-    @Test
     public void testSetCartId() {
         //Given
         //When
         cart.setCartId(12L);
         //Then
         assertTrue(cart.getCartId().equals(12L));
-    }
-
-    @Test
-    public void testSetUsername() {
-        //Given
-        //When
-        cart.setUsername(new User());
-        //Them
-        assertEquals(null, cart.getUsername());
     }
 
     @Test

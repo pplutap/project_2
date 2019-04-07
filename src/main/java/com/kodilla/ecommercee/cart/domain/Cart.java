@@ -28,17 +28,6 @@ public class Cart {
         return cartId;
     }
 
-    @Column(name = "products_list")
-    public String getListOfProducts() {
-        return productList.stream()
-                .map(product -> product.getName())
-                .collect(Collectors.joining(", "));
-    }
-
-    @Column(name = "user")
-    public String getUsername() {
-        return user.getUserName();
-    }
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -63,14 +52,6 @@ public class Cart {
 
     public void setCartId(Long cartId) {
         this.cartId = cartId;
-    }
-
-    public void setListOfProducts(Product product) {
-        productList.add(product);
-    }
-
-    public void setUsername(User user) {
-        this.user = user;
     }
 
     public void setOrder(Order order) {
