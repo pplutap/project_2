@@ -1,8 +1,10 @@
 package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import com.kodilla.ecommercee.service.CartService;
+import com.kodilla.ecommercee.service.GroupService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @RunWith(SpringRunner.class)
@@ -31,6 +34,9 @@ public class ProductTestSuite {
 
     @Autowired
     CartService cartService;
+
+    @Autowired
+    GroupService groupService;
 
     @Test
     public void testDeleteById() {
@@ -170,5 +176,62 @@ public class ProductTestSuite {
         List<Product> emptyList = productService.getAllProducts();
         //Then
         Assert.assertEquals(listProducts.size()-1, emptyList.size());
+    }
+
+    @Test
+    public void testGetProductsInGroup() {
+        //Given
+        Group group1 = new Group("Group10");
+        groupService.saveGroup(group1);
+        Product product8 = new Product("Product8", 55.5);
+        Product product9 = new Product("Product9", 65.4);
+        group1.getProductsList().add(product8);
+        group1.getProductsList().add(product9);
+        product8.setGroup(group1);
+        productService.saveProductOrUpdate(product8);
+        product9.setGroup(group1);
+        productService.saveProductOrUpdate(product9);
+        List<Product> group1Products = group1.getProductsList();
+        //When
+        Long idGroup10 = groupService.findByGroupName("Group10").getGroupId();
+        List<Product> receivedGroup1Products = productService.getAllProducts().stream()
+                .filter(product -> product.getGroup().getGroupId().equals(idGroup10))
+                .collect(Collectors.toList());
+        //When
+        Assert.assertEquals(group1Products.toString(), receivedGroup1Products.toString());
+    }
+
+    @Test
+    public void testGetProductsInCart() {
+        //Given
+        Product product10 = new Product("Product10", 64.2);
+        productService.saveProductOrUpdate(product10);
+        Product product11 = new Product("Product11", 72.3);
+        productService.saveProductOrUpdate(product11);
+        Cart cart10 = new Cart();
+        cartService.saveCart(cart10);
+        Long idCart10 = cart10.getCartId();
+        cart10.getProductsList().add(product10);
+        cart10.getProductsList().add(product11);
+        product10.setCart(cart10);
+        product11.setCart(cart10);
+        List<Product> cart10ProductList = cart10.getProductsList();
+        //When
+        List<Product> readCart10ProductList = productService.getAllProducts().stream()
+                .filter(product -> product.getCart().getCartId().equals(idCart10))
+                .collect(Collectors.toList());
+        //Then
+        Assert.assertEquals(cart10ProductList.toString(), readCart10ProductList.toString());
+    }
+
+    @Test
+    public void testMapToProductDto() {
+        //Given
+        Product product11 = new Product(1L, "Product11", 23.4, new Cart(), new Group());
+        ProductDto productDto11 = productMapper.mapToProductDto(product11);
+        //When
+        String mappedProductDto11Name = productDto11.getName();
+        //Then
+        Assert.assertEquals("Product11", mappedProductDto11Name);
     }
 }
