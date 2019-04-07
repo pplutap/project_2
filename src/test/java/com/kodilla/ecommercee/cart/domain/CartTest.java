@@ -4,6 +4,8 @@ package com.kodilla.ecommercee.cart.domain;
 import org.junit.Test;
 
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 
@@ -17,11 +19,11 @@ public class CartTest {
 
     @Test
     public void getProductDtoList() {
-        assertEquals(null, cart.getProductDtoList());
+        assertEquals(new ArrayList<>(), cart.getProductList());
     }
 
     @Test
     public void getUserDto() {
-        assertEquals(null, cart.getUserDto());
+        assertEquals(null, cart.getUser());
     }
 }
