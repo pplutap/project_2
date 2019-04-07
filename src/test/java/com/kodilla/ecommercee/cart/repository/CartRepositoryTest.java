@@ -30,7 +30,7 @@ public class CartRepositoryTest {
         //When
         cartRepository.save(cart);
         //Then
-        assertTrue(cart.getCartId().equals(1L));
+        assertNotNull(cart.getCartId());
         //CleanUp
         try {
             LOGGER.info("CleanUp successful");
