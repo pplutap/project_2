@@ -19,7 +19,7 @@ public class GroupEntityCrudOperationsTest {
     private GroupDao groupDao;
 
     //TODO
-    //change GroupDao na ProductDao
+    //change GroupDao to ProductDao
     @Autowired
     private GroupDao productDao;
 
