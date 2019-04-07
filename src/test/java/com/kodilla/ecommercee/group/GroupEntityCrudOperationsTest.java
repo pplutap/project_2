@@ -19,9 +19,9 @@ public class GroupEntityCrudOperationsTest {
     private GroupDao groupDao;
 
     //TODO
-    //change GroupDao to ProductDao
-    @Autowired
-    private GroupDao productDao;
+    //add when ProductDao will available
+    //@Autowired
+    //private ProductDao productDao;
 
     @Test
     public void createGroupTest() {
@@ -114,15 +114,21 @@ public class GroupEntityCrudOperationsTest {
         groupDao.save(group1);
         groupDao.save(group2);
         int sizeGroupsBeforeDelete = groupDao.findAll().size();
-        int sizeProductsBeforeDelete = productDao.findAll().size();
+        //TODO
+        //add when ProductDao will available
+        //int sizeProductsBeforeDelete = productDao.findAll().size();
         groupDao.delete(group1);
         groupDao.delete(group2);
         int sizeGroupsAfterDelete = groupDao.findAll().size();
-        int sizeProductsAfterDelete = productDao.findAll().size();
+        //TODO
+        //add when ProductDao will available
+        //int sizeProductsAfterDelete = productDao.findAll().size();
 
         //then
         Assert.assertEquals(sizeGroupsBeforeSave + 2, sizeGroupsBeforeDelete);
         Assert.assertEquals(sizeGroupsBeforeSave, sizeGroupsAfterDelete);
-        Assert.assertEquals(sizeProductsBeforeDelete, sizeProductsAfterDelete);
+        //TODO
+        //add when ProductDao will available
+        //Assert.assertEquals(sizeProductsBeforeDelete, sizeProductsAfterDelete);
     }
 }
