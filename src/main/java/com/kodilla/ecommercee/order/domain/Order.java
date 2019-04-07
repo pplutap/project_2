@@ -5,18 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order {
 
     private Long orderId;
     private String orderDescription;
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,10 +33,9 @@ public class Order {
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "order",
-            cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
-    @Column(name = "products_list")
     public List<Product> getProductList() {
         return productList;
     }

@@ -1,16 +1,13 @@
 package com.kodilla.ecommercee.product.domain;
 
 import com.kodilla.ecommercee.order.domain.Order;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "products")
 public class Product {
     private Long id;
     private String name;
@@ -20,30 +17,27 @@ public class Product {
     private Order order;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
     public Long getId() {
         return id;
     }
 
-    @NotNull
     @Column(name = "product_name")
     public String getName() {
         return name;
     }
 
-    @NotNull
     @Column(name = "product_description")
     public String getDescription() {
         return description;
     }
 
-    @NotNull
     @Column(name = "product_price")
     public Double getPrice() {
         return price;
     }
 
-    @NotNull
     @Column(name = "group_id")
     public Long getGroupId() {
         return groupId;
