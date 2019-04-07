@@ -33,7 +33,7 @@ public class OrderTest {
         //Given
         //When
         //Then
-        Assert.assertEquals(null, testOrder.getProductList());
+        Assert.assertEquals(0, testOrder.getProductList().size());
     }
 
     @Test
