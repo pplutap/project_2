@@ -27,11 +27,10 @@ public class CartRepositoryTest {
     public void save() {
         //Given
         Cart cart = new Cart();
-        cart.setCartId(3L);
         //When
         cartRepository.save(cart);
         //Then
-        assertTrue(cart.getCartId().equals(3L));
+        assertTrue(cart.getCartId().equals(1L));
         //CleanUp
         try {
             LOGGER.info("CleanUp successful");
@@ -45,14 +44,13 @@ public class CartRepositoryTest {
     public void findById() {
         //Given
         Cart cart = new Cart();
-        cart.setCartId(3L);
         Optional<Cart> foundCart;
         //When
         cartRepository.save(cart);
         //Then
         try {
             LOGGER.info("CART FOUND");
-            foundCart = cartRepository.findById(3L);
+            foundCart = cartRepository.findById(1L);
         } catch (Exception e) {
             LOGGER.error("CART NOT FOUND");
         }
