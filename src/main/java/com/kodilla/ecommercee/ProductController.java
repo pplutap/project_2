@@ -19,17 +19,17 @@ public class ProductController {
         return new ProductDto();
     }
 
-    @DeleteMapping("id")
+    @DeleteMapping("{id}")
     public void deleteProduct(@PathVariable("id") Long productId){
         System.out.println("Product is deleted");
     }
 
-    @PutMapping()
+    @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto){
         return new ProductDto();
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping
     public void createProduct(@RequestBody ProductDto productDto){
         System.out.println("Product is created");
     }
