@@ -29,4 +29,3 @@ public class SpringBootJPAIntegrationTest {
         assertEquals(genericEntity.getValue(), foundEntity.get().getValue());
     }
 }
-//

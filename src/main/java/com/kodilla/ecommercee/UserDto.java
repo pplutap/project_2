@@ -2,12 +2,16 @@ package com.kodilla.ecommercee;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 
 public class UserDto {
     private Long id;
@@ -21,6 +25,7 @@ public class UserDto {
     private String uuid;
     private LocalTime beginValidityOfUuid;
     private LocalTime endValidityOfUuid;
+
 
 }
 

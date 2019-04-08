@@ -86,7 +86,6 @@ public class User {
 
 
     @Column(name = "UUID")
-    @NotNull
     public String getUuid() {
         return uuid;
     }
