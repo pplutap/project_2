@@ -6,9 +6,7 @@ import com.kodilla.ecommercee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("v1/user")
@@ -22,12 +20,12 @@ public class UserController {
 
     @GetMapping("getUsers")
     public List<UserDto> getUsers() {
-        return new ArrayList<>();
+        return userMapper.mapToUserDtoList(userService.getUsersList());
     }
 
     @GetMapping("getUser")
-    public UserDto getUser(@RequestParam Long userId) {
-        return new UserDto(1L, "user1", false, 11L);
+    public UserDto getUser(@RequestParam Long userId) throws UserNotFoundException {
+        return userMapper.mapToUserDto(userService.getUser(userId).orElseThrow(UserNotFoundException::new));
     }
 
     @PostMapping("createUser")
@@ -37,12 +35,11 @@ public class UserController {
 
     @PutMapping("blockUser")
     public UserDto blockUser(@RequestParam Long userId, @RequestBody UserDto userDto) {
-        return new UserDto(1L, "user2", true, 12L);
+        return new UserDto(userId, userDto.getUserName(), true, userDto.getUserIdKey());
     }
 
     @GetMapping("generateUserIdKey")
     public Long generateUserIdKey(@RequestParam Long userId) {
-        Long randomKey = new Random().nextLong();
-        return userId + randomKey;
+        throw new UnsupportedOperationException("This operation is not yet supported.");
     }
 }

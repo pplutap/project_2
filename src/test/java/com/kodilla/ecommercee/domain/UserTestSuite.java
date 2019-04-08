@@ -33,7 +33,6 @@ public class UserTestSuite {
 
         //When
         List<User> usersList = userRepository.findAll();
-        System.out.println(user1.getUserId());
 
         //Then
         Assert.assertEquals(3, usersList.size());
