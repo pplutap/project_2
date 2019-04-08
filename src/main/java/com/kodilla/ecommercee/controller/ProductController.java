@@ -12,11 +12,13 @@ public class ProductController {
 
     @GetMapping
     public List<ProductDto> getProducts(){
+        System.out.println("Return all products");
         return new ArrayList<>();
     }
 
     @GetMapping("{id}")
     public ProductDto getProduct(@PathVariable("id") Long productId) {
+        System.out.println("Return one product");
         return new ProductDto();
     }
 
@@ -27,6 +29,7 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto){
+        System.out.println("Product updated");
         return new ProductDto();
     }
 
