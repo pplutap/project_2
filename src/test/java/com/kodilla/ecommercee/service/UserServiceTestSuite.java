@@ -84,8 +84,8 @@ public class UserServiceTestSuite {
         userService.getUser(3L);
 
         //Then
-        Assert.assertEquals(userService.getUser(1L), Optional.of(user1));
-        Assert.assertEquals(userService.getUser(2L), Optional.of(user2));
-        Assert.assertEquals(userService.getUser(3L), Optional.of(user3));
+        Assert.assertEquals(userService.getUser(1L).get().getUserName(), user1.getUserName());
+        Assert.assertEquals(userService.getUser(2L).get().getIsBlocked(), user2.getIsBlocked());
+        Assert.assertEquals(userService.getUser(3L).get().getUserIdKey(), user3.getUserIdKey());
     }
 }
