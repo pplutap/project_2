@@ -45,15 +45,28 @@ public class OrderRepositoryTest {
         //Given
         Product testProduct1 = new Product();
         Product testProduct2 = new Product();
+        productRepository.save(testProduct1);
+        productRepository.save(testProduct2);
+
         List<Product> testProductList = new ArrayList<>();
+
         testProductList.add(testProduct1);
         testProductList.add(testProduct2);
-        Order testOrder = new Order(1L, "Test", testProductList);
+        Order testOrder = new Order();
+        testOrder.setOrderDescription("Description");
+        testOrder.setProductList(testProductList);
+        testProduct1.setOrder(testOrder);
+        testProduct2.setOrder(testOrder);
         //When
         orderRepository.save(testOrder);
+        productRepository.save(testProduct1);
+        productRepository.save(testProduct2);
         //Then
         Assert.assertEquals(1, orderRepository.count());
+        Assert.assertEquals(2, orderRepository.findAll().get(0).getProductList().size());
         //CleanUp
-        orderRepository.delete(testOrder);
+        productRepository.deleteById(testProduct1.getId());
+        productRepository.deleteById(testProduct2.getId());
+        orderRepository.deleteById(testOrder.getOrderId());
     }
 }
