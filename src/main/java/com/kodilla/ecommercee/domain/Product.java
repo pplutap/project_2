@@ -5,8 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
@@ -25,6 +26,10 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id",referencedColumnName = "id")
     private Cart cart;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id",referencedColumnName = "id")
+    private Group group;
 
     public Product(String name, Double price) {
         this.name = name;

@@ -30,4 +30,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public Optional<Product> findByProductName(String productName) {
+        return productRepository.findProductByName(productName);
+    }
 }

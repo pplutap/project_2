@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GroupService {
@@ -22,8 +21,8 @@ public class GroupService {
         groupRepository.save(group);
     }
 
-    public Optional<Group> getGroup(Long groupId) {
-        return groupRepository.findById(groupId);
+    public Group getGroup(Long groupId) {
+        return groupRepository.findById(groupId).orElse(null);
     }
 
     public Group saveGroup(final Group group) {

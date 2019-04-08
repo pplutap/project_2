@@ -22,17 +22,17 @@ public class OrderController {
         return new OrderDto();
     }
 
-    @GetMapping(value = "deleteOrder")
+    @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam Long orderId) {
         throw new UnsupportedOperationException("This operation is not yet supported.");
     }
 
-    @GetMapping(value = "updateOrder")
+    @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return new OrderDto();
     }
 
-    @GetMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
     public void createOrder(@RequestBody OrderDto orderDto) {
         throw new UnsupportedOperationException("This operation is not yet supported.");
     }
