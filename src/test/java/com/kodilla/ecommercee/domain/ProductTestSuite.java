@@ -131,7 +131,7 @@ public class ProductTestSuite {
     public void testGetProduct() {
         Product product4 = new Product("Product4", 40.3);
         productService.saveProductOrUpdate(product4);
-        Long idProduct4 = productService.findByProductName("Product4").getId();
+        Long idProduct4 = productService.findByProductName("Product4").get().getId();
         //When
         Product receivedProduct4 = productService.getProduct(idProduct4).get();
         //Then
@@ -143,7 +143,7 @@ public class ProductTestSuite {
         List<Product> emptyProductList = productService.getAllProducts();
         Product product5 = new Product("Product5" , 45.6);
         productService.saveProductOrUpdate(product5);
-        Long idProduct5 = productService.findByProductName("Product5").getId();
+        Long idProduct5 = productService.findByProductName("Product5").get().getId();
         //When
         List<Product> listCreatedProducts = productService.getAllProducts();
         //Then
@@ -155,7 +155,7 @@ public class ProductTestSuite {
         //Given
         Product product6 = new Product("Product6", 45.8);
         productService.saveProductOrUpdate(product6);
-        Long idProduct6 = productService.findByProductName("Product6").getId();
+        Long idProduct6 = productService.findByProductName("Product6").get().getId();
         //When
         Product product6Updated = new Product(idProduct6, "Product6 modified", 58.9, null, null);
         productService.saveProductOrUpdate(product6Updated);
@@ -170,7 +170,7 @@ public class ProductTestSuite {
         Product product7 = new Product("Product7", 55.4);
         productService.saveProductOrUpdate(product7);
         List<Product> listProducts = productService.getAllProducts();
-        Long idProduct7 = productService.findByProductName("Product7").getId();
+        Long idProduct7 = productService.findByProductName("Product7").get().getId();
         //When
         productService.deleteProduct(idProduct7);
         List<Product> emptyList = productService.getAllProducts();
