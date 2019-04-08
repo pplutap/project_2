@@ -1,17 +1,20 @@
 package com.kodilla.ecommercee.group.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "groups")
 public final class Group {
 
     @Id
-    @GeneratedValue
-    @NotNull
-    @Column(name = "ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long idGroup;
 
     @Column(name = "NAME")
@@ -23,9 +26,6 @@ public final class Group {
     public Group(String nameOfGroup, String descriptionOfGroup) {
         this.nameOfGroup = nameOfGroup;
         this.descriptionOfGroup = descriptionOfGroup;
-    }
-    public Group(){
-
     }
 
     public Long getIdGroup() {
