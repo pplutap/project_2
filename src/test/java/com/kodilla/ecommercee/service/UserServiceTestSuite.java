@@ -79,13 +79,13 @@ public class UserServiceTestSuite {
         userService.createUser(user3);
 
         //When
-        Optional<User> getUser1Test = userService.getUser(1L);
-        Optional<User> getUser2Test = userService.getUser(2L);
-        Optional<User> getUser3Test = userService.getUser(3L);
+        userService.getUser(1L);
+        userService.getUser(2L);
+        userService.getUser(3L);
 
         //Then
-        Assert.assertEquals(Optional.of(user1), getUser1Test);
-        Assert.assertEquals(Optional.of(user2), getUser2Test);
-        Assert.assertEquals(Optional.of(user3), getUser3Test);
+        Assert.assertEquals(userService.getUser(1L), Optional.of(user1));
+        Assert.assertEquals(userService.getUser(2L), Optional.of(user2));
+        Assert.assertEquals(userService.getUser(3L), Optional.of(user3));
     }
 }
