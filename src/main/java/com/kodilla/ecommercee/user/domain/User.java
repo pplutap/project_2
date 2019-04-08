@@ -35,13 +35,11 @@ public class User {
 
     @OneToMany(targetEntity = Cart.class,
             mappedBy = "user",
-            cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY)
     private List<Cart> carts = new ArrayList<>();
 
     @OneToMany(targetEntity = Order.class,
             mappedBy = "user",
-            cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 

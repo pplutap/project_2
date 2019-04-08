@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.order.domain;
 
 import com.kodilla.ecommercee.product.domain.Product;
+import com.kodilla.ecommercee.user.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +33,8 @@ public class Order {
             fetch = FetchType.EAGER
     )
     private List<Product> productList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }
