@@ -8,11 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class ProductDto {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-//    @Column(name = "name")
     private String title;
-//    @Column(name = "description")
     private String content;
 }
