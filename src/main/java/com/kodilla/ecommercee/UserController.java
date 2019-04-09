@@ -44,10 +44,4 @@ public class UserController {
     public UserDto authorizationUser(@RequestBody UserDto userDto, @RequestParam String key, @RequestParam String name, @RequestParam String password) {
         return userControllerMethodsService.authorization(userDto, key, name, password);
     }
-    
-    @PutMapping
-    public UserDto changeKey(@RequestBody UserDto userDto, @RequestParam String name, @RequestParam String password) {
-        return userControllerMethodsService.changeKey(userDto, name, password);
-
-    }
 }
