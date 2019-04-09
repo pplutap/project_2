@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroupRepositoryTest {
@@ -21,7 +20,7 @@ public class GroupRepositoryTest {
     @Test
     public void saveGroupRepository() {
         //given
-        Group group = new Group("test", "test");
+        Group group = new Group();
 
         //when
         groupDao.save(group);
@@ -36,9 +35,9 @@ public class GroupRepositoryTest {
     @Test
     public void testFindAll() {
         //given
-        Group group = new Group("test", "test");
-        Group group1 = new Group("test1", "test1");
-        Group group2 = new Group("test2", "test2");
+        Group group = new Group();
+        Group group1 = new Group();
+        Group group2 = new Group();
         groupDao.save(group);
         groupDao.save(group1);
         groupDao.save(group2);
@@ -53,4 +52,5 @@ public class GroupRepositoryTest {
         groupDao.deleteAll(showGroups);
 
     }
+
 }

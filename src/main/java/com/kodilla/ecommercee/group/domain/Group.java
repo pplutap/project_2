@@ -1,56 +1,35 @@
 package com.kodilla.ecommercee.group.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table(name = "groups")
 public final class Group {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long idGroup;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String nameOfGroup;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String descriptionOfGroup;
-    public Group(){
-
-    }
-
-    public Group(String nameOfGroup, String descriptionOfGroup) {
-        this.nameOfGroup = nameOfGroup;
-        this.descriptionOfGroup = descriptionOfGroup;
-    }
-
-    public Long getIdGroup() {
-        return idGroup;
-    }
-
-    public String getNameOfGroup() {
-        return nameOfGroup;
-    }
-
-    public String getDescriptionOfGroup() {
-        return descriptionOfGroup;
-    }
-
-    public void setIdGroup(Long idGroup) {
-        this.idGroup = idGroup;
-    }
-
-    public void setNameOfGroup(String nameOfGroup) {
-        this.nameOfGroup = nameOfGroup;
-    }
-
-    public void setDescriptionOfGroup(String descriptionOfGroup) {
-        this.descriptionOfGroup = descriptionOfGroup;
-    }
 
 
 }
