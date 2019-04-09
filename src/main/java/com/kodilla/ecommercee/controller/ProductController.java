@@ -32,7 +32,7 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto){
-        LOGGER.info("Product updated");
+        LOGGER.info("Product is updated");
         return new ProductDto();
     }
 
