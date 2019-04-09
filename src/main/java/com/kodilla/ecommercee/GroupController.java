@@ -25,7 +25,7 @@ public class GroupController {
 
     @PutMapping
     public GroupDto updateGroup(@RequestBody GroupDto groupDto){
-        log.info("Updated group");
+        log.info("Updated one group");
         return new GroupDto();
     }
 
