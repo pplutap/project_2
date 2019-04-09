@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.domain.dto;
 
 import com.kodilla.ecommercee.domain.Cart;
+import com.kodilla.ecommercee.domain.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,5 @@ public class UserDto {
     private LocalTime beginValidityOfUuid;
     private LocalTime endValidityOfUuid;
     private Cart cart;
+    private Order order;
 }
