@@ -33,5 +33,6 @@ public class GroupController {
     @PostMapping
     public void createGroup(@RequestBody GroupDto groupDto){
         log.info("Group is created");
+
     }
 }
