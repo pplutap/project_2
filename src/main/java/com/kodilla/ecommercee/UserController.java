@@ -13,40 +13,39 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/v1/user")
+@RequestMapping("/v1/users")
 public class UserController {
 
     @Autowired
     UserControllerMethodsService userControllerMethodsService;
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUsers")
+   @GetMapping
     public List<UserDto> getUsers() {
         return new ArrayList<>();
     }
-
-    @RequestMapping(method = RequestMethod.GET, value = "getUserById")
-    public UserDto getUserById(final Long id)  {
+    @GetMapping("{id}")
+    public UserDto getUserById(@PathVariable("id") Long userId)  {
         return new UserDto();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteUser")
-    public void deleteById(Long userId) {
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable("id") Long userId) {
         System.out.println("User is deleted.");
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "createUser", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping
     public void createUser(@RequestBody UserDto userDto) {
         userControllerMethodsService.createUser(userDto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "authorizationUser", consumes = APPLICATION_JSON_VALUE)
+    @PutMapping
     public UserDto authorizationUser(@RequestBody UserDto userDto, @RequestParam String key, @RequestParam String name, @RequestParam String password) {
         return userControllerMethodsService.authorization(userDto, key, name, password);
     }
-
-    @RequestMapping(method = RequestMethod.PUT, value = "changeKey", consumes = APPLICATION_JSON_VALUE)
+    
+    @PutMapping
     public UserDto changeKey(@RequestBody UserDto userDto, @RequestParam String name, @RequestParam String password) {
         return userControllerMethodsService.changeKey(userDto, name, password);
 
