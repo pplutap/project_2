@@ -7,8 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,20 +14,18 @@ import javax.validation.constraints.NotNull;
 @Setter
 
 @Entity
-@Table(name = "groups")
+@Table(name = "products_groups")
 public final class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "group_id")
     private Long idGroup;
 
-    @Column(name = "name")
+    @Column(name = "group_name")
     private String nameOfGroup;
 
-    @Column(name = "description")
+    @Column(name = "group_description")
     private String descriptionOfGroup;
-
 
 }
