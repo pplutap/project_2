@@ -13,7 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class User {
     private Long userId;
     private String userName;

@@ -2,7 +2,13 @@ package com.kodilla.ecommercee.cart.repository;
 
 import com.kodilla.ecommercee.cart.domain.Cart;
 import com.kodilla.ecommercee.order.domain.Order;
+import com.kodilla.ecommercee.order.repository.OrderRepository;
+import com.kodilla.ecommercee.product.domain.Product;
+import com.kodilla.ecommercee.product.repository.ProductRepository;
 import com.kodilla.ecommercee.user.domain.User;
+import com.kodilla.ecommercee.user.repository.UserRepository;
+import org.apache.catalina.LifecycleState;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -21,7 +28,30 @@ import static org.junit.Assert.*;
 public class CartRepositoryTest {
     @Autowired
     CartRepository cartRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+    @Autowired
+    OrderRepository orderRepository;
+
     private Logger LOGGER = LoggerFactory.getLogger(CartRepositoryTest.class);
+
+    @Before
+    public void cleanUp() {
+        try {
+            cartRepository.deleteAll();
+            userRepository.deleteAll();
+            orderRepository.deleteAll();
+            productRepository.deleteAll();
+            LOGGER.info("CleanUp successful");
+        } catch (Exception e) {
+            LOGGER.error("CleanUp failed");
+        }
+    }
 
     @Test
     public void save() {
@@ -29,39 +59,65 @@ public class CartRepositoryTest {
         Cart cart = new Cart();
         //When
         cartRepository.save(cart);
+        Optional<Cart> foundCart = cartRepository.findById(cart.getCartId());
         //Then
-        assertNotNull(cart.getCartId());
-        //CleanUp
-        try {
-            LOGGER.info("CleanUp successful");
-            cartRepository.delete(cart);
-        } catch (Exception e) {
-            LOGGER.error("CleanUp failed");
-        }
+        assertEquals(cart.getCartId(), foundCart.get().getCartId());
     }
 
     @Test
     public void findById() {
         //Given
         Cart cart = new Cart();
-        Optional<Cart> foundCart;
+        cart.setCartId(1L);
         //When
         cartRepository.save(cart);
-        Long cartId = cart.getCartId();
+        System.out.println(cartRepository.findById(cart.getCartId()));
+        Long foundCartId = cartRepository.findById(cart.getCartId()).get().getCartId();
         //Then
-        try {
-            LOGGER.info("CART FOUND");
-            foundCart = cartRepository.findById(cartId);
-            assertNotNull(foundCart);
-        } catch (Exception e) {
-            LOGGER.error("CART NOT FOUND");
-        }
-        //CleanUp
-        try {
-            LOGGER.info("CleanUp successful");
-            cartRepository.delete(cart);
-        } catch (Exception e) {
-            LOGGER.error("CleanUp failed");
-        }
+        assertNotNull(cartRepository.findById(cart.getCartId()));
+        assertEquals(1L, foundCartId, 0.001);
     }
+
+    @Test
+    public void shouldGiveOrder() {
+        //Given
+        Cart cart = new Cart();
+        cart.setCartId(1L);
+
+        Order order = new Order();
+        order.setOrderId(1L);
+        System.out.println("***********" + order.getOrderId());
+        order.setOrderDescription("Test");
+        order.setCart(cart);
+
+        //When
+        cartRepository.save(cart);
+        orderRepository.save(order);
+        String orderDesc = cartRepository.findById(cart.getCartId()).get().getOrder().getOrderDescription();
+
+        //Then
+        assertEquals(1L, cartRepository.findById(cart.getCartId()).get().getOrder().getOrderId(), 0.001);
+        assertEquals("Test", orderDesc);
+    }
+
+    @Test
+    public void shouldGiveUserId() {
+        //Given
+        User user = new User();
+        user.setUserId(1L);
+
+        Cart cart = new Cart();
+        cart.setCartId(2L);
+        cart.setUser(user);
+
+        //When
+        userRepository.save(user);
+        cartRepository.save(cart);
+        Long userId = cartRepository.findById(cart.getCartId()).get().getUser().getUserId();
+        System.out.println("************" + userId);
+
+        //Then
+        assertEquals(1, userId, 0.001);
+    }
+
 }

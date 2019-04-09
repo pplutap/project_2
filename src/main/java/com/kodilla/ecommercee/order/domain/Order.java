@@ -13,7 +13,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "orders")
+@Entity
+@Table(name = "orders")
 public class Order {
     private Long orderId;
     private String orderDescription;
@@ -21,7 +22,7 @@ public class Order {
     private Cart cart;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
     public Long getOrderId() {
         return orderId;

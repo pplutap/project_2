@@ -35,7 +35,7 @@ public class Cart {
         return user;
     }
 
-    @OneToOne(targetEntity = Order.class, mappedBy = "cart")
+    @OneToOne(targetEntity = Order.class, mappedBy = "cart", fetch = FetchType.LAZY)
     public Order getOrder() {
         return order;
     }

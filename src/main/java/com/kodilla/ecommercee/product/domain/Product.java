@@ -49,7 +49,7 @@ public class Product {
         return groupId;
     }
 
-    @ManyToMany(mappedBy = "productList")
+    @ManyToMany(mappedBy = "productList", fetch = FetchType.LAZY)
     public List<Cart> getCartList() {
         return cartList;
     }
