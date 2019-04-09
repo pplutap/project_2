@@ -9,32 +9,30 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/v1/carts")
+@RequestMapping("/carts")
 public class CartController {
-    @GetMapping({"id"})
-    public List<ProductDto> getProductsFromCart(@PathVariable("id") Long cartId) {
+    @GetMapping(value =  "getProductsFromCart")
+    public List<ProductDto> getProductsFromCart(@RequestParam Long cartID) {
         return new ArrayList<>();
     }
 
-    @PutMapping({"id"})
-    public CartDto addProductToCart(@RequestBody CartDto cartDto, @PathVariable("id") Long cartId) {
+    @PutMapping(value = "addProductToCart")
+    public CartDto addProductToCart() {
         return new CartDto();
     }
 
-    @PostMapping()
+    @PostMapping(value = "createEmptyCart")
     public CartDto createEmptyCart() {
         return new CartDto();
     }
 
-    @DeleteMapping({"id"})
-    public void deleteProductFromCart(@PathVariable("id") Long productId, @RequestBody CartDto cartDto) {
+    @DeleteMapping(value = "deleteProductFromCart")
+    public void deleteProductFromCart() {
 
     }
 
-    @PostMapping()
-    public OrderDto createOrderFromCart(@RequestBody CartDto cartDto) {
+    @PostMapping(value = "createOrderFromCart")
+    public OrderDto createOrderFromCart() {
         return new OrderDto();
     }
 }
-
-
