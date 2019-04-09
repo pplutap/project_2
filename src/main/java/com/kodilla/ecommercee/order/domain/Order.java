@@ -6,48 +6,42 @@ import com.kodilla.ecommercee.product.domain.Product;
 
 import lombok.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Order {
-    private Long orderId;
-    private String orderDescription;
-    //private List<Product> productList = new ArrayList<>();
-    private Cart cart;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
-    public Long getOrderId() {
-        return orderId;
-    }
+    private Long orderId;
 
     @Column(name = "order_description")
-    public String getOrderDescription() {
-        return orderDescription;
-    }
+    private String orderDescription;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
-    public Cart getCart() {
-        return cart;
-    }
+    private Cart cart;
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
-    public void setOrderDescription(String orderDescription) {
-        this.orderDescription = orderDescription;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+    @OneToMany(
+            targetEntity = Product.class,
+            mappedBy = "order",
+            fetch = FetchType.EAGER
+    )
+    private List<Product> productList = new ArrayList<>();
 }
+

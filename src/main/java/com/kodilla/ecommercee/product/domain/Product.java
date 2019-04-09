@@ -1,80 +1,50 @@
 package com.kodilla.ecommercee.product.domain;
 
+
 import com.kodilla.ecommercee.cart.domain.Cart;
+import com.kodilla.ecommercee.order.domain.Order;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-@AllArgsConstructor
+
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "products")
 public class Product {
-    private Long id;
-    private String name;
-    private String description;
-    private Double price;
-    private Long groupId;
-    private List<Cart> cartList = new ArrayList<>();
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
-    public Long getId() {
-        return id;
-    }
+    private Long id;
 
     @Column(name = "product_name")
-    public String getName() {
-        return name;
-    }
+    private String name;
 
     @Column(name = "product_description")
-    public String getDescription() {
-        return description;
-    }
+    private String description;
 
-    @Column(name = "price")
-    public Double getPrice() {
-        return price;
-    }
+    @Column(name = "product_price")
+    private Double price;
 
     @Column(name = "group_id")
-    public Long getGroupId() {
-        return groupId;
-    }
+    private Long groupId;
 
     @ManyToMany(mappedBy = "productList", fetch = FetchType.LAZY)
-    public List<Cart> getCartList() {
-        return cartList;
-    }
+    private List<Cart> cartList = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
-
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
-    }
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 }
