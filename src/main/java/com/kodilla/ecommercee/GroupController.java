@@ -1,5 +1,7 @@
 package com.kodilla.ecommercee;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,26 +10,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/groups")
 public class GroupController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GroupController.class);
+
     @GetMapping
     public List<GroupDto> getGroups(){
-        System.out.println("Return all groups");
+        LOGGER.info("Return all groups");
         return new ArrayList<>();
     }
 
     @GetMapping("{id}")
     public GroupDto getGroup(@PathVariable("id") Long productId) {
-        System.out.println("Return one group");
+        LOGGER.info("Return one group");
         return new GroupDto();
     }
 
     @PutMapping
     public GroupDto updateGroup(@RequestBody GroupDto groupDto){
-        System.out.println();
+        LOGGER.info("Updated group");
         return new GroupDto();
     }
 
     @PostMapping
     public void createGroup(@RequestBody GroupDto groupDto){
-        System.out.println("Group is created");
+        LOGGER.info("Group is created");
     }
 }
