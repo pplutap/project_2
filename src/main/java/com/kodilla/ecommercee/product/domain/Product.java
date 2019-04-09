@@ -41,7 +41,12 @@ public class Product {
     @Column(name = "group_id")
     private Long groupId;
 
-    @ManyToMany(mappedBy = "productList", fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "join_carts_products",
+            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")}
+    )
     private List<Cart> cartList = new ArrayList<>();
 
     @ManyToOne

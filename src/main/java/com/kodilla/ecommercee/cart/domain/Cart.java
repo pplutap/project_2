@@ -24,12 +24,7 @@ public class Cart {
     @Column(name = "cart_id")
     private Long cartId;
 
-    @ManyToMany
-    @JoinTable(
-            name = "join_carts_products",
-            joinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
-    )
+    @ManyToMany(mappedBy = "cartList", fetch = FetchType.EAGER)
     private List<Product> productList = new ArrayList<>();
 
     @ManyToOne

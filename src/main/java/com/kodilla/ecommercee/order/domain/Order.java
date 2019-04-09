@@ -6,12 +6,11 @@ import com.kodilla.ecommercee.product.domain.Product;
 
 import lombok.*;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,6 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-
 
     @OneToMany(
             targetEntity = Product.class,

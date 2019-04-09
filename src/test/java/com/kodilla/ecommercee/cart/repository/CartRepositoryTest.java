@@ -8,6 +8,7 @@ import com.kodilla.ecommercee.product.repository.ProductRepository;
 import com.kodilla.ecommercee.user.domain.User;
 import com.kodilla.ecommercee.user.repository.UserRepository;
 import org.apache.catalina.LifecycleState;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,19 +41,6 @@ public class CartRepositoryTest {
 
     private Logger LOGGER = LoggerFactory.getLogger(CartRepositoryTest.class);
 
-    @Before
-    public void cleanUp() {
-        try {
-            cartRepository.deleteAll();
-            userRepository.deleteAll();
-            orderRepository.deleteAll();
-            productRepository.deleteAll();
-            LOGGER.info("CleanUp successful");
-        } catch (Exception e) {
-            LOGGER.error("CleanUp failed");
-        }
-    }
-
     @Test
     public void save() {
         //Given
@@ -62,6 +50,8 @@ public class CartRepositoryTest {
         Optional<Cart> foundCart = cartRepository.findById(cart.getCartId());
         //Then
         assertEquals(cart.getCartId(), foundCart.get().getCartId());
+        //CleanUp
+        cartRepository.deleteById(cart.getCartId());
     }
 
     @Test
@@ -74,6 +64,9 @@ public class CartRepositoryTest {
         //Then
         assertNotNull(cartRepository.findById(cart.getCartId()));
         assertEquals(cart.getCartId(), foundCartId);
+        //CleanUp
+        cartRepository.deleteById(cart.getCartId());
+        LOGGER.info("CleanUp Successful");
     }
 
     @Test
@@ -93,6 +86,11 @@ public class CartRepositoryTest {
         //Then
         assertEquals(order.getOrderId(), cartRepository.findById(cart.getCartId()).get().getOrder().getOrderId(), 0.001);
         assertEquals("Test", orderDesc);
+
+        //CleanUp
+        orderRepository.deleteById(order.getOrderId());
+        cartRepository.deleteById(cart.getCartId());
+        LOGGER.info("CleanUp Successful");
     }
 
     @Test
@@ -111,6 +109,46 @@ public class CartRepositoryTest {
 
         //Then
         assertEquals(user.getUserId(), userId);
+
+        //CleanUp
+        cartRepository.deleteById(cart.getCartId());
+        userRepository.deleteById(user.getUserId());
+        LOGGER.info("CleanUp Successful");
     }
 
+    @Test
+    public void shouldGiveTwoProducts() {
+        //Given
+        Product product1 = new Product();
+        Product product2 = new Product();
+        productRepository.save(product1);
+        productRepository.save(product2);
+
+        List<Product> productList = new ArrayList<>();
+        productList.add(product1);
+        productList.add(product2);
+
+        Cart cart = new Cart();
+        List<Cart> cartList = new ArrayList<>();
+        cartList.add(cart);
+
+        product1.setCartList(cartList);
+        product2.setCartList(cartList);
+        cart.setProductList(productList);
+
+        //When
+        cartRepository.save(cart);
+        productRepository.save(product1);
+        productRepository.save(product2);
+
+        //Then
+        int productListSize = cartRepository.findById(cart.getCartId()).get().getProductList().size();
+        assertEquals(2, productListSize);
+
+        //CleanUp
+        productRepository.deleteById(product1.getId());
+        productRepository.deleteById(product2.getId());
+        cartRepository.deleteById(cart.getCartId());
+        LOGGER.info("CleanUp Successful");
+    }
 }
