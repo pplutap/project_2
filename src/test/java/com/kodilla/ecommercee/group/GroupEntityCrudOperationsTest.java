@@ -2,6 +2,8 @@ package com.kodilla.ecommercee.group;
 
 import com.kodilla.ecommercee.group.dao.GroupDao;
 import com.kodilla.ecommercee.group.domain.Group;
+import com.kodilla.ecommercee.product.domain.Product;
+import com.kodilla.ecommercee.product.repository.ProductRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,17 +20,15 @@ public class GroupEntityCrudOperationsTest {
     @Autowired
     private GroupDao groupDao;
 
-    //TODO
-    //add when ProductDao will available
-    //@Autowired
-    //private ProductDao productDao;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Test
     public void createGroupTest() {
         //given
-        Group group1 = new Group("group 1","group 1 desc");
-        Group group2 = new Group("group 2","group 2 desc");
-        Group group3 = new Group("group 3","group 3 desc");
+        Group group1 = new Group("group 1", "group 1 desc");
+        Group group2 = new Group("group 2", "group 2 desc");
+        Group group3 = new Group("group 3", "group 3 desc");
 
         //when
         int sizeGroupBeforeSave = groupDao.findAll().size();
@@ -48,7 +48,7 @@ public class GroupEntityCrudOperationsTest {
     @Test
     public void readGroupTest() {
         //given
-        Group group1 = new Group("group 1","group 1 desc");
+        Group group1 = new Group("group 1", "group 1 desc");
 
         //when
         groupDao.save(group1);
@@ -65,9 +65,9 @@ public class GroupEntityCrudOperationsTest {
     @Test
     public void readAllGroupTest() {
         //given
-        Group group1 = new Group("group 1","group 1 desc");
-        Group group2 = new Group("group 2","group 2 desc");
-        Group group3 = new Group("group 3","group 3 desc");
+        Group group1 = new Group("group 1", "group 1 desc");
+        Group group2 = new Group("group 2", "group 2 desc");
+        Group group3 = new Group("group 3", "group 3 desc");
 
         //when
         groupDao.save(group1);
@@ -87,7 +87,7 @@ public class GroupEntityCrudOperationsTest {
     @Test
     public void updateGroupTest() {
         //given
-        Group group1 = new Group("group 1","group 1 desc");
+        Group group1 = new Group("group 1", "group 1 desc");
 
         //when
         groupDao.save(group1);
@@ -106,29 +106,33 @@ public class GroupEntityCrudOperationsTest {
     @Test
     public void deleteGroupTest() {
         //given
-        Group group1 = new Group("group 1","group 1 desc");
-        Group group2 = new Group("group 2","group 2 desc");
+        Group group1 = new Group("group 1", "group 1 desc");
+        Group group2 = new Group("group 2", "group 2 desc");
+        Long idGroup1 = group1.getIdGroup();
+        Product product1 = new Product("product 1", "product 1 desc", 100.00, idGroup1);
+        Long idGroup2 = group2.getIdGroup();
+        Product product2 = new Product("product 2", "product 2 desc", 200.00, idGroup2);
 
         //when
         int sizeGroupsBeforeSave = groupDao.findAll().size();
         groupDao.save(group1);
         groupDao.save(group2);
         int sizeGroupsBeforeDelete = groupDao.findAll().size();
-        //TODO
-        //add when ProductDao will available
-        //int sizeProductsBeforeDelete = productDao.findAll().size();
+        productRepository.save(product1);
+        productRepository.save(product2);
+        int sizeProductsBeforeDeleteGroups = productRepository.findAll().size();
         groupDao.delete(group1);
         groupDao.delete(group2);
         int sizeGroupsAfterDelete = groupDao.findAll().size();
-        //TODO
-        //add when ProductDao will available
-        //int sizeProductsAfterDelete = productDao.findAll().size();
+        int sizeProductsAfterDeleteGroups = productRepository.findAll().size();
 
         //then
         Assert.assertEquals(sizeGroupsBeforeSave + 2, sizeGroupsBeforeDelete);
         Assert.assertEquals(sizeGroupsBeforeSave, sizeGroupsAfterDelete);
-        //TODO
-        //add when ProductDao will available
-        //Assert.assertEquals(sizeProductsBeforeDelete, sizeProductsAfterDelete);
+        Assert.assertEquals(sizeProductsBeforeDeleteGroups, sizeProductsAfterDeleteGroups);
+
+        //cleanup
+        productRepository.delete(product1);
+        productRepository.delete(product2);
     }
 }
