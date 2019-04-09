@@ -68,35 +68,30 @@ public class CartRepositoryTest {
     public void findById() {
         //Given
         Cart cart = new Cart();
-        cart.setCartId(1L);
         //When
         cartRepository.save(cart);
-        System.out.println(cartRepository.findById(cart.getCartId()));
         Long foundCartId = cartRepository.findById(cart.getCartId()).get().getCartId();
         //Then
         assertNotNull(cartRepository.findById(cart.getCartId()));
-        assertEquals(1L, foundCartId, 0.001);
+        assertEquals(cart.getCartId(), foundCartId);
     }
 
     @Test
     public void shouldGiveOrder() {
         //Given
         Cart cart = new Cart();
-        cart.setCartId(1L);
+        cartRepository.save(cart);
 
         Order order = new Order();
-        order.setOrderId(1L);
-        System.out.println("***********" + order.getOrderId());
         order.setOrderDescription("Test");
         order.setCart(cart);
 
         //When
-        cartRepository.save(cart);
         orderRepository.save(order);
         String orderDesc = cartRepository.findById(cart.getCartId()).get().getOrder().getOrderDescription();
 
         //Then
-        assertEquals(1L, cartRepository.findById(cart.getCartId()).get().getOrder().getOrderId(), 0.001);
+        assertEquals(order.getOrderId(), cartRepository.findById(cart.getCartId()).get().getOrder().getOrderId(), 0.001);
         assertEquals("Test", orderDesc);
     }
 
@@ -104,20 +99,18 @@ public class CartRepositoryTest {
     public void shouldGiveUserId() {
         //Given
         User user = new User();
-        user.setUserId(1L);
+        userRepository.save(user);userRepository.save(user);userRepository.save(user);
 
         Cart cart = new Cart();
-        cart.setCartId(2L);
         cart.setUser(user);
 
         //When
-        userRepository.save(user);
         cartRepository.save(cart);
         Long userId = cartRepository.findById(cart.getCartId()).get().getUser().getUserId();
         System.out.println("************" + userId);
 
         //Then
-        assertEquals(1, userId, 0.001);
+        assertEquals(user.getUserId(), userId);
     }
 
 }

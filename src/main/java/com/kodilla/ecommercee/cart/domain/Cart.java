@@ -4,41 +4,25 @@ import com.kodilla.ecommercee.order.domain.Order;
 import com.kodilla.ecommercee.product.domain.Product;
 import com.kodilla.ecommercee.user.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "carts")
 public class Cart {
-    private Long cartId;
-    private List<Product> productList = new ArrayList<>();
-    private User user;
-    private Order order;
-
     @Id
     @GeneratedValue
     @Column(name = "cart_id")
-    public Long getCartId() {
-        return cartId;
-    }
-
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    public User getUser() {
-        return user;
-    }
-
-    @OneToOne(targetEntity = Order.class, mappedBy = "cart", fetch = FetchType.LAZY)
-    public Order getOrder() {
-        return order;
-    }
+    private Long cartId;
 
     @ManyToMany
     @JoinTable(
@@ -46,23 +30,13 @@ public class Cart {
             joinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")},
             inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
     )
-    public List<Product> getProductList() {
-        return productList;
-    }
+    private List<Product> productList = new ArrayList<>();
 
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+    @OneToOne(targetEntity = Order.class, mappedBy = "cart", fetch = FetchType.LAZY)
+    private Order order;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
 }

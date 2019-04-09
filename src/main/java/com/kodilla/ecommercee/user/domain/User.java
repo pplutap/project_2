@@ -5,6 +5,7 @@ import com.kodilla.ecommercee.cart.domain.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,60 +13,26 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "users")
 public class User {
-    private Long userId;
-    private String userName;
-    private String status;
-    private Long userKey;
-    private List<Cart> carts;
-
     @Id
     @GeneratedValue
     @Column(name = "user_id")
-    public Long getUserId() {
-        return userId;
-    }
+    private Long userId;
 
     @Column(name = "username")
-    public String getUserName() {
-        return userName;
-    }
+    private String userName;
 
     @Column(name = "user_status")
-    public String getStatus() {
-        return status;
-    }
+    private String status;
 
     @Column(name = "user_key")
-    public Long getUserKey() {
-        return userKey;
-    }
+    private Long userKey;
 
     @OneToMany(mappedBy = "user", targetEntity = Cart.class)
-    public List<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setUserKey(Long userKey) {
-        this.userKey = userKey;
-    }
-
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
-    }
+    private List<Cart> carts;
 }
