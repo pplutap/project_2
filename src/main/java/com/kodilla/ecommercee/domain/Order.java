@@ -3,48 +3,28 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="orders")
+@Entity
+@Table(name="orders")
 public class Order {
-
-    private Long id;
-    private Product product;
-    private int quantity;
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="product_id")
-    public Product getProduct() {
-        return product;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="product_id", referencedColumnName = "id")
+    private Product product;
 
     @Column(name = "quantity")
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    private int quantity;
 }

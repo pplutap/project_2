@@ -25,7 +25,7 @@ public class ProductController {
 
     @GetMapping("getProduct")
     public ProductDto getProduct(@RequestParam Long productId) {
-        return productMapper.mapToProductDto(productService.getProduct(productId).orElse(null));
+        return productMapper.mapToProductDto(productService.getProduct(productId));
     }
 
     @PostMapping("createProduct")
