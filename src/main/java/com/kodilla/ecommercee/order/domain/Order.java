@@ -22,7 +22,6 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
@@ -31,13 +30,9 @@ public class Order {
     @Column(name = "order_description")
     private String orderDescription;
 
-    @OneToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-
-    @OneToMany(
+    @ManyToMany(
             targetEntity = Product.class,
-            mappedBy = "order",
+            mappedBy = "orderList",
             fetch = FetchType.EAGER
     )
     private List<Product> productList = new ArrayList<>();

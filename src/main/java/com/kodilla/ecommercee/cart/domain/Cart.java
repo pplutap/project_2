@@ -30,8 +30,4 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @OneToOne(targetEntity = Order.class, mappedBy = "cart", fetch = FetchType.LAZY)
-    private Order order;
-
 }

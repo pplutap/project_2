@@ -70,30 +70,6 @@ public class CartRepositoryTest {
     }
 
     @Test
-    public void shouldGiveOrder() {
-        //Given
-        Cart cart = new Cart();
-        cartRepository.save(cart);
-
-        Order order = new Order();
-        order.setOrderDescription("Test");
-        order.setCart(cart);
-
-        //When
-        orderRepository.save(order);
-        String orderDesc = cartRepository.findById(cart.getCartId()).get().getOrder().getOrderDescription();
-
-        //Then
-        assertEquals(order.getOrderId(), cartRepository.findById(cart.getCartId()).get().getOrder().getOrderId(), 0.001);
-        assertEquals("Test", orderDesc);
-
-        //CleanUp
-        orderRepository.deleteById(order.getOrderId());
-        cartRepository.deleteById(cart.getCartId());
-        LOGGER.info("CleanUp Successful");
-    }
-
-    @Test
     public void shouldGiveUserId() {
         //Given
         User user = new User();

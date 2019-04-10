@@ -38,6 +38,9 @@ public class Product {
     @Column(name = "product_price")
     private Double price;
 
+    @Column(name = "product_quantity")
+    private Long quantity;
+
     @Column(name = "group_id")
     private Long groupId;
 
@@ -49,7 +52,10 @@ public class Product {
     )
     private List<Cart> cartList = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany
+    @JoinTable(
+            name = "join_orders_products",
+            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")})
+    private List<Order> orderList;
 }
