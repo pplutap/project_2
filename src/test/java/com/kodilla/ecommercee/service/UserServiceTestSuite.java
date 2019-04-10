@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.User;
+import com.kodilla.ecommercee.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,9 @@ public class UserServiceTestSuite {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Transactional
     @Test
@@ -82,15 +86,11 @@ public class UserServiceTestSuite {
         Long expectedUser2Id = user2.getUserId();
         Long expectedUser3Id = user3.getUserId();
 
-        //When
         userService.getUser(1L);
         userService.getUser(2L);
         userService.getUser(3L);
 
-        //Then
-        System.out.println(userService.getUser(1L).get().getUserId());
-        System.out.println(userService.getUser(2L).get().getUserId());
-        System.out.println(userService.getUser(3L).get().getUserId());
+        //When & Then
         Assert.assertEquals(expectedUser1Id, userService.getUser(1L).get().getUserId());
         Assert.assertEquals(expectedUser2Id, userService.getUser(2L).get().getUserId());
         Assert.assertEquals(expectedUser3Id, userService.getUser(3L).get().getUserId());
