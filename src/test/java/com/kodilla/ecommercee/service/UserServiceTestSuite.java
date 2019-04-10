@@ -78,14 +78,21 @@ public class UserServiceTestSuite {
         userService.createUser(user2);
         userService.createUser(user3);
 
+        Long expectedUser1Id = user1.getUserId();
+        Long expectedUser2Id = user2.getUserId();
+        Long expectedUser3Id = user3.getUserId();
+
         //When
         userService.getUser(1L);
         userService.getUser(2L);
         userService.getUser(3L);
 
         //Then
-        Assert.assertEquals(userService.getUser(1L).get().getUserName(), user1.getUserName());
-        Assert.assertEquals(userService.getUser(2L).get().getIsBlocked(), user2.getIsBlocked());
-        Assert.assertEquals(userService.getUser(3L).get().getUserIdKey(), user3.getUserIdKey());
+        System.out.println(userService.getUser(1L).get().getUserId());
+        System.out.println(userService.getUser(2L).get().getUserId());
+        System.out.println(userService.getUser(3L).get().getUserId());
+        Assert.assertEquals(expectedUser1Id, userService.getUser(1L).get().getUserId());
+        Assert.assertEquals(expectedUser2Id, userService.getUser(2L).get().getUserId());
+        Assert.assertEquals(expectedUser3Id, userService.getUser(3L).get().getUserId());
     }
 }
