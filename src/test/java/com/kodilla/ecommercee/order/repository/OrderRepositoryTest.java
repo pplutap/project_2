@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
+@Transactional
 @SpringBootTest
 public class OrderRepositoryTest {
 
@@ -55,8 +57,8 @@ public class OrderRepositoryTest {
         Order testOrder = new Order();
         testOrder.setOrderDescription("Description");
         testOrder.setProductList(testProductList);
-        testProduct1.setOrder(testOrder);
-        testProduct2.setOrder(testOrder);
+        testProduct1.getOrders().add(testOrder);
+        testProduct2.getOrders().add(testOrder);
         //When
         orderRepository.save(testOrder);
         productRepository.save(testProduct1);
@@ -65,8 +67,8 @@ public class OrderRepositoryTest {
         Assert.assertEquals(1, orderRepository.count());
         Assert.assertEquals(2, orderRepository.findAll().get(0).getProductList().size());
         //CleanUp
+        orderRepository.deleteById(testOrder.getOrderId());
         productRepository.deleteById(testProduct1.getId());
         productRepository.deleteById(testProduct2.getId());
-        orderRepository.deleteById(testOrder.getOrderId());
     }
 }

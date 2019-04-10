@@ -1,8 +1,10 @@
 package com.kodilla.ecommercee.user.dao;
 
+import com.kodilla.ecommercee.cart.domain.Cart;
 import com.kodilla.ecommercee.user.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import sun.misc.Cache;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -23,4 +25,5 @@ public interface UserDao extends CrudRepository<User, Long> {
 
     @Override
     List<User> findAll();
+
 }

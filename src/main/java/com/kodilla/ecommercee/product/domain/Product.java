@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.product.domain;
 
+import com.kodilla.ecommercee.cart.domain.Cart;
 import com.kodilla.ecommercee.order.domain.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,7 +36,9 @@ public class Product {
     @Column(name = "group_id")
     private Long groupId;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany(mappedBy = "productList")
+    private List<Order> orders = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "productList")
+    private List<Cart> carts = new ArrayList<>();
 }

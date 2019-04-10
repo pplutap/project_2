@@ -21,16 +21,16 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "USER_ID")
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String userName;
 
-    @Column(name = "STATUS")
+    @Column(name = "status")
     private String status;
 
-    @Column(name = "USER_KEY")
+    @Column(name = "user_key")
     private Long userKey;
 
     @OneToMany(targetEntity = Cart.class,

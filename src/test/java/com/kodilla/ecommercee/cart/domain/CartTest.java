@@ -18,7 +18,7 @@ public class CartTest {
     }
 
     @Test
-    public void getProductDtoList() {
+    public void getProductList() {
         assertEquals(new ArrayList<>(), cart.getProductList());
     }
 

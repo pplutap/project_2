@@ -27,14 +27,15 @@ public class Order {
     @Column(name = "order_description")
     private String orderDescription;
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "order",
-            fetch = FetchType.EAGER
+    @ManyToMany
+    @JoinTable(
+            name = "join_product_order",
+            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
     )
     private List<Product> productList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 }

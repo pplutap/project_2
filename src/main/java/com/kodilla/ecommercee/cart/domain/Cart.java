@@ -5,6 +5,7 @@ import com.kodilla.ecommercee.user.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,25 +14,26 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "carts")
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CART_ID")
+    @Column(name = "cart_id")
     private Long cartId;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
-            name = "JOIN_PRODUCT_CART",
-            joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
+            name = "join_product_cart",
+            joinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
     )
     private List<Product> productList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 
 }
