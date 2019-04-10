@@ -23,7 +23,6 @@ import java.util.List;
 @Entity
 @Table(name = "products")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
@@ -44,18 +43,27 @@ public class Product {
     @Column(name = "group_id")
     private Long groupId;
 
+    public Product(String name, String description, Double price, Long groupId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.groupId = groupId;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "join_carts_products",
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")}
-    )
+            )
     private List<Cart> cartList = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
             name = "join_orders_products",
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")})
+            inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}
+            )
     private List<Order> orderList;
+
 }
