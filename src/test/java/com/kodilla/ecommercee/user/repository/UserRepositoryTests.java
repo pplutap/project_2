@@ -1,13 +1,15 @@
-package com.kodilla.ecommercee.user.dao;
+package com.kodilla.ecommercee.user.repository;
 
-import com.kodilla.ecommercee.cart.dao.CartDao;
 import com.kodilla.ecommercee.cart.domain.Cart;
+import com.kodilla.ecommercee.cart.repository.CartRepository;
 import com.kodilla.ecommercee.order.domain.Order;
 import com.kodilla.ecommercee.order.repository.OrderRepository;
 import com.kodilla.ecommercee.user.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,26 +21,30 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @Transactional
 @SpringBootTest
-public class UserDaoTests {
+public class UserRepositoryTests {
     @Autowired
-    UserDao userDao;
+    UserRepository userRepository;
 
     @Autowired
-    CartDao cartDao;
+    CartRepository cartRepository;
 
     @Autowired
     OrderRepository orderRepository;
 
+    private Logger LOGGER = LoggerFactory.getLogger(UserRepositoryTests.class);
+
     @Test
     public void testSaveOne() {
         //Given
+        LOGGER.info("TEST: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+
         User johnSmith = new User();
         johnSmith.setUserName("johnsmith");
         johnSmith.setStatus("1");
         johnSmith.setUserKey(12345L);
 
         //When
-        userDao.save(johnSmith);
+        userRepository.save(johnSmith);
         long johnSmithId = johnSmith.getUserId();
 
         //Then
@@ -46,15 +52,18 @@ public class UserDaoTests {
 
         //Cleanup
         try {
-            userDao.delete(johnSmith);
+            userRepository.delete(johnSmith);
+            LOGGER.info("Cleanup successful");
         } catch (Exception e) {
-            System.out.println("Error during cleanup");
+            LOGGER.error("Error during cleanup");
         }
     }
 
     @Test
     public void testSaveThree() {
         //Given
+        LOGGER.info("TEST: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+
         User johnSmith = new User();
         johnSmith.setUserName("johnsmith");
         johnSmith.setStatus("1");
@@ -71,27 +80,30 @@ public class UserDaoTests {
         clarkKent.setUserKey(67890L);
 
         //When
-        userDao.save(johnSmith);
-        userDao.save(janeDoe);
-        userDao.save(clarkKent);
-        long userCount = userDao.count();
+        userRepository.save(johnSmith);
+        userRepository.save(janeDoe);
+        userRepository.save(clarkKent);
+        long userCount = userRepository.count();
 
         //Then
         Assert.assertEquals(3, userCount);
 
         //Cleanup
         try {
-            userDao.delete(johnSmith);
-            userDao.delete(janeDoe);
-            userDao.delete(clarkKent);
+            userRepository.delete(johnSmith);
+            userRepository.delete(janeDoe);
+            userRepository.delete(clarkKent);
+            LOGGER.info("Cleanup successful");
         } catch (Exception e) {
-            System.out.println("Error during cleanup");
+            LOGGER.error("Error during cleanup");
         }
     }
 
     @Test
     public void testFindAll() {
         //Given
+        LOGGER.info("TEST: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+
         User johnSmith = new User();
         johnSmith.setUserName("johnsmith");
         johnSmith.setStatus("1");
@@ -108,19 +120,20 @@ public class UserDaoTests {
         clarkKent.setUserKey(67890L);
 
         //When
-        userDao.save(johnSmith);
-        userDao.save(janeDoe);
-        userDao.save(clarkKent);
-        List<User> users = userDao.findAll();
+        userRepository.save(johnSmith);
+        userRepository.save(janeDoe);
+        userRepository.save(clarkKent);
+        List<User> users = userRepository.findAll();
 
         //Then
         Assert.assertEquals(3, users.size());
 
         //Cleanup
         try {
-            userDao.deleteAll(users);
+            userRepository.deleteAll(users);
+            LOGGER.info("Cleanup successful");
         } catch (Exception e) {
-            System.out.println("Error during cleanup");
+            LOGGER.error("Error during cleanup");
         }
     }
 
@@ -128,6 +141,8 @@ public class UserDaoTests {
     @Test
     public void testFindById() {
         //Given
+        LOGGER.info("TEST: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+
         User johnSmith = new User();
         johnSmith.setUserName("johnsmith");
         johnSmith.setStatus("1");
@@ -144,16 +159,16 @@ public class UserDaoTests {
         clarkKent.setUserKey(67890L);
 
         //When
-        userDao.save(johnSmith);
-        userDao.save(janeDoe);
-        userDao.save(clarkKent);
+        userRepository.save(johnSmith);
+        userRepository.save(janeDoe);
+        userRepository.save(clarkKent);
         Long johnSmithId = johnSmith.getUserId();
         Long janeDoeId = janeDoe.getUserId();
         Long clarkKentId = clarkKent.getUserId();
 
-        User foundUser1 = userDao.findById(johnSmithId).get();
-        User foundUser2 = userDao.findById(janeDoeId).get();
-        User foundUser3 = userDao.findById(clarkKentId).get();
+        User foundUser1 = userRepository.findById(johnSmithId).get();
+        User foundUser2 = userRepository.findById(janeDoeId).get();
+        User foundUser3 = userRepository.findById(clarkKentId).get();
 
         //Then
         Assert.assertEquals("johnsmith", foundUser1.getUserName());
@@ -162,21 +177,24 @@ public class UserDaoTests {
 
         //Cleanup
         try {
-            userDao.delete(johnSmith);
-            userDao.delete(janeDoe);
-            userDao.delete(clarkKent);
+            userRepository.delete(johnSmith);
+            userRepository.delete(janeDoe);
+            userRepository.delete(clarkKent);
+            LOGGER.info("Cleanup successful");
         } catch (Exception e) {
-            System.out.println("Error during cleanup");
+            LOGGER.error("Error during cleanup");
         }
     }
 
     @Test
     public void testSaveUserWithCarts() {
         //Given
+        LOGGER.info("TEST: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+
         Cart cart1 = new Cart();
         Cart cart2 = new Cart();
-        cartDao.save(cart1);
-        cartDao.save(cart2);
+        cartRepository.save(cart1);
+        cartRepository.save(cart2);
 
         List<Cart> carts = new ArrayList<>();
         carts.add(cart1);
@@ -192,27 +210,30 @@ public class UserDaoTests {
         cart2.setUser(johnSmith);
 
         //When
-        userDao.save(johnSmith);
+        userRepository.save(johnSmith);
         Long johnSmithId = johnSmith.getUserId();
 
         //Then
-        Assert.assertEquals(1, userDao.count());
-        Assert.assertEquals(2, userDao.findAll().get(0).getCarts().size());
+        Assert.assertEquals(1, userRepository.count());
+        Assert.assertEquals(2, userRepository.findAll().get(0).getCarts().size());
 
         //CleanUp
         try {
 
-            cartDao.delete(cart1);
-            cartDao.delete(cart2);
-            userDao.delete(johnSmith);
+            cartRepository.delete(cart1);
+            cartRepository.delete(cart2);
+            userRepository.delete(johnSmith);
+            LOGGER.info("Cleanup successful");
         } catch (Exception e) {
-            System.out.println("Error during cleanup");
+            LOGGER.error("Error during cleanup");
         }
     }
 
     @Test
     public void testSaveUserWithOrders() {
         //Given
+        LOGGER.info("TEST: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+
         Order order1 = new Order();
         Order order2 = new Order();
         orderRepository.save(order1);
@@ -232,20 +253,21 @@ public class UserDaoTests {
         order2.setUser(johnSmith);
 
         //When
-        userDao.save(johnSmith);
+        userRepository.save(johnSmith);
         Long johnSmithId = johnSmith.getUserId();
 
         //Then
-        Assert.assertEquals(1, userDao.count());
-        Assert.assertEquals(2, userDao.findAll().get(0).getOrders().size());
+        Assert.assertEquals(1, userRepository.count());
+        Assert.assertEquals(2, userRepository.findAll().get(0).getOrders().size());
 
         //CleanUp
         try {
             orderRepository.delete(order1);
             orderRepository.delete(order2);
-            userDao.delete(johnSmith);
+            userRepository.delete(johnSmith);
+            LOGGER.info("Cleanup successful");
         } catch (Exception e) {
-            System.out.println("Error during cleanup");
+            LOGGER.error("Error during cleanup");
         }
     }
 }
