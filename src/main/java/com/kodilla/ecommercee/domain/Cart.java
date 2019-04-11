@@ -3,9 +3,9 @@ package com.kodilla.ecommercee.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "CART")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter(value = AccessLevel.PRIVATE)
@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class Cart {
 
     @Column(name = "ID")
+    @NotNull
     @Id
     @GeneratedValue
     private Long id;

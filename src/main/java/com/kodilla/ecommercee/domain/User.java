@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "USER")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter(value = AccessLevel.PRIVATE)
@@ -18,6 +17,7 @@ import java.util.List;
 public class User {
 
     @Column(name = "ID")
+    @NotNull
     @Id
     @GeneratedValue
     private Long id;
@@ -50,7 +50,6 @@ public class User {
     private boolean isBlocked;
 
     @Column(name = "UUID")
-    @NotNull
     private String uuid;
 
     @Column(name = "BEGIN_VALIDITY_UUID")
