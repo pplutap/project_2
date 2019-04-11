@@ -25,8 +25,8 @@ public class ProductMapper {
                 productDto.getId(),
                 productDto.getName(),
                 productDto.getPrice(),
-                createCart(productDto.getCartId()),
-                createGroup(productDto.getGroupId()));
+                getCartWithId(productDto.getCartId()),
+                getGroupWithId(productDto.getGroupId()));
     }
 
     public ProductDto mapToProductDto(Product product) {
@@ -52,13 +52,13 @@ public class ProductMapper {
                 .collect(Collectors.toList());
     }
 
-    private Cart createCart(Long id) {
+    private Cart getCartWithId(Long id) {
         if (id == null || id == 0)
             return null;
         return cartService.getCart(id);
     }
 
-    private Group createGroup(Long id) {
+    private Group getGroupWithId(Long id) {
         if (id == null || id == 0)
             return null;
         return groupService.getGroup(id);
