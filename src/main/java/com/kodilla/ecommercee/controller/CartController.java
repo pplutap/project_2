@@ -13,11 +13,14 @@ import java.util.List;
 public class CartController {
     @GetMapping(value =  "getProductsFromCart")
     public List<ProductDto> getProductsFromCart(@RequestParam Long cartID) {
-        return new ArrayList<>();
+
+        List<ProductDto> res = new ArrayList<>();
+        res.add(new ProductDto(1,"test title","test content"));
+        return res;
     }
 
     @PutMapping(value = "addProductToCart")
-    public CartDto addProductToCart() {
+    public CartDto addProductToCart(@RequestBody CartDto cartDto) {
         return new CartDto();
     }
 
@@ -33,6 +36,6 @@ public class CartController {
 
     @PostMapping(value = "createOrderFromCart")
     public OrderDto createOrderFromCart() {
-        return new OrderDto();
+        return new OrderDto(new Long(1));
     }
 }
