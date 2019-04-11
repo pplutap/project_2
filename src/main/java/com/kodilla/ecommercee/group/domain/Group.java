@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.group.domain;
 
+import com.kodilla.ecommercee.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,5 +30,11 @@ public final class Group {
 
     @Column(name = "group_description")
     private String descriptionOfGroup;
+    @ManyToMany(
+           targetEntity = Product.class,
+            mappedBy = "groupList",
+            fetch = FetchType.EAGER
+    )
+    private List<Product> productList = new ArrayList<>();
 
 }

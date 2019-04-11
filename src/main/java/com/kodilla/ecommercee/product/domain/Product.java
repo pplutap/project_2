@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,5 +39,13 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
+    @ManyToMany
+    @JoinTable(
+            name = "join_groups_products",
+            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "group_id")}
+    )
+    private List<Group> groupList;
 
 }
