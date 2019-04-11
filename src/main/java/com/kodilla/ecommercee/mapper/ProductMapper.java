@@ -1,5 +1,7 @@
 package com.kodilla.ecommercee.mapper;
 
+import com.kodilla.ecommercee.domain.Cart;
+import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.service.CartService;
@@ -19,38 +21,62 @@ public class ProductMapper {
     GroupService groupService;
 
     public Product mapToProduct(final ProductDto productDto) {
-        return new Product(productDto.getId(),
+        return new Product(
+                productDto.getId(),
                 productDto.getName(),
                 productDto.getPrice(),
-                cartService.getCart(productDto.getCartId()),
-                groupService.getGroup(productDto.getGroupId()));
-
+                getCartWithId(productDto.getCartId()),
+                getGroupWithId(productDto.getGroupId()));
     }
 
-    public ProductDto mapToProductDto(final Product product) {
+    public ProductDto mapToProductDto(Product product) {
         return new ProductDto(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                product.getCart().getCartId(),
-                product.getGroup().getGroupId());
+                getIdFromCart(product.getCart()),
+                getIdFromGroup(product.getGroup()));
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
-        return productList.stream()
-                .map(t -> new ProductDto(
-                        t.getId(), t.getName(),
-                        t.getPrice(), t.getCart().getCartId(),
-                        t.getGroup().getGroupId()))
+        return productList
+                .stream()
+                .map(this::mapToProductDto)
                 .collect(Collectors.toList());
     }
 
     public List<Product> mapToProductList(final List<ProductDto> productDtoList){
-        return productDtoList.stream().map(
-                productDto -> new Product(productDto.getId(),
-                productDto.getName(),productDto.getPrice(),
-                cartService.getCart(productDto.getCartId()),
-                        groupService.getGroup(productDto.getGroupId())))
+        return productDtoList
+                .stream()
+                .map(this::mapToProduct)
                 .collect(Collectors.toList());
+    }
+
+    private Cart getCartWithId(Long id) {
+        if (id == null || id == 0)
+            return null;
+        return cartService.getCart(id);
+    }
+
+    private Group getGroupWithId(Long id) {
+        if (id == null || id == 0)
+            return null;
+        return groupService.getGroup(id);
+    }
+
+    private Long getIdFromCart(Cart cart) {
+        try {
+            return cart.getCartId();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private Long getIdFromGroup(Group group) {
+        try {
+            return group.getGroupId();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
