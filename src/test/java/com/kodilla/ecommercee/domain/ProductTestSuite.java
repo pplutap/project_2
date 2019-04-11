@@ -106,10 +106,10 @@ public class ProductTestSuite {
         productService.saveProductOrUpdate(product3);
 
         //When
-        Optional<Product> productOptional = productService.getProduct(product.getId());
+        Product productOptional = productService.getProduct(product.getId());
 
         //Then
-        Assert.assertEquals(product.getId(), productOptional.get().getId());
+        Assert.assertEquals(product.getId(), productOptional.getId());
     }
 
     @Test
@@ -133,7 +133,7 @@ public class ProductTestSuite {
         productService.saveProductOrUpdate(product4);
         Long idProduct4 = productService.findByProductName("Product4").get().getId();
         //When
-        Product receivedProduct4 = productService.getProduct(idProduct4).get();
+        Product receivedProduct4 = productService.getProduct(idProduct4);
         //Then
         Assert.assertEquals(product4, receivedProduct4);
     }
@@ -159,7 +159,7 @@ public class ProductTestSuite {
         //When
         Product product6Updated = new Product(idProduct6, "Product6 modified", 58.9, null, null);
         productService.saveProductOrUpdate(product6Updated);
-        String product6UpdatedName = productService.getProduct(idProduct6).get().getName();
+        String product6UpdatedName = productService.getProduct(idProduct6).getName();
         //Then
         Assert.assertEquals(product6UpdatedName, "Product6 modified");
     }
