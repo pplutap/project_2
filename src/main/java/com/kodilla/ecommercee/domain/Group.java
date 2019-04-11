@@ -1,13 +1,16 @@
 package com.kodilla.ecommercee.domain;
 
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Entity
 @Table(name = "productgroups")
@@ -15,10 +18,14 @@ public class Group {
 
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "id", unique = true)
     private Long groupId;
 
     @Column(name = "groupname")
-    private final String groupName;
+    private String groupName;
+
+    public Group(String groupName) {
+        this.groupName = groupName;
+    }
 }

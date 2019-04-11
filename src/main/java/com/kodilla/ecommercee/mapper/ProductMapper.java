@@ -20,7 +20,6 @@ public class ProductMapper {
                 productDto.getName(),
                 productDto.getPrice(),
                 cartService.getCart(productDto.getCartId()));
-
     }
 
     public ProductDto mapToProductDto(final Product product) {

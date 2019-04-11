@@ -35,7 +35,7 @@ public class GroupService {
     }
 
     public Group findByGroupName(String groupName) {
-        return groupRepository.findByGroupName(groupName).orElse(new Group("Empty Group Name"));
+        return groupRepository.findByGroupName(groupName).orElse(null);
     }
 
 }

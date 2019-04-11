@@ -21,13 +21,13 @@ public class GroupController {
     private GroupService groupService;
 
     @GetMapping("getGroups")
-    public List<GroupDto> getGroups() {
+    public List<GroupDto> getGroupsList() {
         return groupMapper.mapToGroupDtoList(groupService.getGroupsList());
     }
 
     @GetMapping("getGroup")
-    public GroupDto getGroup(@RequestParam Long groupId) throws GroupNotFoundException {
-        return groupMapper.mapToGroupDto(groupService.getGroup(groupId).orElseThrow(GroupNotFoundException::new));
+    public GroupDto getGroup(@RequestParam Long groupId) {
+        return groupMapper.mapToGroupDto(groupService.getGroup(groupId).orElse(null));
     }
 
     @PostMapping(value = "createGroup", consumes = APPLICATION_JSON_VALUE)
