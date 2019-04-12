@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Setter(AccessLevel.PRIVATE)
 @Entity
@@ -12,6 +13,7 @@ public class Order  {
 
     private Long id;
     private Cart cart;
+    private User user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,4 +26,9 @@ public class Order  {
     public Cart getCart() {
         return cart;
     }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @NotNull
+    @JoinColumn(name = "USER_ID")
+    public User getUser() { return user;}
 }
