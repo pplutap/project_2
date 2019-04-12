@@ -17,6 +17,7 @@ import java.time.LocalTime;
 @Setter(value = AccessLevel.PUBLIC)
 
 public class User {
+
     private Long id;
     private String firstName;
     private String lastName;
@@ -29,7 +30,6 @@ public class User {
     private LocalTime beginValidityOfUuid;
     private LocalTime endValidityOfUuid;
 
-
     @Column(name = "ID")
     @Id
     @GeneratedValue
@@ -37,13 +37,11 @@ public class User {
         return id;
     }
 
-
     @Column(name = "FIRSTNAME")
     @NotNull
     public String getFirstName() {
         return firstName;
     }
-
 
     @Column(name = "LASTNAME")
     @NotNull
@@ -62,13 +60,11 @@ public class User {
         return address;
     }
 
-
     @Column(name = "LOGIN")
     @NotNull
     public String getLogin() {
         return login;
     }
-
 
     @Column(name = "PASSWORD")
     @NotNull
@@ -76,20 +72,16 @@ public class User {
         return password;
     }
 
-
     @Column(name = "IS_BLOCKED")
     @NotNull
     public boolean isBlocked() {
         return isBlocked;
-
     }
-
 
     @Column(name = "UUID")
     public String getUuid() {
         return uuid;
     }
-
 
     @Column(name = "BEGIN_VALIDITY_UUID")
     @NotNull
@@ -97,12 +89,9 @@ public class User {
         return beginValidityOfUuid;
     }
 
-
     @Column(name = "END_VALIDITY_UUID")
     @NotNull
     public LocalTime getEndValidityOfUuid() {
         return endValidityOfUuid;
-
-
     }
 }

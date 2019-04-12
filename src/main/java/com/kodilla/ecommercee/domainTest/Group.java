@@ -12,13 +12,10 @@ import java.util.List;
 @Table(name = "GROUPS")
 public class Group {
 
-
     @Column(name = "ID")
     @Id
     @GeneratedValue
     private Long id;
-
-
     @Column
     @ElementCollection(targetClass = Product.class)
     private List<Product> products = new ArrayList<>();
@@ -29,9 +26,7 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-
     public List<Product> getProducts() {
         return products;
     }
 }
-

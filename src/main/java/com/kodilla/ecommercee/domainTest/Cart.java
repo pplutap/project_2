@@ -15,8 +15,6 @@ public class Cart {
     @Id
     @GeneratedValue
     private Long id;
-
-
     @Column
     @ElementCollection(targetClass = Product.class)
     private List<Product> products = new ArrayList<>();
@@ -27,7 +25,6 @@ public class Cart {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-
     public List<Product> getProducts() {
         return products;
     }

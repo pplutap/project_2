@@ -17,7 +17,6 @@ public class Order {
     @Id
     @GeneratedValue
     private Long id;
-
     @Column
     @ElementCollection(targetClass = Product.class)
     private List<Product> products = new ArrayList<>();
@@ -28,7 +27,6 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-
     public List<Product> getProducts() {
         return products;
     }
