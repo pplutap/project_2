@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping(value = "createUser")
-    public void createUser(@RequestBody UserDto userDto) {
+    public void createUser(@RequestBody String user) {
 
     }
 
