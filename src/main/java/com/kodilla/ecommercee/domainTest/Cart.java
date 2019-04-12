@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "CARTS")
-
 public class Cart {
 
     @Column(name = "ID")

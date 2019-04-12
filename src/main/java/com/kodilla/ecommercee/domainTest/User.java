@@ -15,7 +15,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter(value = AccessLevel.PUBLIC)
-
 public class User {
 
     private Long id;
