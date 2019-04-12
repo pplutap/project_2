@@ -38,4 +38,3 @@ public class UserController {
     public String blockingUser(@RequestBody String key) {
         return "User is blocking";
     }
-}
