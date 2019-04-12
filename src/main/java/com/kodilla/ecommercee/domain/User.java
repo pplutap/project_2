@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "USER")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter(value = AccessLevel.PRIVATE)
