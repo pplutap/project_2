@@ -74,17 +74,16 @@ public class ProductControllerTest {
 
         //when
         int numberOfProductsBeforeAdd = productService.getProducts().size();
-        productController.addProduct(productDto1);
-        productController.addProduct(productDto2);
+        Long idProduct1 = productController.addProduct(productDto1);
+        Long idProduct2 = productController.addProduct(productDto2);
         int numberOfProductsAfterAdd = productService.getProducts().size();
 
         //then
         Assert.assertEquals(numberOfProductsBeforeAdd + 2, numberOfProductsAfterAdd);
 
         //cleanup
-        productService.getProducts().stream()
-                .filter(product -> product.getName().startsWith("product "))
-                .forEach(product -> productService.deleteProduct(product.getId()));
+        productService.deleteProduct(idProduct1);
+        productService.deleteProduct(idProduct2);
     }
 
     @Test

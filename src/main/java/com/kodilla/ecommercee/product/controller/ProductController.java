@@ -30,8 +30,8 @@ public class ProductController {
     }
 
     @PostMapping(value = "addProduct", consumes = APPLICATION_JSON_VALUE)
-    public void addProduct(@RequestBody ProductDto productDto) {
-        productService.saveProduct(productMapper.mapProductDtoToProduct(productDto));
+    public Long addProduct(@RequestBody ProductDto productDto) {
+        return productService.saveProduct(productMapper.mapProductDtoToProduct(productDto)).getId();
     }
 
     @PutMapping(value = "updateProduct", consumes = APPLICATION_JSON_VALUE)
