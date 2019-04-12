@@ -1,7 +1,8 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import lombok.AccessLevel;
 import lombok.Setter;
+
 import javax.persistence.*;
 
 @Setter(AccessLevel.PRIVATE)

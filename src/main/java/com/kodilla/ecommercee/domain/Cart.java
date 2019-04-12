@@ -1,20 +1,33 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.*;
-
+import lombok.AccessLevel;
+import lombok.Setter;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
+@Setter(AccessLevel.PRIVATE)
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter(value = AccessLevel.PRIVATE)
-@Getter
-public class Cart {
+@Table(name="CARTS")
+public class Cart   {
 
-    @Column(name = "ID")
-    @NotNull
-    @Id
-    @GeneratedValue
     private Long id;
+    private List<Product> products;
+
+    public Cart() {
+        products = new ArrayList<>();
+    }
+
+    @OneToMany( targetEntity = Product.class,
+                mappedBy = "cart",
+                fetch = FetchType.LAZY)
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 }
