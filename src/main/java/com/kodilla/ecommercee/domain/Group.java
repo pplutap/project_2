@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +20,13 @@ public class Group {
     @Column(name = "GROUP_NAME")
     private String groupName;
 
+
     @Column(name = "PRODUCTS_LIST")
-    private ArrayList<Object> productsList;
+    @ManyToMany
+    @JoinTable(
+            name = "JOIN_PRODUCT_GROUP",
+            joinColumns = {@JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
+    )
+    private List<Product> products;
 }
