@@ -20,7 +20,6 @@ public class Group {
     @Column(name = "GROUP_NAME")
     private String groupName;
 
-
     @Column(name = "PRODUCTS_LIST")
     @ManyToMany
     @JoinTable(
