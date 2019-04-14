@@ -208,6 +208,7 @@ public class UserTestSuite {
         userService.createUser(user3);
 
         for (i = 0; i < 3; i++) {
+            System.out.println("id = 11");
             System.out.println(userService.getUsersList().get(i));
         }
 
