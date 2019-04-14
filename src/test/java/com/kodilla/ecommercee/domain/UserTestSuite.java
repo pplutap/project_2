@@ -227,5 +227,5 @@ public class UserTestSuite {
         Assert.assertEquals(expectedUser1Id, userService.getUser(1L).get().getUserId());
         Assert.assertEquals(expectedUser2Id, userService.getUser(2L).get().getUserId());
         Assert.assertEquals(expectedUser3Id, userService.getUser(3L).get().getUserId());
-
+    }
 }
