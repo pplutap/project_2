@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Entity
 @ToString
@@ -23,13 +22,22 @@ public class User {
     private Long userId;
 
     @Column(name = "username")
-    private final String userName;
+    private String userName;
 
     @Column(name = "isblocked")
-    private final Boolean isBlocked;
+    private Boolean isBlocked;
 
     @Column(name = "useridkey")
-    private final Long userIdKey;
+    private Long userIdKey;
+
+    public User() {
+    }
+
+    public User(String userName, Boolean isBlocked, Long userIdKey) {
+        this.userName = userName;
+        this.isBlocked = isBlocked;
+        this.userIdKey = userIdKey;
+    }
 
 }
 
