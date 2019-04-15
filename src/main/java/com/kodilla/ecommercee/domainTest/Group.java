@@ -16,6 +16,7 @@ public class Group {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column
     @ElementCollection(targetClass = Product.class)
     private List<Product> products = new ArrayList<>();

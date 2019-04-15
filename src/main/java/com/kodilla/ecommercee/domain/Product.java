@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -16,15 +17,14 @@ import javax.validation.constraints.NotNull;
 @Getter
 public final class Product {
 
-    @Column(name = "ID")
+    @Column(name = "PRODUCT_ID")
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "NAME")
     @NotNull
     private String name;
-
 
     @Column(name = "PRICE")
     @NotNull
@@ -44,4 +44,10 @@ public final class Product {
     @JoinColumn(name = "CART_ID")
     @NotNull
     private Cart cart;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "products"
+    )
+    private List<Group> groups;
 }
