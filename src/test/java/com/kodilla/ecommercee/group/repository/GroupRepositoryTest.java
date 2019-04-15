@@ -1,7 +1,6 @@
-package com.kodilla.ecommercee.group;
+package com.kodilla.ecommercee.group.repository;
 
 import com.kodilla.ecommercee.group.domain.Group;
-import com.kodilla.ecommercee.group.repository.GroupRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +25,7 @@ public class GroupRepositoryTest {
         groupRepository.save(group);
 
         //then
-        Assert.assertNotNull(group.getIdGroup());
+        Assert.assertNotNull(group.getGroupId());
 
         //cleanup
         groupRepository.delete(group);
@@ -35,9 +34,10 @@ public class GroupRepositoryTest {
     @Test
     public void testFindAll() {
         //given
-        Group group = new Group();
-        Group group1 = new Group();
-        Group group2 = new Group();
+        Group group = new Group("test", "test");
+        Group group1 = new Group("test1", "test1");
+        Group group2 = new Group("test2", "test2");
+
         groupRepository.save(group);
         groupRepository.save(group1);
         groupRepository.save(group2);

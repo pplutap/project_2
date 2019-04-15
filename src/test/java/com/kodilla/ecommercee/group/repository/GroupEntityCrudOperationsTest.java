@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.group;
+package com.kodilla.ecommercee.group.repository;
 
 import com.kodilla.ecommercee.group.repository.GroupRepository;
 import com.kodilla.ecommercee.group.domain.Group;
@@ -28,9 +28,9 @@ public class GroupEntityCrudOperationsTest {
     public void createGroupTest() {
         //given
         List<Product> test = new ArrayList<>();
-        Group group1 = new Group(1L,"TEST","test",test);
-        Group group2 = new Group(3L,"TEST","test",test);
-        Group group3 = new Group(3L,"TEST","test",test);
+        Group group1 = new Group(null,"TEST","test",test);
+        Group group2 = new Group(null,"TEST","test",test);
+        Group group3 = new Group(null,"TEST","test",test);
 
         //when
         int sizeGroupBeforeSave = groupRepository.findAll().size();
@@ -54,11 +54,12 @@ public class GroupEntityCrudOperationsTest {
 
         //when
         groupRepository.save(group1);
-        Long id1 = group1.getIdGroup();
+        Long id1 = group1.getGroupId();
+
         Group savedGroup = groupRepository.findById(id1).get();
 
         //then
-        Assert.assertEquals(savedGroup.getNameOfGroup(), group1.getNameOfGroup());
+        Assert.assertEquals(savedGroup.getGroupName(), group1.getGroupName());
 
         //cleanup
         groupRepository.delete(group1);
@@ -69,9 +70,9 @@ public class GroupEntityCrudOperationsTest {
     public void readAllGroupTest() {
         //given
         List<Product> test = new ArrayList<>();
-        Group group1 = new Group(1L,"TEST","test",test);
-        Group group2 = new Group(3L,"TEST","test",test);
-        Group group3 = new Group(3L,"TEST","test",test);
+        Group group1 = new Group(null,"TEST","test",test);
+        Group group2 = new Group(null,"TEST","test",test);
+        Group group3 = new Group(null,"TEST","test",test);
 
         //when
         groupRepository.save(group1);
@@ -96,13 +97,14 @@ public class GroupEntityCrudOperationsTest {
 
         //when
         groupRepository.save(group1);
-        Long id1 = group1.getIdGroup();
+
+        Long id1 = group1.getGroupId();
         String newNameOfGroup = "renamed group 1";
-        group1.setNameOfGroup(newNameOfGroup);
+        group1.setGroupName(newNameOfGroup);
         groupRepository.save(group1);
 
         //then
-        Assert.assertEquals(newNameOfGroup, groupRepository.findById(id1).get().getNameOfGroup());
+        Assert.assertEquals(newNameOfGroup, groupRepository.findById(id1).get().getGroupName());
 
         //cleanup
         groupRepository.delete(group1);
@@ -112,12 +114,14 @@ public class GroupEntityCrudOperationsTest {
     public void deleteGroupTest() {
         //given
         List<Product> test = new ArrayList<>();
-        Group group1 = new Group(null,"TEST","test",test);
-        Group group2 = new Group(null,"TEST","test",test);
-        Long idGroup1 = group1.getIdGroup();
-        Product product1 = new Product("product 1", "product 1 desc", 100.00, idGroup1);
-        Long idGroup2 = group2.getIdGroup();
-        Product product2 = new Product("product 2", "product 2 desc", 200.00, idGroup2);
+
+        Group group1 = new Group("test","test2");
+        Group group2 = new Group("group 2", "group 2 desc");
+        Long idGroup1 = group1.getGroupId();
+        Product product1 = new Product("product 1", "product 1 desc", 100.00, 1L, idGroup1);
+        Long idGroup2 = group2.getGroupId();
+        Product product2 = new Product("product 2", "product 2 desc", 200.00, 1L, idGroup2);
+
 
         //when
         int sizeGroupsBeforeSave = groupRepository.findAll().size();

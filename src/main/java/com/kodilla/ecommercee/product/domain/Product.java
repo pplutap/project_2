@@ -50,27 +50,38 @@ public class Product {
     )
     private List<Group> groupList;
 
-    public Product(String name, String description, Double price, Long groupId) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.groupId = groupId;
-    }
+    public Product(String name, String description, Double price, Long quantity, Long groupId) {
 
-    @ManyToMany
-    @JoinTable(
-            name = "join_carts_products",
-            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")}
-    )
-    private List<Cart> cartList = new ArrayList<>();
+            this.name = name;
+            this.description = description;
+            this.price = price;
+            this.quantity = quantity;
+            this.groupId = groupId;
+        }
 
-    @ManyToMany
-    @JoinTable(
-            name = "join_orders_products",
-            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}
-    )
-    private List<Order> orderList;
+    public Product(Long id, String name, String description, Double price, Long quantity, Long groupId) {
+            this.id = id;
+            this.name = name;
+            this.description = description;
+            this.price = price;
+            this.quantity = quantity;
+            this.groupId = groupId;
+        }
+
+        @ManyToMany
+        @JoinTable(
+                name = "join_carts_products",
+                joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
+                inverseJoinColumns = {@JoinColumn(name = "cart_id", referencedColumnName = "cart_id")}
+        )
+        private List<Cart> cartList = new ArrayList<>();
+
+        @ManyToMany
+        @JoinTable(
+                name = "join_orders_products",
+                joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")},
+                inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}
+        )
+        private List<Order> orderList;
 
 }
