@@ -1,8 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domainTest.Cart;
-import com.kodilla.ecommercee.domainTest.Group;
-import com.kodilla.ecommercee.domainTest.Order;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,23 +19,22 @@ public final class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "TITLE")
     @NotNull
-    private String name;
+    private String title;
+
+    @Column(name = "CONTENT")
+    @NotNull
+    private String content;
 
     @Column(name = "PRICE")
     @NotNull
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "GROUP_ID")
-    @NotNull
-    private Group group;
-
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    @NotNull
-    private Order order;
+//    @ManyToOne
+//    @JoinColumn(name = "ORDER_ID")
+//    @NotNull
+//    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "CART_ID")
