@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -31,19 +30,17 @@ public final class Product {
     @NotNull
     private double price;
 
-//    @ManyToOne
-//    @JoinColumn(name = "ORDER_ID")
-//    @NotNull
-//    private Order order;
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    @NotNull
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "CART_ID")
     @NotNull
     private Cart cart;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "products"
-    )
-    private List<Group> groups;
+    @ManyToOne
+    @JoinColumn(name="GROUP_ID")
+    private Group group;
 }
