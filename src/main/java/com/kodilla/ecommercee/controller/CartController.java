@@ -15,7 +15,7 @@ public class CartController {
     public List<ProductDto> getProductsFromCart(@RequestParam Long cartID) {
 
         List<ProductDto> res = new ArrayList<>();
-        res.add(new ProductDto(1,"test title","test content"));
+        res.add(new ProductDto());
         return res;
     }
 
@@ -36,6 +36,6 @@ public class CartController {
 
     @PostMapping(value = "createOrderFromCart")
     public OrderDto createOrderFromCart() {
-        return new OrderDto(new Long(1));
+        return new OrderDto();
     }
 }
