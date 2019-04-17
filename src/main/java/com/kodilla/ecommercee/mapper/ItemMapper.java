@@ -25,7 +25,7 @@ public class ItemMapper {
         return new Item(
                 itemDto.getId(),
                 getCartWithId(itemDto.getCart()),
-                getProductWithId(itemDto.getProduct()),
+                getProductWithId(itemDto.getProductId()),
                 itemDto.getQuantity());
     }
 
@@ -34,8 +34,6 @@ public class ItemMapper {
                 item.getId(),
                 item.getCart().getCartId(),
                 item.getProduct().getId(),
-                getProductWithId(item.getProduct().getId()).getName(),
-                getProductWithId(item.getProduct().getId()).getPrice(),
                 item.getQuantity());
     }
 

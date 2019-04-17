@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class ItemDto {
     private Long id;
     private Long cart;
-    private Long product;
-    private String productName;
-    private Double productPrice;
+    private Long productId;
+    //private String productName;
+    //private Double productPrice;
     private int quantity;
 
 
