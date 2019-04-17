@@ -15,8 +15,8 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public void saveCart(Cart cart) {
-        cartRepository.save(cart);
+    public Cart saveCart(Cart cart) {
+        return cartRepository.save(cart);
     }
 
     public Cart getCart(Long cartId) {
@@ -25,5 +25,9 @@ public class CartService {
 
     public List<Cart> getAllCarts() {
         return Optional.ofNullable(cartRepository.findAll()).orElse(new ArrayList<>());
+    }
+
+    public void deleteCart(Long cartId) {
+        cartRepository.deleteById(cartId);
     }
 }

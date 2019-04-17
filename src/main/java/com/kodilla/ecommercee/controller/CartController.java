@@ -1,10 +1,14 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.Cart;
+import com.kodilla.ecommercee.domain.Item;
 import com.kodilla.ecommercee.domain.dto.CartDto;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.CartService;
+import com.kodilla.ecommercee.service.ItemService;
+import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,24 +29,31 @@ public class CartController {
     @Autowired
     private ProductMapper productMapper;
 
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    ItemService itemService;
+
     @PostMapping(value = "saveCart", consumes = APPLICATION_JSON_VALUE)
     public void saveCart(@RequestBody CartDto cartDto) {
         cartService.saveCart(cartMapper.mapToCart(cartDto));
     }
 
     @GetMapping(value = "getProductsFromCart")
-    public List<ProductDto> getProductsFromCart(@RequestParam Long cartId) {
-        return cartMapper.mapToCartDto(cartService.getCart(cartId)).getProductsList();
+    public CartDto getProductsFromCart(@RequestParam Long cartId) {
+        return cartMapper.mapToCartDto(cartService.getCart(cartId));
     }
 
     @PutMapping(value = "addProductToCart")
-    public void addProductToCart(@RequestParam Long cartId, @RequestBody ProductDto productDto) {
-        cartService.getCart(cartId).getProductsList().add(productMapper.mapToProduct(productDto));
+    public CartDto addProductToCart(@RequestParam Long cartId, @RequestParam Long productId, @RequestParam int quantity) {
+        cartService.getCart(cartId).getItemsList().add(new Item(cartService.getCart(cartId), productService.getProduct(productId), quantity));
+        return cartMapper.mapToCartDto(cartService.saveCart(cartService.getCart(cartId)));
     }
 
-    @PutMapping(value = "deleteProductFromCart")
-    public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody ProductDto productDto) {
-        cartService.getCart(cartId).getProductsList().remove(productMapper.mapToProduct(productDto));
+    @DeleteMapping(value = "deleteProductFromCart")
+    public void deleteProductFromCart(@RequestParam Long itemId) {
+        itemService.deleteItem(itemId);
     }
 
     @GetMapping(value = "createOrder")
