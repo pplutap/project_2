@@ -5,7 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 
 @Setter(AccessLevel.PRIVATE)
-@Getter                                                                                                                                                                                                                                           @AllArgsConstructor
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ORDERS")
