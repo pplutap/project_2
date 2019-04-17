@@ -23,31 +23,31 @@ public class ProductController {
     private ProductMapper mapper;
 
 
-    @GetMapping
+    @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
         LOGGER.info("Return all products");
         return mapper.mapToProductDtoList(service.getAllProducts());
     }
 
-    @GetMapping("{id}")
-    public ProductDto getProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
+    @GetMapping(value = "getProduct")
+    public ProductDto getProduct(@RequestParam("productId") Long productId) throws ProductNotFoundException {
         LOGGER.info("Return one product");
         return mapper.mapToProductDto(service.getProductById(productId));
     }
 
-    @DeleteMapping("{id}")
-    public void deleteProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
+    @DeleteMapping(value = "deleteProduct")
+    public void deleteProduct(@RequestParam("productId") Long productId) throws ProductNotFoundException {
         LOGGER.info("Product is deleted");
         service.deleteProductById(productId);
     }
 
-    @PutMapping
+    @PutMapping(value = "updateProduct")
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
         LOGGER.info("Product is updated");
         return mapper.mapToProductDto(service.saveProduct(mapper.mapToProduct(productDto)));
     }
 
-    @PostMapping
+    @PostMapping(value = "createProduct")
     public void createProduct(@RequestBody ProductDto productDto) {
         LOGGER.info("Product is created");
         service.saveProduct(mapper.mapToProduct(productDto));
