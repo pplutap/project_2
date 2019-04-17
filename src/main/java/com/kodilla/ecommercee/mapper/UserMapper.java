@@ -12,6 +12,7 @@ public class UserMapper {
 
     public User mapToUser(final UserDto userDto) {
         return new User(
+                userDto.getUserId(),
                 userDto.getUserName(),
                 userDto.getIsBlocked(),
                 userDto.getUserIdKey());
