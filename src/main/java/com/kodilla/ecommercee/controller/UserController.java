@@ -37,11 +37,8 @@ public class UserController {
     }
 
     @PutMapping("blockUser")
-    public void blockUser(@RequestParam Long userId) throws UserNotFoundException {
-        UserDto userToBlockDto = userMapper.mapToUserDto(userService.getUser(userId).orElseThrow(UserNotFoundException::new));
-        userToBlockDto.setIsBlocked(true);
-        User userToBlock = userMapper.mapToUser(userToBlockDto);
-        userService.saveUser(userToBlock);
+    public User blockUser(@RequestParam Long userId) throws UserNotFoundException {
+        return userService.blockUser(userId);
     }
 
     @GetMapping("generateUserIdKey")

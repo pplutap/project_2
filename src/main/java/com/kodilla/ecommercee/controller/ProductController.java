@@ -18,6 +18,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+
     @GetMapping("getProducts")
     public List<ProductDto> getProducts() {
         return productMapper.mapToProductDtoList(productService.getAllProducts());
@@ -25,7 +26,7 @@ public class ProductController {
 
     @GetMapping("getProduct")
     public ProductDto getProduct(@RequestParam Long productId) {
-        return productMapper.mapToProductDto(productService.getProduct(productId).orElse(null));
+        return productMapper.mapToProductDto(productService.getProduct(productId));
     }
 
     @PostMapping("createProduct")

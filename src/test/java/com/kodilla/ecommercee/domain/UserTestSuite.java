@@ -172,7 +172,9 @@ public class UserTestSuite {
         //Then
         Assert.assertEquals(3, testUsersList.size());
         Assert.assertEquals(usersList.size(), testUsersList.size());
-        Assert.assertEquals(usersList.get(1).getUserName(), testUsersList.get(1).getUserName());
+        Assert.assertEquals(usersList.get(0).getUserName(), testUsersList.get(0).getUserName());
+        Assert.assertEquals(usersList.get(1).getIsBlocked(), testUsersList.get(1).getIsBlocked());
+        Assert.assertEquals(usersList.get(2).getUserIdKey(), testUsersList.get(2).getUserIdKey());
     }
 
     @Transactional
@@ -192,41 +194,5 @@ public class UserTestSuite {
         Assert.assertEquals("user1", user1.getUserName());
         Assert.assertEquals(true, user2.getIsBlocked());
         Assert.assertEquals(3, userService.getUsersList().size());
-    }
-
-    @Transactional
-    @Test
-    public void testGetUser() {
-        //Given
-        int i = 0;
-        User user1 = new User("user1", false, 1L);
-        User user2 = new User("user2", true, 2L);
-        User user3 = new User("user3", false, 3L);
-
-        userService.createUser(user1);
-        userService.createUser(user2);
-        userService.createUser(user3);
-
-        for (i = 0; i < 3; i++) {
-            System.out.println("id = 11");
-            System.out.println(userService.getUsersList().get(i));
-        }
-
-        Long expectedUser1Id = user1.getUserId();
-        Long expectedUser2Id = user2.getUserId();
-        Long expectedUser3Id = user3.getUserId();
-
-        userService.getUser(1L);
-        userService.getUser(2L);
-        userService.getUser(3L);
-
-        System.out.println(userService.getUser(1L).get().getUserId());
-        System.out.println(userService.getUser(2L).get().getUserId());
-        System.out.println(userService.getUser(3L).get().getUserId());
-
-        //When & Then
-        Assert.assertEquals(expectedUser1Id, userService.getUser(1L).get().getUserId());
-        Assert.assertEquals(expectedUser2Id, userService.getUser(2L).get().getUserId());
-        Assert.assertEquals(expectedUser3Id, userService.getUser(3L).get().getUserId());
     }
 }

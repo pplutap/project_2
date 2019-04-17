@@ -1,5 +1,8 @@
 package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.domain.dto.GroupDto;
+import com.kodilla.ecommercee.domain.dto.ProductDto;
+import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.service.GroupService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -16,6 +20,9 @@ import java.util.List;
 public class GroupTestSuite {
     @Autowired
     GroupService groupService;
+
+    @Autowired
+    GroupMapper groupMapper;
 
     @Transactional
     @Test
@@ -57,7 +64,7 @@ public class GroupTestSuite {
         //When
         List<Group> groupListWithCreatedGroup = groupService.getGroupsList();
         //Then
-        Assert.assertEquals(emptyGroupList.size()+1, groupListWithCreatedGroup.size());
+        Assert.assertEquals(emptyGroupList.size() + 1, groupListWithCreatedGroup.size());
     }
 
     @Transactional
@@ -91,4 +98,84 @@ public class GroupTestSuite {
         //Then
         Assert.assertEquals(product5, receivedProduct);
     }
+
+    @Transactional
+    @Test
+    public void testMapToGroup() {
+
+        //Given
+        ProductDto productDto1 = new ProductDto(1L, "laptop", 10.0, 1L, 1L);
+        ProductDto productDto2 = new ProductDto(1L, "apple", 10.0, 1L, 1L);
+        ProductDto productDto3 = new ProductDto(1L, "hamster", 10.0, 1L, 1L);
+
+        List<ProductDto> productDtoList = new ArrayList<>();
+        productDtoList.add(productDto1);
+        productDtoList.add(productDto2);
+        productDtoList.add(productDto3);
+        GroupDto groupDto = new GroupDto(1L, "Group1", productDtoList);
+
+        //When
+        Group group = groupMapper.mapToGroup(groupDto);
+
+        //Then
+        Assert.assertEquals("hamster", group.getProductsList().get(2).getName());
+    }
+
+
+    @Transactional
+    @Test
+    public void testMapToGroupDto() {
+
+        //Given
+        Group group = new Group("Group1");
+        Product product1 = new Product(1L, "ham", 10.0, new Cart(), group);
+        Product product2 = new Product(2L, "apple", 5.0, new Cart(), group);
+        Product product3 = new Product(3L, "pear", 3.0, new Cart(), group);
+        group.getProductsList().add(product1);
+        group.getProductsList().add(product2);
+        group.getProductsList().add(product3);
+
+        //When
+        GroupDto groupDto = groupMapper.mapToGroupDto(group);
+
+        //Then
+        Assert.assertEquals("ham", groupDto.getProductsList().get(0).getName());
+
+
+    }
+
+    @Transactional
+    @Test
+    public void testMapToGroupDtoList() {
+
+        //Given
+        Group group1 = new Group("Group1");
+        Product product1 = new Product(1L, "ham", 10.0, new Cart(), group1);
+        Product product2 = new Product(2L, "apple", 5.0, new Cart(), group1);
+        Product product3 = new Product(3L, "pear", 3.0, new Cart(), group1);
+        group1.getProductsList().add(product1);
+        group1.getProductsList().add(product2);
+        group1.getProductsList().add(product3);
+
+        Group group2 = new Group("Group2");
+        Product product4 = new Product(1L, "laptop", 15.0, new Cart(), group2);
+        Product product5 = new Product(2L, "plate", 25.0, new Cart(), group2);
+        Product product6 = new Product(3L, "book", 5.0, new Cart(), group2);
+        group2.getProductsList().add(product4);
+        group2.getProductsList().add(product5);
+        group2.getProductsList().add(product6);
+
+        List<Group> groups = new ArrayList<>();
+        groups.add(group1);
+        groups.add(group2);
+
+        //When
+        List<GroupDto> groupDtoList = groupMapper.mapToGroupDtoList(groups);
+
+        //Then
+        Assert.assertEquals(2, groupDtoList.size());
+        Assert.assertEquals(3, groupDtoList.get(0).getProductsList().size());
+
+    }
+
 }
