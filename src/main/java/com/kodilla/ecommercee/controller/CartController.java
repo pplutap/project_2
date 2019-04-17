@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.domain.dto.CartDto;
 import com.kodilla.ecommercee.domain.dto.OrderDto;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,11 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/carts")
 public class CartController {
-    @GetMapping(value =  "getProductsFromCart")
-    public List<ProductDto> getProductsFromCart(@RequestParam Long cartID) {
+    @GetMapping(value = "getProductsFromCart")
+    public List <ProductDto> getProductsFromCart(@RequestParam Long cartID) {
 
-        List<ProductDto> res = new ArrayList<>();
-        res.add(new ProductDto(1,"test title","test content"));
+        List <ProductDto> res = new ArrayList <>();
+        res.add(new ProductDto(1, "test title", "test content"));
         return res;
     }
 
@@ -36,6 +37,6 @@ public class CartController {
 
     @PostMapping(value = "createOrderFromCart")
     public OrderDto createOrderFromCart() {
-        return new OrderDto(new Long(1));
+        return new OrderDto();
     }
 }
