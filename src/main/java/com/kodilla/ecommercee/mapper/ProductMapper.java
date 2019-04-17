@@ -2,10 +2,12 @@ package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.domain.Item;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.service.CartService;
 import com.kodilla.ecommercee.service.GroupService;
+import com.kodilla.ecommercee.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,14 +21,16 @@ public class ProductMapper {
     CartService cartService;
     @Autowired
     GroupService groupService;
+    @Autowired
+    ItemService itemService;
 
     public Product mapToProduct(final ProductDto productDto) {
         return new Product(
                 productDto.getId(),
                 productDto.getName(),
                 productDto.getPrice(),
-                getCartWithId(productDto.getCartId()),
-                getGroupWithId(productDto.getGroupId()));
+                getGroupWithId(productDto.getGroupId()),
+                getListItemsWithId(productDto.getItemId()));
     }
 
     public ProductDto mapToProductDto(Product product) {
@@ -34,8 +38,8 @@ public class ProductMapper {
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                getIdFromCart(product.getCart()),
-                getIdFromGroup(product.getGroup()));
+                getIdFromGroup(product.getGroup()),
+                getListItemIdFromProduct(product.getItemsList()));
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
@@ -64,6 +68,20 @@ public class ProductMapper {
         return groupService.getGroup(id);
     }
 
+    private Item getItemWithId(Long id) {
+        if (id == null || id == 0)
+            return null;
+        return itemService.getItem(id);
+    }
+
+    private List<Item> getListItemsWithId(List<Long> itemsId) {
+        if (itemsId == null)
+            return null;
+        return itemsId.stream()
+                .map(itemId -> getItemWithId(itemId))
+                .collect(Collectors.toList());
+    }
+
     private Long getIdFromCart(Cart cart) {
         try {
             return cart.getCartId();
@@ -75,6 +93,16 @@ public class ProductMapper {
     private Long getIdFromGroup(Group group) {
         try {
             return group.getGroupId();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private List<Long> getListItemIdFromProduct(List<Item> items) {
+        try {
+            return items.stream()
+                    .map(item -> item.getId())
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             return null;
         }

@@ -13,18 +13,20 @@ public class CartMapper {
 
     @Autowired
     ProductMapper productMapper;
+    @Autowired
+    ItemMapper itemMapper;
 
     public CartDto mapToCartDto(final Cart cart) {
-        return new CartDto(cart.getCartId(), productMapper.mapToProductDtoList(cart.getProductsList()));
+        return new CartDto(cart.getCartId(), itemMapper.mapToItemDtoList(cart.getItemsList()));
     }
 
     public Cart mapToCart(final CartDto cartDto) {
-        return new Cart(cartDto.getCartId(), productMapper.mapToProductList(cartDto.getProductsList()));
+        return new Cart(cartDto.getCartId(), itemMapper.mapToItemList(cartDto.getItemsList()));
     }
 
     public List<CartDto> mapToCartDtoList(final List<Cart> cartList) {
         return cartList.stream()
-                .map(cart -> new CartDto(cart.getCartId(), productMapper.mapToProductDtoList(cart.getProductsList())))
+                .map(cart -> new CartDto(cart.getCartId(), itemMapper.mapToItemDtoList(cart.getItemsList())))
                 .collect(Collectors.toList());
     }
 }
