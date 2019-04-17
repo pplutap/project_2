@@ -5,12 +5,17 @@ import lombok.*;
 import javax.persistence.*;
 
 @Setter(AccessLevel.PRIVATE)
-@Getter
+@Getter                                                                                                                                                                                                                                           @AllArgsConstructor
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "ORDERS")
 public class Order {
+
+    public Order(Cart cart, User user) {
+        this.cart = cart;
+        this.user = user;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
