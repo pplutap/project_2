@@ -22,7 +22,6 @@ public class ProductController {
     @Autowired
     private ProductMapper mapper;
 
-
     @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
         LOGGER.info("Return all products");

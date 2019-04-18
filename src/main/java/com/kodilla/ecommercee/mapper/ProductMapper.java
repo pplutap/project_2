@@ -16,10 +16,8 @@ public class ProductMapper {
                 productDto.getTitle(),
                 productDto.getContent(),
                 productDto.getPrice(),
-                productDto.getOrder(),
                 productDto.getCart(),
-                productDto.getGroup()
-        );
+                productDto.getGroup());
     }
 
     public ProductDto mapToProductDto(final Product product) {
@@ -28,10 +26,8 @@ public class ProductMapper {
                 product.getTitle(),
                 product.getContent(),
                 product.getPrice(),
-                product.getOrder(),
                 product.getCart(),
-                product.getGroup()
-        );
+                product.getGroup());
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
@@ -40,7 +36,6 @@ public class ProductMapper {
                         p.getTitle(),
                         p.getContent(),
                         p.getPrice(),
-                        p.getOrder(),
                         p.getCart(),
                         p.getGroup()))
                 .collect(Collectors.toList());

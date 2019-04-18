@@ -16,7 +16,6 @@ public class ProductDto {
     private String title;
     private String content;
     private double price;
-    private Order order;
     private Cart cart;
     private Group group;
 }
