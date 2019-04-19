@@ -22,4 +22,6 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     @Override
     void deleteById(Long itemId);
+
+    void deleteByCartAndProduct(Cart cart, Product product);
 }

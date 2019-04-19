@@ -52,8 +52,8 @@ public class CartController {
     }
 
     @DeleteMapping(value = "deleteProductFromCart")
-    public void deleteProductFromCart(@RequestParam Long itemId) {
-        itemService.deleteItem(itemId);
+    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
+        itemService.deleteByCartAndItem(cartService.getCart(cartId), productService.getProduct(productId));
     }
 
     @GetMapping(value = "createOrder")

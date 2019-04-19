@@ -20,11 +20,11 @@ public class CartService {
     }
 
     public Cart getCart(Long cartId) {
-        return cartRepository.findById(cartId).orElse(null);
+        return cartRepository.findByCartIdAndOrderIsNull(cartId).orElse(null);
     }
 
     public List<Cart> getAllCarts() {
-        return Optional.ofNullable(cartRepository.findAll()).orElse(new ArrayList<>());
+        return Optional.ofNullable(cartRepository.findCartByOrderIsNull()).orElse(new ArrayList<>());
     }
 
     public void deleteCart(Long cartId) {

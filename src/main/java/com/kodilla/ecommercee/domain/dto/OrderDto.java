@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderDto {
     private Long id;
-    private Long productId;
-    private int quantity;
+    private Long cartId;
+    private Long userId;
 }

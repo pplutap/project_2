@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,4 +16,5 @@ public class UserDto {
     private String userName;
     private Boolean isBlocked;
     private Long userIdKey;
+    private List<Long> ordersIdList;
 }
