@@ -5,7 +5,6 @@ import com.kodilla.ecommercee.domain.Item;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.ItemDto;
 import com.kodilla.ecommercee.service.CartService;
-import com.kodilla.ecommercee.service.ItemService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -44,7 +43,7 @@ public class ItemMapper {
                 .collect(Collectors.toList());
     }
 
-    public List<Item> mapToItemList(final List<ItemDto> itemDtoList){
+    public List<Item> mapToItemList(final List<ItemDto> itemDtoList) {
         return itemDtoList
                 .stream()
                 .map(this::mapToItem)

@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import com.kodilla.ecommercee.service.CartService;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -137,17 +135,18 @@ public class ProductTestSuite {
         //Then
         Assert.assertEquals(product4, receivedProduct4);
     }
+
     @Test
     public void testCreateProduct() {
         //Given
         List<Product> emptyProductList = productService.getAllProducts();
-        Product product5 = new Product("Product5" , 45.6);
+        Product product5 = new Product("Product5", 45.6);
         productService.saveProductOrUpdate(product5);
         Long idProduct5 = productService.findByProductName("Product5").get().getId();
         //When
         List<Product> listCreatedProducts = productService.getAllProducts();
         //Then
-        Assert.assertEquals(emptyProductList.size()+1, listCreatedProducts.size());
+        Assert.assertEquals(emptyProductList.size() + 1, listCreatedProducts.size());
     }
 
     @Test
@@ -175,7 +174,7 @@ public class ProductTestSuite {
         productService.deleteProduct(idProduct7);
         List<Product> emptyList = productService.getAllProducts();
         //Then
-        Assert.assertEquals(listProducts.size()-1, emptyList.size());
+        Assert.assertEquals(listProducts.size() - 1, emptyList.size());
     }
 
     @Test
