@@ -20,10 +20,9 @@ public class Cart {
     @Column(name = "id", unique = true)
     private Long cartId;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart")
     private List<Item> itemsList = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "cart")
     private Order order;
 }

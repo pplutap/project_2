@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CartService {
@@ -20,11 +21,18 @@ public class CartService {
     }
 
     public Cart getCart(Long cartId) {
-        return cartRepository.findByCartIdAndOrderIsNull(cartId).orElse(null);
+        Cart cart =  cartRepository.findById(cartId).orElse(null);
+        if (cart.getOrder() == null) {
+            return cart;
+        } else {
+            return new Cart();
+        }
     }
 
     public List<Cart> getAllCarts() {
-        return Optional.ofNullable(cartRepository.findCartByOrderIsNull()).orElse(new ArrayList<>());
+        return Optional.ofNullable(cartRepository.findAll()).orElse(new ArrayList<>()).stream()
+                .filter(cart -> cart.getOrder() == null)
+                .collect(Collectors.toList());
     }
 
     public void deleteCart(Long cartId) {

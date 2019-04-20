@@ -1,13 +1,13 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Item;
 import com.kodilla.ecommercee.domain.dto.CartDto;
-import com.kodilla.ecommercee.domain.dto.ProductDto;
+import com.kodilla.ecommercee.domain.dto.OrderDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
-import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.service.CartService;
 import com.kodilla.ecommercee.service.ItemService;
+import com.kodilla.ecommercee.service.OrderService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +27,15 @@ public class CartController {
     private CartService cartService;
 
     @Autowired
-    private ProductMapper productMapper;
+    private ProductService productService;
 
     @Autowired
-    ProductService productService;
+    private ItemService itemService;
 
     @Autowired
-    ItemService itemService;
+    private OrderMapper orderMapper;
+    @Autowired
+    private OrderService orderService;
 
     @PostMapping(value = "saveCart", consumes = APPLICATION_JSON_VALUE)
     public void saveCart(@RequestBody CartDto cartDto) {
@@ -56,9 +58,9 @@ public class CartController {
         itemService.deleteByCartAndItem(cartService.getCart(cartId), productService.getProduct(productId));
     }
 
-    @GetMapping(value = "createOrder")
-    public CartDto createOrder(@RequestParam Long cartId) {
-        return cartMapper.mapToCartDto(cartService.getCart(cartId));
+    @PostMapping(value = "createOrder", consumes = APPLICATION_JSON_VALUE)
+    public OrderDto createOrder(@RequestBody OrderDto orderDto) {
+        return orderMapper.mapToOrderDto(orderService.saveOrder(orderMapper.mapToOrder(orderDto)));
     }
 
     @GetMapping(value = "getAllCarts")

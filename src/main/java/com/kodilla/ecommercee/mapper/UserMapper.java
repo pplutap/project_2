@@ -7,6 +7,7 @@ import com.kodilla.ecommercee.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,9 +51,9 @@ public class UserMapper {
 
     private List<Order> getListOrdersWithId(List<Long> ordersId) {
         if (ordersId == null)
-            return null;
+            return new ArrayList<>();
         return ordersId.stream()
-                .map(itemId -> getOrderWithId(itemId))
+                .map(this::getOrderWithId)
                 .collect(Collectors.toList());
     }
 
@@ -70,10 +71,7 @@ public class UserMapper {
                     .map(this::getIdFromOrder )
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
-
-
-
 }

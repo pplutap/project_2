@@ -19,7 +19,8 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.LAZY)

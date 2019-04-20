@@ -25,7 +25,7 @@ public class CartMapper {
     }
 
     public Cart mapToCart(final CartDto cartDto) {
-        return new Cart(cartDto.getCartId(), itemMapper.mapToItemList(cartDto.getItemsList()), orderService.getOrder(cartDto.getOrderId()).orElse(null));
+        return new Cart(cartDto.getCartId(), itemMapper.mapToItemList(cartDto.getItemsList()), getOrderWithId(cartDto.getOrderId()));
     }
 
     public List<CartDto> mapToCartDtoList(final List<Cart> cartList) {
@@ -39,5 +39,11 @@ public class CartMapper {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private Order getOrderWithId(Long id) {
+        if (id == null || id == 0)
+            return null;
+        return orderService.getOrder(id).orElse(null);
     }
 }
