@@ -20,7 +20,7 @@ public class Cart {
     @Column(name = "id", unique = true)
     private Long cartId;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<Item> itemsList = new ArrayList<>();
 
     @OneToOne(mappedBy = "cart")

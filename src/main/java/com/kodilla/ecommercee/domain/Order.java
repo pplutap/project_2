@@ -26,4 +26,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
+
+    public Order(Cart cart, User user) {
+        this.cart = cart;
+        this.user = user;
+    }
 }
