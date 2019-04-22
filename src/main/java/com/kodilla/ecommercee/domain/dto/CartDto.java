@@ -13,4 +13,5 @@ import java.util.List;
 public class CartDto {
     private Long cartId;
     private List<ItemDto> itemsList = new ArrayList<>();
+    private Long orderId;
 }

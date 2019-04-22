@@ -6,6 +6,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -28,6 +30,9 @@ public class User {
 
     @Column(name = "useridkey")
     private Long userIdKey;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> ordersList = new ArrayList<>();
 
     public User() {
     }

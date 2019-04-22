@@ -5,7 +5,6 @@ import com.kodilla.ecommercee.domain.Item;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.ItemDto;
 import com.kodilla.ecommercee.service.CartService;
-import com.kodilla.ecommercee.service.ItemService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

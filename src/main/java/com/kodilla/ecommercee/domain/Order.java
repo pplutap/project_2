@@ -15,14 +15,20 @@ import javax.persistence.*;
 public class Order {
 
     @Id
-    @Column(name = "id", unique = true)
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
 
-    @Column(name = "quantity")
-    private int quantity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
+
+    public Order(Cart cart, User user) {
+        this.cart = cart;
+        this.user = user;
+    }
 }

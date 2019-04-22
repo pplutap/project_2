@@ -11,6 +11,7 @@ import com.kodilla.ecommercee.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,12 +57,6 @@ public class ProductMapper {
                 .collect(Collectors.toList());
     }
 
-    private Cart getCartWithId(Long id) {
-        if (id == null || id == 0)
-            return null;
-        return cartService.getCart(id);
-    }
-
     private Group getGroupWithId(Long id) {
         if (id == null || id == 0)
             return null;
@@ -76,18 +71,10 @@ public class ProductMapper {
 
     private List<Item> getListItemsWithId(List<Long> itemsId) {
         if (itemsId == null)
-            return null;
+            return new ArrayList<>();
         return itemsId.stream()
-                .map(itemId -> getItemWithId(itemId))
+                .map(this::getItemWithId)
                 .collect(Collectors.toList());
-    }
-
-    private Long getIdFromCart(Cart cart) {
-        try {
-            return cart.getCartId();
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     private Long getIdFromGroup(Group group) {
@@ -101,10 +88,10 @@ public class ProductMapper {
     private List<Long> getListItemIdFromProduct(List<Item> items) {
         try {
             return items.stream()
-                    .map(item -> item.getId())
+                    .map(Item::getId)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 }

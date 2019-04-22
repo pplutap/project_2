@@ -22,4 +22,7 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<Item> itemsList = new ArrayList<>();
+
+    @OneToOne(mappedBy = "cart")
+    private Order order;
 }

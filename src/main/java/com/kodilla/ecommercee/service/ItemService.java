@@ -7,10 +7,12 @@ import com.kodilla.ecommercee.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class ItemService {
     @Autowired
@@ -34,5 +36,9 @@ public class ItemService {
 
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
+    }
+
+    public void deleteByCartAndItem(Cart cart, Product product) {
+        itemRepository.deleteByCartAndProduct(cart, product);
     }
 }
