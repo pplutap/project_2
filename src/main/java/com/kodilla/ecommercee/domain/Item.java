@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "items")
 public class Item {
     @Id
-    @NotNull
     @Column(name = "item_id", unique = true)
     @GeneratedValue
     private Long id;

@@ -21,7 +21,7 @@ public class CartService {
     }
 
     public Cart getCart(Long cartId) {
-        Cart cart =  cartRepository.findById(cartId).orElse(null);
+        Cart cart =  cartRepository.findById(cartId).orElse(new Cart());
         if (cart.getOrder() == null) {
             return cart;
         } else {

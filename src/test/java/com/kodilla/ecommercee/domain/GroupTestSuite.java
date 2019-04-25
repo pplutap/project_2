@@ -37,7 +37,7 @@ public class GroupTestSuite {
         //When
         List<Group> listGroups = groupService.getGroupsList();
         //Then
-        Assert.assertEquals(listGroups.size(), 3);
+        Assert.assertEquals(3, listGroups.size());
     }
 
     @Transactional
@@ -51,7 +51,7 @@ public class GroupTestSuite {
         Group receivedGroup = groupService.getGroup(idGroup);
         String testGroupName = receivedGroup.getGroupName();
         //Then
-        Assert.assertEquals(testGroupName, "Group1");
+        Assert.assertEquals("Group1", testGroupName);
     }
 
     @Transactional
@@ -79,7 +79,7 @@ public class GroupTestSuite {
         groupService.saveGroup(group3Updated);
         String groupNameAfterUpdate = groupService.getGroup(idTestedGroup).getGroupName();
         //Then
-        Assert.assertEquals(groupNameAfterUpdate, "Group4");
+        Assert.assertEquals("Group4", groupNameAfterUpdate);
         groupService.deleteById(idTestedGroup);
     }
 
@@ -103,10 +103,11 @@ public class GroupTestSuite {
     @Test
     public void testMapToGroup() {
 
-        /*//Given
-        ProductDto productDto1 = new ProductDto(1L, "laptop", 10.0, 1L, 1L);
-        ProductDto productDto2 = new ProductDto(1L, "apple", 10.0, 1L, 1L);
-        ProductDto productDto3 = new ProductDto(1L, "hamster", 10.0, 1L, 1L);
+        //Given
+        List<Long> itemsIdList = new ArrayList<>();
+        ProductDto productDto1 = new ProductDto(1L, "laptop", 10.0, 1L, itemsIdList);
+        ProductDto productDto2 = new ProductDto(1L, "apple", 10.0, 1L, itemsIdList);
+        ProductDto productDto3 = new ProductDto(1L, "hamster", 10.0, 1L, itemsIdList);
 
         List<ProductDto> productDtoList = new ArrayList<>();
         productDtoList.add(productDto1);
@@ -118,19 +119,19 @@ public class GroupTestSuite {
         Group group = groupMapper.mapToGroup(groupDto);
 
         //Then
-        Assert.assertEquals("hamster", group.getProductsList().get(2).getName());*/
+        Assert.assertEquals("hamster", group.getProductsList().get(2).getName());
     }
-
 
     @Transactional
     @Test
     public void testMapToGroupDto() {
 
-        /*//Given
+        //Given
         Group group = new Group("Group1");
-        Product product1 = new Product(1L, "ham", 10.0, new Cart(), group);
-        Product product2 = new Product(2L, "apple", 5.0, new Cart(), group);
-        Product product3 = new Product(3L, "pear", 3.0, new Cart(), group);
+        List<Item> itemList = new ArrayList<>();
+        Product product1 = new Product(1L, "ham", 10.0, group, itemList);
+        Product product2 = new Product(2L, "apple", 5.0, group, itemList);
+        Product product3 = new Product(3L, "pear", 3.0, group, itemList);
         group.getProductsList().add(product1);
         group.getProductsList().add(product2);
         group.getProductsList().add(product3);
@@ -139,28 +140,28 @@ public class GroupTestSuite {
         GroupDto groupDto = groupMapper.mapToGroupDto(group);
 
         //Then
-        Assert.assertEquals("ham", groupDto.getProductsList().get(0).getName());*/
-
-
+        Assert.assertEquals("ham", groupDto.getProductsList().get(0).getName());
     }
 
     @Transactional
     @Test
     public void testMapToGroupDtoList() {
 
-        /*//Given
+        //Given
         Group group1 = new Group("Group1");
-        Product product1 = new Product(1L, "ham", 10.0, new Cart(), group1);
-        Product product2 = new Product(2L, "apple", 5.0, new Cart(), group1);
-        Product product3 = new Product(3L, "pear", 3.0, new Cart(), group1);
+        List<Item> itemList1 = new ArrayList<>();
+        Product product1 = new Product(1L, "ham", 10.0, group1, itemList1);
+        Product product2 = new Product(2L, "apple", 5.0, group1, itemList1);
+        Product product3 = new Product(3L, "pear", 3.0, group1, itemList1);
         group1.getProductsList().add(product1);
         group1.getProductsList().add(product2);
         group1.getProductsList().add(product3);
 
         Group group2 = new Group("Group2");
-        Product product4 = new Product(1L, "laptop", 15.0, new Cart(), group2);
-        Product product5 = new Product(2L, "plate", 25.0, new Cart(), group2);
-        Product product6 = new Product(3L, "book", 5.0, new Cart(), group2);
+        List<Item> itemList2 = new ArrayList<>();
+        Product product4 = new Product(1L, "laptop", 15.0, group2, itemList2);
+        Product product5 = new Product(2L, "plate", 25.0, group2, itemList2);
+        Product product6 = new Product(3L, "book", 5.0, group2, itemList2);
         group2.getProductsList().add(product4);
         group2.getProductsList().add(product5);
         group2.getProductsList().add(product6);
@@ -173,9 +174,7 @@ public class GroupTestSuite {
         List<GroupDto> groupDtoList = groupMapper.mapToGroupDtoList(groups);
 
         //Then
-        Assert.assertEquals(2, groupDtoList.size());
-        Assert.assertEquals(3, groupDtoList.get(0).getProductsList().size());*/
-
+        Assert.assertEquals(groups.size(), groupDtoList.size());
+        Assert.assertEquals(groups.get(0).getProductsList().size(), groupDtoList.get(0).getProductsList().size());
     }
-
 }
