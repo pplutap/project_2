@@ -5,6 +5,7 @@ import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import com.kodilla.ecommercee.service.CartService;
 import com.kodilla.ecommercee.service.GroupService;
+import com.kodilla.ecommercee.service.ItemService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,8 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -37,6 +38,9 @@ public class ProductTestSuite {
 
     @Autowired
     GroupService groupService;
+
+    @Autowired
+    ItemService itemService;
 
     @Test
     public void testDeleteById() {
@@ -202,36 +206,67 @@ public class ProductTestSuite {
     }
 
     @Test
-    public void testGetProductsInCart() {
-        /*//Given
-        Product product10 = new Product("Product10", 64.2);
-        productService.saveProductOrUpdate(product10);
-        Product product11 = new Product("Product11", 72.3);
-        productService.saveProductOrUpdate(product11);
-        Cart cart10 = new Cart();
-        cartService.saveCart(cart10);
-        Long idCart10 = cart10.getCartId();
-        cart10.getProductsList().add(product10);
-        cart10.getProductsList().add(product11);
-        product10.setCart(cart10);
-        product11.setCart(cart10);
-        List<Product> cart10ProductList = cart10.getProductsList();
-        //When
-        List<Product> readCart10ProductList = productService.getAllProducts().stream()
-                .filter(product -> product.getCart().getCartId().equals(idCart10))
-                .collect(Collectors.toList());
-        //Then
-        Assert.assertEquals(cart10ProductList.toString(), readCart10ProductList.toString());*/
-    }
-
-    @Test
     public void testMapToProductDto() {
-        /*//Given
-        Product product11 = new Product(1L, "Product11", 23.4, new Cart(), new Group());
+        //Given
+        List<Item> items = new ArrayList<>();
+        Product product11 = new Product(1L, "Product11", 23.4, new Group(), items);
         ProductDto productDto11 = productMapper.mapToProductDto(product11);
         //When
         String mappedProductDto11Name = productDto11.getName();
         //Then
-        Assert.assertEquals("Product11", mappedProductDto11Name);*/
+        Assert.assertEquals("Product11", mappedProductDto11Name);
     }
+
+    @Test
+    public void testMapDtoToProduct() {
+        //Given
+        List<Long> items = new ArrayList<>();
+        ProductDto productDto11 = new ProductDto(1L, "Product11", 23.4, 1L, items);
+        Product product11 = productMapper.mapToProduct(productDto11);
+        //When
+        String mappedProductDto11Name = product11.getName();
+        //Then
+        Assert.assertEquals("Product11", mappedProductDto11Name);
+    }
+
+    @Test
+    public void testMapListProductToDtoListProduct() {
+        //Given
+        List<Item> items = new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
+        Product product11 = new Product(1L, "Product11", 23.4, new Group(), items);
+        Product product12 = new Product(2L, "Product12", 23.4, new Group(), items);
+        Product product13 = new Product(3L, "Product13", 23.4, new Group(), items);
+
+        productList.add(product11);
+        productList.add(product12);
+        productList.add(product13);
+
+        //When
+        List<ProductDto> productDtoListMapper = productMapper.mapToProductDtoList(productList);
+
+        //Then
+        Assert.assertEquals(productList.size(), productDtoListMapper.size());
+    }
+
+    @Test
+    public void testMapListProductDtoListToProductList() {
+        //Given
+        List<Long> items = new ArrayList<>();
+        List<ProductDto> productDtoList = new ArrayList<>();
+        ProductDto product11 = new ProductDto(1L, "Product11", 23.4, 1L, items);
+        ProductDto product12 = new ProductDto(2L, "Product12", 50.0, 1L, items);
+        ProductDto product13 = new ProductDto(3L, "Product13", 60.0, 1L, items);
+
+        productDtoList.add(product11);
+        productDtoList.add(product12);
+        productDtoList.add(product13);
+
+        //When
+        List<Product> productListMapper = productMapper.mapToProductList(productDtoList);
+
+        //Then
+        Assert.assertEquals(productDtoList.size(), productListMapper.size());
+    }
+
 }
