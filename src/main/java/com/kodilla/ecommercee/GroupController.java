@@ -30,6 +30,7 @@ public class GroupController {
     public GroupDto updateGroup(GroupDto groupDto) {
         return new GroupDto(1L,"Ubrania zimowe");
     }
+
 }
 
 
