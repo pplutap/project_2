@@ -6,5 +6,4 @@ import lombok.Data;
 @Data
 public class CartDto {
     private long id;
-    private String product;
 }
