@@ -3,7 +3,7 @@ package com.kodilla.ecommercee.domain;
 public class ProductDto {
     private Long id;
     private String name;
-    private int quantity;
+    private double prize;
 
     public ProductDto() {
     }
@@ -11,7 +11,7 @@ public class ProductDto {
     public ProductDto(Long id, String name, int quantity) {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
+        this.prize = quantity;
     }
 
     public Long getId() {
@@ -22,7 +22,7 @@ public class ProductDto {
         return name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getPrize() {
+        return prize;
     }
 }
