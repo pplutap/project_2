@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/product")
 public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getProducts")

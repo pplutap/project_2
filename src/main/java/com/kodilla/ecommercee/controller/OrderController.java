@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order")
 public class OrderController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getOrders")

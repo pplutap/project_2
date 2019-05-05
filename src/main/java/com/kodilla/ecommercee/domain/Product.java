@@ -3,15 +3,15 @@ package com.kodilla.ecommercee.domain;
 public class Product {
     private Long id;
     private String name;
-    private int quantity;
+    private double prize;
 
     public Product() {
     }
 
-    public Product(Long id, String name, int quantity) {
+    public Product(Long id, String name, double prize) {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
+        this.prize = prize;
     }
 
     public Long getId() {
@@ -22,7 +22,7 @@ public class Product {
         return name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getPrize() {
+        return prize;
     }
 }
