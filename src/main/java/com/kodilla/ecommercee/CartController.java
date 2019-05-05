@@ -12,9 +12,8 @@ import java.util.List;
 @RequestMapping("/cart")
 public class CartController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getProducts")
-    public List<CartDto>
-    getAllProductsFromCart(){
+    @RequestMapping(method = RequestMethod.GET, value = "getProductsFromCart")
+    public List<CartDto> getAllProductsFromCart(){
         return new ArrayList<>();
     }
 
