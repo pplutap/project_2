@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,12 +26,12 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getOrder")
     public OrderDto getOrder(Long orderId) {
-        return new OrderDto(1l, LocalDate.of(2019, 5, 1), "new", new ArrayList<>());
+        return new OrderDto(1l, "new");
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateOrder")
     private OrderDto updateOrder(OrderDto orderDto) {
-        return new OrderDto(1l, LocalDate.of(2019, 5, 1), "updated", new ArrayList<>());
+        return new OrderDto(1l,"updated");
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteOrder")
