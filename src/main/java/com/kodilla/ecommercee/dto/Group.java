@@ -6,11 +6,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "GROUPS")
 public class Group {
 
@@ -18,9 +17,9 @@ public class Group {
     private String description;
 
     @Id
-    @GeneratedValue
     @NotNull
     @Column(name = "ID",unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
