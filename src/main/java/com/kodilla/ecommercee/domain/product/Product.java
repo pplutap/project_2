@@ -1,17 +1,17 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.domain.product;
 
-public class ProductDto {
+public class Product {
     private Long id;
     private String name;
     private double prize;
 
-    public ProductDto() {
+    public Product() {
     }
 
-    public ProductDto(Long id, String name, int quantity) {
+    public Product(Long id, String name, double prize) {
         this.id = id;
         this.name = name;
-        this.prize = quantity;
+        this.prize = prize;
     }
 
     public Long getId() {
