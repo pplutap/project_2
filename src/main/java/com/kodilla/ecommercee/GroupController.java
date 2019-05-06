@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/group")
 public class GroupController {
@@ -30,4 +31,7 @@ public class GroupController {
     public GroupDto updateGroup(GroupDto groupDto) {
         return new GroupDto(1L,"Ubrania zimowe");
     }
+
 }
+
+
