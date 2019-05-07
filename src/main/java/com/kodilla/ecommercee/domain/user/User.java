@@ -34,21 +34,21 @@ public class User {
     @Column(name = "USER_KEY")
     private int userKey;
 
-    @OneToMany(
-            targetEntity = Cart.class,
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Cart> cartList = new ArrayList<>();
+//    @OneToMany(
+//            targetEntity = Cart.class,
+//            mappedBy = "user",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<Cart> cartList = new ArrayList<>();
 
-    @OneToMany(
-            targetEntity = Order.class,
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private Order order;
+//    @OneToMany(
+//            targetEntity = Order.class,
+//            mappedBy = "user",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private Order order;
 
     public User(String userName){
         this.userName = userName;
