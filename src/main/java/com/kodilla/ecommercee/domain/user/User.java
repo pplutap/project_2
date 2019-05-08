@@ -9,10 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @NoArgsConstructor
@@ -34,6 +31,9 @@ public class User {
     @Column(name = "USER_KEY")
     private int userKey;
 
+    @Column(name = "TIME_GENERATE_KEY")
+    private Date timeGenerateKey;
+
 //    @OneToMany(
 //            targetEntity = Cart.class,
 //            mappedBy = "user",
@@ -54,21 +54,16 @@ public class User {
         this.userName = userName;
         status = true;
         userKey = keyGenerator();
+        timeGenerateKey = new Date();
     }
 
     public int keyGenerator(){
-        int keyValue = 0;
-        int[] keyNumbers = IntStream.range(0,5).toArray();
-        keyNumbers = Arrays.stream(keyNumbers)
-                .map(e -> new Random().nextInt(10))
-                .toArray();
+        Random random = new Random();
+        return random.nextInt(89999)+10001;
+    }
 
-        for (int i = 0 ; i < keyNumbers.length ; i++) {
-            if (keyNumbers[4] == 0){
-                keyNumbers[4] = 1;
-            }
-            keyValue += Math.pow(10,i) * keyNumbers[i];
-        }
-        return keyValue;
+    public void updateKeyNumber(){
+        setUserKey(keyGenerator());
+        setTimeGenerateKey(new Date());
     }
 }
