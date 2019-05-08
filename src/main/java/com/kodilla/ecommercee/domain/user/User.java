@@ -63,7 +63,11 @@ public class User {
     }
 
     public void updateKeyNumber(){
-        setUserKey(keyGenerator());
-        setTimeGenerateKey(new Date());
+        if (status == true) {
+            setUserKey(keyGenerator());
+            setTimeGenerateKey(new Date());
+        }else {
+            System.out.println("You are blocked. You can not create a new key.");
+        }
     }
 }
