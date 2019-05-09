@@ -1,6 +1,6 @@
-package com.kodilla.ecommercee.domain.user;
+package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.cart.Cart;
+import com.kodilla.ecommercee.domain.Cart;
 import lombok.Data;
 
 import javax.persistence.*;
