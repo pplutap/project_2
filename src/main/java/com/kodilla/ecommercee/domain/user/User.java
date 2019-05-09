@@ -34,6 +34,9 @@ public class User {
     @Column(name = "TIME_GENERATE_KEY")
     private Date timeGenerateKey;
 
+    @Column(name = "PASSWORD")
+    private String password;
+
 //    @OneToMany(
 //            targetEntity = Cart.class,
 //            mappedBy = "user",
@@ -50,8 +53,9 @@ public class User {
 //    )
 //    private Order order;
 
-    public User(String userName){
+    public User(String userName, String password){
         this.userName = userName;
+        this.password = password;
         status = true;
         userKey = keyGenerator();
         timeGenerateKey = new Date();
@@ -60,14 +64,5 @@ public class User {
     public int keyGenerator(){
         Random random = new Random();
         return random.nextInt(89999)+10001;
-    }
-
-    public void updateKeyNumber(){
-        if (status == true) {
-            setUserKey(keyGenerator());
-            setTimeGenerateKey(new Date());
-        }else {
-            System.out.println("You are blocked. You can not create a new key.");
-        }
     }
 }
