@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "Products")
+@Table(name = "Product")
 
 public class Product {
     @Id
