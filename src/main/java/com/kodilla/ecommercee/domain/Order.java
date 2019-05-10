@@ -43,7 +43,7 @@ public class Order {
 //    @JoinColumn(name = "Cart_ID")
 //    private Cart cart;
 
-    public Order(Long id, String status) {
+    public Order(String status) {
         this.id = id;
         dateCreated = new Date();
         this.status = status;
