@@ -14,6 +14,7 @@ import java.util.Random;
 @Setter
 @Entity
 public class User {
+
     @Id
     @Column(name = "ID", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +49,7 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+
     private List<Order> orderList = new ArrayList<>();
 
     public User(String userName, String password){

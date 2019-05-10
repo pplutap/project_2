@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,7 +45,6 @@ public class Order {
     private Cart cart;
 
     public Order(String status) {
-        this.id = id;
         dateCreated = new Date();
         this.status = status;
     }

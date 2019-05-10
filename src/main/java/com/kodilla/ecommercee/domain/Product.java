@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +33,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "ProductGroup_ID")
-    private ProductGroup product;
+    private ProductGroup productGroup;
 
     @ManyToOne
     @JoinColumn(name = "Order_ID")
