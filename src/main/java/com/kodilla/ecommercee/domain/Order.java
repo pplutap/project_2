@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "UserOrder")
+@Table(name = "Order_T")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

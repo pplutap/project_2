@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "Cart_T")
 public class Cart {
 
     @Id

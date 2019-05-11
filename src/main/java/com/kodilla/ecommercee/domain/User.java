@@ -13,6 +13,7 @@ import java.util.Random;
 @Getter
 @Setter
 @Entity
+@Table(name = "User_T")
 public class User {
 
     @Id
