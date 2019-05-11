@@ -12,7 +12,7 @@ public class Cart {
     @Id
     @Column(name = "ID", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @OneToMany(
             targetEntity = Product.class,

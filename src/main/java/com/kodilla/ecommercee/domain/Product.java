@@ -16,7 +16,7 @@ public class Product {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", unique = true)
+    @Column(name = "ID", unique = true)
     private Long id;
 
     @NotNull
@@ -36,7 +36,7 @@ public class Product {
     private ProductGroup productGroup;
 
     @ManyToOne
-    @JoinColumn(name = "Order_ID")
+    @JoinColumn(name = "UserOrder_ID")
     private Order order;
 
     public Product(String name, double prize) {
