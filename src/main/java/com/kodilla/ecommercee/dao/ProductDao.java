@@ -1,4 +1,25 @@
 package com.kodilla.ecommercee.dao;
 
-public interface ProductDao {
+import com.kodilla.ecommercee.domain.Product;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+@Transactional
+public interface ProductDao extends CrudRepository<Product, Long> {
+    @Override
+    List<Product> findAll();
+
+    @Override
+    Optional<Product> findById(Long Id);
+
+    @Override
+    Product save (Product product);
+
+    @Override
+    void deleteById(Long Id);
+
 }
