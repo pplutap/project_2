@@ -6,30 +6,24 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "group")
-public class Group {
+@Table(name = "items")
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-
     private Long id;
 
-    private String name;
+    private int quantity;
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "group",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Product> products = new ArrayList<>();
+    private double total;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_ID")
+    private Product product;
 }
