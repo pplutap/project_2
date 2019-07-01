@@ -3,7 +3,6 @@ package com.kodilla.ecommercee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,20 +12,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "GROUP")
+@Getter
+@Table(name = "group")
 public class Group {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Getter
-    @Setter
-    @Column(name = "ID")
     private Long id;
 
-    @Getter
-    @Setter
-    @Column(name = "NAME")
     private String name;
 
     @OneToMany(
@@ -35,7 +29,5 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @Getter
-    @Setter
     private List<Product> products = new ArrayList<>();
 }
