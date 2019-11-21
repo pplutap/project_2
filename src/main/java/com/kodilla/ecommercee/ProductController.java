@@ -30,7 +30,7 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    @GetMapping(value = "/getProduct/${productId}")
+    @GetMapping(value = "/getProduct/{productId}")
     public Product getProduct(@PathVariable Long productId) throws ProductNotFoundException {
         return productService.getProductById(productId).orElseThrow(ProductNotFoundException::new);
     }
@@ -40,12 +40,12 @@ public class ProductController {
         productService.saveProduct(productDto);
     }
 
-    @PutMapping(value = "/updateProduct")
-    public ProductDto updateProduct(@RequestBody ProductDto productDto) throws ProductNotFoundException {
-        return productService.updateProduct(productDto);
+    @PutMapping(value = "/updateProduct/{productId}")
+    public ProductDto updateProduct(@RequestBody ProductDto productDto, @PathVariable Long productId) throws ProductNotFoundException {
+        return productService.updateProduct(productDto, productId);
     }
 
-    @DeleteMapping(value = "/deleteProduct/${productId}")
+    @DeleteMapping(value = "/deleteProduct/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
         productService.deleteProductById(productId);
     }
