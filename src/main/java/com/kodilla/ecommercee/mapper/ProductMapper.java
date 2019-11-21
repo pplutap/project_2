@@ -14,7 +14,7 @@ public class ProductMapper {
         ProductDto productDto = new ProductDto(
                 product.getId(),
                 product.getName(),
-                product.getDescroption(),
+                product.getDescription(),
                 product.getPrice()
         );
         return productDto;
@@ -24,7 +24,7 @@ public class ProductMapper {
         Product product = new Product(
                 productDto.getId(),
                 productDto.getName(),
-                productDto.getDescroption(),
+                productDto.getDescription(),
                 productDto.getPrice()
         );
         return product;
@@ -32,13 +32,13 @@ public class ProductMapper {
 
     public List<ProductDto> mapToProductDtoList(List<Product> products) {
         return products.stream()
-                .map(product -> new ProductDto(product.getId(), product.getName(), product.getDescroption(), product.getPrice()))
+                .map(product -> new ProductDto(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
                 .collect(Collectors.toList());
     }
 
     public List<Product> mapToProductList(List<ProductDto> dtoProducts) {
         return dtoProducts.stream()
-                .map(product -> new Product(product.getId(), product.getName(), product.getDescroption(), product.getPrice()))
+                .map(product -> new Product(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
                 .collect(Collectors.toList());
     }
 }

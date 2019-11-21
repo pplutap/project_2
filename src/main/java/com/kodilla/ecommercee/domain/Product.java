@@ -25,7 +25,7 @@ public class Product {
     private String name;
 
     @Column(name = "description")
-    private String descroption;
+    private String description;
 
     @Column(name = "price")
     private float price;

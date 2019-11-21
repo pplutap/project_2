@@ -14,6 +14,6 @@ import javax.persistence.AccessType;
 public class ProductDto {
     private Long id;
     private String name;
-    private String descroption;
+    private String description;
     private float price;
 }

@@ -35,7 +35,7 @@ public class ProductService {
     public ProductDto updateProduct(ProductDto productDto) throws ProductNotFoundException {
         Product product = productRepository.findById(productDto.getId()).orElseThrow(ProductNotFoundException::new);
         product.setName(productDto.getName());
-        product.setDescroption(productDto.getDescroption());
+        product.setDescription(productDto.getDescroption());
         product.setPrice(productDto.getPrice());
         return productMapper.mapToProductDto(product);
     }
