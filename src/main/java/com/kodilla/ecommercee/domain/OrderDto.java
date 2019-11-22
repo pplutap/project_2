@@ -16,5 +16,4 @@ import java.util.List;
 public class OrderDto {
     private String name;
     private String description;
-    private List<Product> products;
 }

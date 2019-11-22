@@ -29,6 +29,4 @@ public class Order {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "products")
-    private List<Product> products;
 }

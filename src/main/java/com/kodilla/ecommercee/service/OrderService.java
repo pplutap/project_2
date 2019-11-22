@@ -34,7 +34,9 @@ public class OrderService {
 
     public OrderDto updateOrder(OrderDto orderDto, Long orderId) throws OrderNotFoundException {
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
-
+        order.setName(orderDto.getName());
+        order.setDescription(orderDto.getDescription());
+        orderRepository.save(order);
         return orderMapper.mapToOrderDto(order);
     }
 
