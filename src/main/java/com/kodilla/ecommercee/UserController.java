@@ -17,7 +17,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
-    public UserDto blockUser(@RequestParam Long UserId) throws UserNotFoundException {
+    public UserDto blockUser(@RequestParam Long UserId) throws UserNotFoundException{
         return null;
     }
 
