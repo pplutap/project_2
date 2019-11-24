@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
-    private String  userName;
+    private String userName;
     private Long userId;
     private boolean isBlocked;
 }

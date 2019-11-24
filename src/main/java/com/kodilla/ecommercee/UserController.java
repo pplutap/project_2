@@ -24,5 +24,4 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, value = "getUniqueKey")
     public void getUniqueKey(@RequestParam Long userId, String userName) throws UserNotAuthorisedException, UserNotFoundException {
     }
-
 }

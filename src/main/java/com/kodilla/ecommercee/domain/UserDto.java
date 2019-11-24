@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class UserDto {
-    private String  userName;
+    private String userName;
     private Long userId;
     private boolean isBlocked;
 }
