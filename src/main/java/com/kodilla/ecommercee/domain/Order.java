@@ -16,17 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 @Getter
-@Entity(name = "ORDERS")
 public class Order {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
 }

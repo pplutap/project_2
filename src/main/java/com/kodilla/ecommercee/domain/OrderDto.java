@@ -12,8 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Access(AccessType.FIELD)
+@Setter
 public class OrderDto {
+    private Long id;
     private String name;
     private String description;
 }
