@@ -23,7 +23,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/products")
+    @GetMapping
     public List<OrderDto> getOrders() {
         return orderService.getOrders();
     }
