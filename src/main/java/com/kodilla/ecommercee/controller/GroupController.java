@@ -12,12 +12,12 @@ import java.util.List;
 public class GroupController {
 
     @GetMapping
-    public List<GroupDto> getAllProductGroups() {
+    public List<GroupDto> getAll() {
         return new ArrayList<GroupDto>();
     }
 
     @GetMapping("/{groupId}")
-    public GroupDto getGroup(@PathVariable(required = true) Long groupId) throws GroupNotFoundException {
+    public GroupDto get(@PathVariable long groupId) throws GroupNotFoundException {
         return new GroupDto(1L, "Test group name");
     }
 
