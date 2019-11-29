@@ -4,20 +4,18 @@ import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.domain.OrderDto;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/v1/carts")
 public class CartController {
 
-    @RequestMapping(method = RequestMethod.POST, value = "createCart")
+    @PostMapping
     public void createCart(@RequestBody CartDto cartDto) {
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getProductsFromCart")
+    @GetMapping
     public List<ProductDto> getProducts() {
         return null;
     }
@@ -30,16 +28,9 @@ public class CartController {
     public void removeProduct(@RequestBody CartDto cartDto) throws ProductNotFoundException {
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createOrder")
+    @PostMapping("/create")
     public OrderDto createOrder(@RequestBody OrderDto orderDto, @RequestBody CartDto cartDto) {
         return null;
     }
 
 }
-
-//carts:
-//        utworzenie pustego koszyka
-//        pobranie elementów z pustego koszyka
-//        dodanie elementów (produktów) do koszyka
-//        usunięcie konkretnego produktu z koszyka
-//        utworzenie zamówienia na podstawie koszyka
