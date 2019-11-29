@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
 
 import com.kodilla.ecommercee.domain.UserDto;
@@ -9,19 +9,31 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/v1/user")
+@RequestMapping("/v1/users")
 public class UserController {
 
-    @RequestMapping(method = RequestMethod.POST, value = "createUser", consumes = APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody UserDto userDto) {
-    }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "blockUser")
-    public UserDto blockUser(@RequestParam Long UserId) throws UserNotFoundException{
+    @PostMapping("/getUser")
+    public UserDto getUser(Long userId) {
         return null;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUniqueKey")
+    @DeleteMapping("/deleteUser")
+    public void deleteUser(Long userId) {
+    }
+
+    @PostMapping(path = "createUser", consumes = APPLICATION_JSON_VALUE)
+    public void createUser(@RequestBody UserDto userDto) {
+    }
+
+    @PutMapping("/blockUser")
+    public UserDto blockUser(@RequestParam Long userId) throws UserNotFoundException {
+        return null;
+    }
+
+    @GetMapping("/getUniqueKey")
     public void getUniqueKey(@RequestParam Long userId, String userName) throws UserNotAuthorisedException, UserNotFoundException {
     }
+
+
 }
