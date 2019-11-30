@@ -8,28 +8,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
+@RestController
 @RequestMapping("/v1/carts")
 public class CartController {
 
     @PostMapping
-    public void createCart(@RequestBody CartDto cartDto) {
+    public void create(@RequestBody CartDto cartDto) {
     }
 
     @GetMapping
-    public List<ProductDto> getProducts() {
+    public List<ProductDto> getAll() {
         return null;
     }
 
     @PostMapping("/{productId}")
-    public void addProduct(@RequestParam Long cartId, @PathVariable Long productId) throws ProductNotFoundException {
+    public void add(@RequestParam Long cartId, @PathVariable Long productId) throws ProductNotFoundException {
     }
 
-    @DeleteMapping("/{productId}")
-    public void removeProduct(@RequestParam Long cartId, @PathVariable Long productId) throws ProductNotFoundException {
+    @DeleteMapping("/{cartId}")
+    public void remove(@PathVariable long cartId, @RequestParam long productId) {
     }
 
     @PostMapping("/create")
-    public OrderDto createOrder(@RequestBody OrderDto orderDto, @RequestBody CartDto cartDto) {
+    public OrderDto create(@RequestBody OrderDto orderDto, @RequestBody CartDto cartDto) {
         return null;
     }
 }
