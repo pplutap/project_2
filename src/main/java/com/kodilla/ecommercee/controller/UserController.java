@@ -2,43 +2,39 @@ package com.kodilla.ecommercee.controller;
 
 
 import com.kodilla.ecommercee.domain.UserDto;
-import com.kodilla.ecommercee.exception.UserNotAuthorisedException;
-import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("getUser")
-    public UserDto getUser(Long userId){
+    @GetMapping("/{userId}")
+    public UserDto get(@PathVariable long userId){
         return userService.getUser(userId);
     }
 
-    @DeleteMapping("deleteUser")
-    public void deleteUser(Long userId){
+    @DeleteMapping
+    public void delete(@RequestParam long userId){
         userService.deleteUser(userId);
     }
 
-    @PostMapping(path = "createUser", consumes = APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody UserDto userDto) {
+    @PostMapping
+    public void create(@RequestBody UserDto userDto) {
         userService.saveUser(userDto);
     }
 
-    @PutMapping("blockUser")
-    public UserDto blockUser(@RequestParam Long userId) throws UserNotFoundException{
+    @PutMapping("/{userId}")
+    public UserDto blockUser(@RequestParam long userId){
         return userService.blockUser(userId);
     }
 
-    @GetMapping("getUniqueKey")
-    public void getUniqueKey(@RequestParam Long userId, String userName) throws UserNotAuthorisedException, UserNotFoundException {
+    @GetMapping("/uniqueKey")
+    public Long getUniqueKey(@RequestParam long userId, @RequestParam String userName) {
+        return userService.getUniqueKey(userId, userName);
     }
-
-
 }

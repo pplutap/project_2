@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.repository;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,6 +17,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     void deleteById(Long id);
 
-    @Override
-    long count();
+    default Optional<User> findOrThrow(Long id) throws EntityNotFoundException{
+        Optional<User> user = Optional.ofNullable(findById(id).orElseThrow(() -> new EntityNotFoundException()));
+        return user;
+    }
 }
