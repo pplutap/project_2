@@ -17,7 +17,7 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}")
-    public GroupDto get(@PathVariable long groupId) throws GroupNotFoundException {
+    public GroupDto get(@PathVariable(required = true) long groupId) throws GroupNotFoundException {
         return new GroupDto(1L, "Test group name");
     }
 
