@@ -22,8 +22,8 @@ public class CartController {
         return null;
     }
 
-    @PostMapping("/{productId}")
-    public void add(@RequestParam long cartId, @PathVariable Long productId) throws ProductNotFoundException {
+    @PostMapping("/{cartId}")
+    public void add(@RequestParam long productId, @PathVariable long cartId) throws ProductNotFoundException {
     }
 
     @DeleteMapping("/{cartId}")
