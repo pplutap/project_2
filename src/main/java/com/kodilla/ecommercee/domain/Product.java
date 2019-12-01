@@ -19,4 +19,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private Group group;
+
+    @ManyToOne
+    @JoinColumn(name = "CART_ID")
+    private Cart cart;
 }
