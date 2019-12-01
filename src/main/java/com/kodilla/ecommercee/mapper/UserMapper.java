@@ -8,11 +8,17 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
     public UserDto mapToUserDto(final User user) {
         if (user == null) return null;
-        return new UserDto();
+        return new UserDto(
+                user.getName(),
+                user.getId(),
+                user.isBlocked());
     }
 
     public User mapToUser(final UserDto userDto) {
         if (userDto == null) return null;
-        return new User();
+        return new User(
+                userDto.getName(),
+                userDto.getId(),
+                userDto.isBlocked());
     }
 }
