@@ -2,6 +2,8 @@ package com.kodilla.ecommercee.controller;
 
 
 import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.domain.UserNotAuthenticated;
+import com.kodilla.ecommercee.domain.UserNotFoundException;
 import com.kodilla.ecommercee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +16,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{userId}")
-    public UserDto get(@PathVariable long userId){
+    public UserDto get(@PathVariable long userId) throws UserNotFoundException {
         return userService.getUser(userId);
     }
 
-    @DeleteMapping
-    public void delete(@RequestParam long userId){
+    @DeleteMapping("/{userId}")
+    public void delete(@PathVariable long userId) throws UserNotFoundException {
         userService.deleteUser(userId);
     }
 
@@ -29,12 +31,12 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public UserDto blockUser(@RequestParam long userId){
+    public UserDto blockUser(@PathVariable long userId) throws UserNotFoundException {
         return userService.blockUser(userId);
     }
 
-    @GetMapping("/uniqueKey")
-    public Long getUniqueKey(@RequestParam long userId, @RequestParam String userName) {
+    @GetMapping("/{userId}/uniqueKey")
+    public Long getUniqueKey(@PathVariable long userId, @RequestParam String userName) throws UserNotFoundException, UserNotAuthenticated {
         return userService.getUniqueKey(userId, userName);
     }
 }
