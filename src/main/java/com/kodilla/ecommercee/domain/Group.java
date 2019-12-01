@@ -17,7 +17,7 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     @OneToMany(
