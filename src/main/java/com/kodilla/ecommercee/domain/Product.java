@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "PRODUCT")
+@Entity(name = "PRODUCTS")
 public class Product {
 
     @Id
@@ -20,7 +22,6 @@ public class Product {
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
-    @ManyToOne
-    @JoinColumn(name = "CART_ID")
-    private Cart cart;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
 }
