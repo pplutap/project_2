@@ -32,7 +32,7 @@ public class CartController {
     }
 
     @PostMapping("/create")
-    public OrderDto create(@RequestBody OrderDto orderDto, @RequestBody CartDto cartDto) {
+    public OrderDto createOrder(@RequestBody CartDto cartDto) {
         return null;
     }
 }
