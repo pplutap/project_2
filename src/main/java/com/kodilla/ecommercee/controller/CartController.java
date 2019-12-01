@@ -6,6 +6,7 @@ import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -19,7 +20,7 @@ public class CartController {
 
     @GetMapping
     public List<ProductDto> getAll() {
-        return null;
+        return new ArrayList<>();
     }
 
     @PostMapping("/{cartId}")
