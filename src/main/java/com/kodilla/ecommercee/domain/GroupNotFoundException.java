@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.controller;
+package com.kodilla.ecommercee.domain;
 
 public class GroupNotFoundException extends Exception {
 }

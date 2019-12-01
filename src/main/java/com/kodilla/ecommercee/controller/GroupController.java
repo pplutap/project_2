@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.GroupDto;
+import com.kodilla.ecommercee.domain.GroupNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
