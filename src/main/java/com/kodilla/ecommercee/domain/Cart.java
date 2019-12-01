@@ -22,13 +22,13 @@ public class Cart {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy =  "cart",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="JOIN_PRODUCTS_CARTS",
+            joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")}
     )
-    private List<Product> getProducts = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ORDERS")
