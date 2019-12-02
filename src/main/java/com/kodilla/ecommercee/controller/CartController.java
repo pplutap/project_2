@@ -31,7 +31,7 @@ public class CartController {
     public void remove(@PathVariable long cartId, @RequestParam long productId) {
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createOrder")
     public OrderDto createOrder(@RequestBody CartDto cartDto) {
         return null;
     }

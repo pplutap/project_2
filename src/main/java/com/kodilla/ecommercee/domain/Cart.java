@@ -22,9 +22,9 @@ public class Cart {
             joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")}
     )
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ORDERS")
-    private Order createOrder = new Order();
+    private Order order;
 }
