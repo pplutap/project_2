@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -12,4 +14,6 @@ import lombok.Setter;
 public class CartDto {
     private long id;
     private String name;
+    private List<ProductDto> products;
+    private OrderDto orderDto;
 }
