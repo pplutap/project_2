@@ -28,4 +28,9 @@ public class Group {
         fetch = FetchType.LAZY
     )
     private List<Product> getProducts = new ArrayList<>();
+
+    public Group(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
