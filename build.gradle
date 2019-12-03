@@ -23,7 +23,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     compile 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -33,4 +32,5 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
 }
