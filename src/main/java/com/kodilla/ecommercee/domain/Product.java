@@ -23,5 +23,5 @@ public class Product {
     private Group group;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
-    private List<Cart> carts = new ArrayList<>();
+    private List<Cart> carts;
 }
