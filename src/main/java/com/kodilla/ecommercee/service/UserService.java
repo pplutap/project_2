@@ -45,7 +45,7 @@ public class UserService {
 
     public Long getUniqueKey(long userId, String userName) throws UserNotFoundException, UserNotAuthenticated {
         User userForKey = repository.findOrThrow(userId);
-        if (userForKey.getUserName().equals(userName)) {
+        if (userForKey.getName().equals(userName)) {
             return userId + RANDOM_KEY.nextLong();
         } else {
             throw new UserNotAuthenticated();
