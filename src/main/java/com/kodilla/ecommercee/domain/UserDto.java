@@ -13,5 +13,4 @@ public class UserDto {
     private String name;
     private Long id;
     private boolean isBlocked;
-
 }
