@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +24,7 @@ public class Order {
 
     private String name;
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }

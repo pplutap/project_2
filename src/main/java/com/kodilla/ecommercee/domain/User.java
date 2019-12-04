@@ -5,12 +5,41 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Entity(name = "USERS")
 public class User {
-    private long userId;
-    private String userName;
+    @Column(name = "NAME")
+    private String name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(name = "IS_BLOCKED")
     private boolean isBlocked;
+
+    public User(String name, long id, boolean isBlocked) {
+        this.name = name;
+        this.id = id;
+        this.isBlocked = isBlocked;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "CART_ID")
+    private Cart cart;
+
+    @OneToMany(
+            targetEntity = Order.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Order> orders = new ArrayList<>();
 }
