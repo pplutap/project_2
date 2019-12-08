@@ -1,34 +1,22 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity(name = "USERS")
 public class User {
-    @Column(name = "NAME")
-    private String name;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "IS_BLOCKED")
-    private boolean isBlocked;
+    private String name;
 
-    public User(String name, long id, boolean isBlocked) {
-        this.name = name;
-        this.id = id;
-        this.isBlocked = isBlocked;
-    }
+    private boolean isBlocked;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CART_ID")
@@ -40,5 +28,11 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
+
+    public User(String name, long id, boolean isBlocked) {
+        this.name = name;
+        this.id = id;
+        this.isBlocked = isBlocked;
+    }
 }
