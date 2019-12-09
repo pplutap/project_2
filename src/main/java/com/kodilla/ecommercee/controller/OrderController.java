@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.OrderDto;
 import com.kodilla.ecommercee.domain.OrderNotFoundException;
 import com.kodilla.ecommercee.service.OrderService;
@@ -20,8 +21,8 @@ public class OrderController {
         return orderService.getAll();
     }
 
-    @GetMapping(value = "/{orderId}")
-    public OrderDto get(@PathVariable long orderId) throws OrderNotFoundException {
+    @GetMapping("/{orderId}")
+    public OrderDto get(@PathVariable long orderId) throws EntityNotFoundException {
         return orderService.get(orderId);
     }
 
@@ -31,11 +32,11 @@ public class OrderController {
     }
 
     @PutMapping
-    public OrderDto update(@RequestBody OrderDto orderDto) throws OrderNotFoundException {
+    public OrderDto update(@RequestBody OrderDto orderDto) throws EntityNotFoundException {
         return orderService.update(orderDto);
     }
 
-    @DeleteMapping(value = "/{orderId}")
+    @DeleteMapping("/{orderId}")
     public void delete(@PathVariable long orderId) {
         orderService.delete(orderId);
     }
