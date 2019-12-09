@@ -17,7 +17,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping
-    public List<OrderDto> gatAll() {
+    public List<OrderDto> getAll() {
         return orderService.getAll();
     }
 
