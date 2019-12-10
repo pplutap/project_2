@@ -1,9 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,21 +13,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@Setter
-@Getter
+@NoArgsConstructor
 @Entity(name = "ORDERS")
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -52,14 +46,14 @@ public class Order {
 
     private PaymentType paymentType;
 
+    private BigDecimal totalPrice;
+
     @OneToOne(
             cascade = CascadeType.ALL, //TODO: for discuss
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "CARTS_ID")
     private Cart cart;
-
-    private BigDecimal totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")

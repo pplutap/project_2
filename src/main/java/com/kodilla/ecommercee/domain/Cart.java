@@ -1,27 +1,20 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import javax.persistence.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import java.util.List;
 
-@NoArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "CARTS")
 public class Cart {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    private String name;
 
     @OneToOne(
             cascade = CascadeType.ALL,
@@ -30,8 +23,11 @@ public class Cart {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    private String name;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "carts")
-    private List<Product> product;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="JOIN_PRODUCTS_CARTS",
+            joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")}
+    )
+    private List<Product> products;
 }
