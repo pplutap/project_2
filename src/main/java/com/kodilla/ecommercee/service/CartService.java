@@ -28,17 +28,18 @@ public class CartService {
         cartRepository.save(cartMapper.mapToCart(cartDto));
     }
 
-    public List<ProductDto> getAll(long cartId) throws CartNotFoundException {
+    public List<ProductDto> getAll(long cartId) throws EntityNotFoundException {
         List<Product> products = cartRepository.findOrThrow(cartId).getProducts();
+                //.findOrThrow(cartId).getProducts();
         return productMapper.mapToProductDtoList(products);
     }
 
-    public void add(long productId, long cartId) throws ProductNotFoundException, CartNotFoundException {
+    public void add(long productId, long cartId) throws EntityNotFoundException {
         Product product = productRepository.findOrThrow(productId);
         cartRepository.findOrThrow(cartId).getProducts().add(product);
     }
 
-    public void remove(long productId, long cartId) throws ProductNotFoundException, CartNotFoundException {
+    public void remove(long productId, long cartId) throws EntityNotFoundException{
         Product product = productRepository.findOrThrow(productId);
         cartRepository.findOrThrow(cartId).getProducts().remove(product);
     }
