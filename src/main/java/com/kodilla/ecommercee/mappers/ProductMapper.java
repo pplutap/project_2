@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 @Component
 public class ProductMapper {
 
-    /*@Autowired
+    @Autowired
     private OrderMapper orderMapper;
     @Autowired
     private CartMapper cartMapper;
     @Autowired
     private GroupMapper groupMapper;
-*/
+
 
     public Product mapToProduct(final ProductDto productDto){
         return new Product(
@@ -25,9 +25,9 @@ public class ProductMapper {
                 productDto.getName(),
                 productDto.getPrice(),
                 productDto.getQuantity(),
-                null, //orderMapper.mapToOrder(productDto.getOrderDto()),
-                null,  //cartMapper.mapToCart(productDto.getCartDto()),
-                null);  //groupMapper.mapToGroup(productDto.getGroupDto()));
+                orderMapper.mapToOrderList(productDto.getOrderDto()),
+                cartMapper.mapToCartList(productDto.getCartDto()),
+                groupMapper.mapToGroup(productDto.getGroupDto()));
     }
 
     public ProductDto mapToProductDto(final Product product){
@@ -36,9 +36,9 @@ public class ProductMapper {
                 product.getName(),
                 product.getPrice(),
                 product.getQuantity(),
-                null, //orderMapper.mapToOrderDto(product.getOrders()),
-                null, //cartMapper.mapToProductDto(product.getCarts()),
-                null); // groupMapper.mapToGroupDto(product.getGroup()));
+                orderMapper.mapToOrderDtoList(product.getOrders()),
+                cartMapper.mapToCartDtoList(product.getCarts()),
+                groupMapper.mapToGroupDto(product.getGroup()));
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList){
@@ -48,9 +48,9 @@ public class ProductMapper {
                         t.getName(),
                         t.getPrice(),
                         t.getQuantity(),
-                        null, //orderMapper.mapToOrderDto(t.getOrders()),
-                        null, //cartMapper.mapToProductDto(t.getCarts()),
-                        null)) //groupMapper.mapToGroupDto(t.getGroup())))
+                        orderMapper.mapToOrderDtoList(t.getOrders()),
+                        cartMapper.mapToCartDtoList(t.getCarts()),
+                        groupMapper.mapToGroupDto(t.getGroup())))
                 .collect(Collectors.toList());
     }
     public List<Product> mapToProductList(final List<ProductDto> productDtoList){
@@ -60,9 +60,9 @@ public class ProductMapper {
                         t.getName(),
                         t.getPrice(),
                         t.getQuantity(),
-                        null,
-                        null,
-                        null))
+                        orderMapper.mapToOrderList(t.getOrderDto()),
+                        cartMapper.mapToCartList(t.getCartDto()),
+                        groupMapper.mapToGroup(t.getGroupDto())))
                 .collect(Collectors.toList());
     }
 }

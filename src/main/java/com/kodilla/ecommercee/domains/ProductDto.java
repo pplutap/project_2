@@ -17,5 +17,5 @@ public class ProductDto {
     private double quantity;
     private List<OrderDto> orderDto;
     private List<CartDto> cartDto;
-    private List<GroupDto> groupDto;
+    private GroupDto groupDto;
 }

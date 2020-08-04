@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.mappers;
 
 import com.kodilla.ecommercee.domains.Group;
 import com.kodilla.ecommercee.domains.GroupDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.stream.Collectors;
 @Component
 public class GroupMapper {
 
-    /*
-    Autowired
-    private ProductMapper productMapper
-    */
+
+    @Autowired
+    private ProductMapper productMapper;
+
 
     public Group mapToGroup(final GroupDto groupDto){
         return new Group(
@@ -35,6 +36,14 @@ public class GroupMapper {
                         t.getId(),
                         t.getName(),
                         null)) //productMapper.mapToProductDto(t.getProduct())))
+                .collect(Collectors.toList());
+    }
+    public List<Group> mapToGroupList(final List<GroupDto> groupDtoList){
+        return groupDtoList.stream()
+                .map(t -> new Group(
+                        t.getId(),
+                        t.getName(),
+                        productMapper.mapToProductList(t.getProductDtoList())))
                 .collect(Collectors.toList());
     }
 }

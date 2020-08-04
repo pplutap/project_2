@@ -40,4 +40,12 @@ public class OrderMapper {
                         userMapper.mapToUserDto(t.getUser())))
                 .collect(Collectors.toList());
     }
+    public List<Order> mapToOrderList(final List<OrderDto> orderDtoList) {
+        return orderDtoList.stream()
+                .map(t -> new Order(
+                        t.getId(),
+                        productMapper.mapToProductList(t.getProductDtos()),
+                        userMapper.mapToUser(t.getUserDto())))
+                .collect(Collectors.toList());
+    }
 }
