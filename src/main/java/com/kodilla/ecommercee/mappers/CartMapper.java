@@ -41,4 +41,12 @@ public class CartMapper {
                         productMapper.mapToProductDtoList(t.getProducts())))
                 .collect(Collectors.toList());
     }
+    public List<Cart> mapToCartList(final List<CartDto> cartDtoList){
+        return cartDtoList.stream()
+                .map(t -> new Cart(
+                        t.getId(),
+                        userMapper.mapToUser(t.getUserDto()),
+                        productMapper.mapToProductList(t.getProducts())))
+                .collect(Collectors.toList());
+    }
 }
