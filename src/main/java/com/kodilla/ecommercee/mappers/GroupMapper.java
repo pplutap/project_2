@@ -20,14 +20,14 @@ public class GroupMapper {
         return new Group(
                 groupDto.getId(),
                 groupDto.getName(),
-                null); //productMapper.mapToProduct(groupDto.getProductDtoList());
+                productMapper.mapToProductList(groupDto.getProductDtoList()));
     }
 
     public GroupDto mapToGroupDto(final Group group){
         return new GroupDto(
                 group.getId(),
                 group.getName(),
-                null); //productMapper.mapToProductDto(group.getProducts));
+                productMapper.mapToProductDtoList(group.getProducts()));
     }
 
     public List<GroupDto> mapToGroupDtoList(final List<Group> groupList){
@@ -35,7 +35,7 @@ public class GroupMapper {
                 .map(t -> new GroupDto(
                         t.getId(),
                         t.getName(),
-                        null)) //productMapper.mapToProductDto(t.getProduct())))
+                        productMapper.mapToProductDtoList(t.getProducts())))
                 .collect(Collectors.toList());
     }
     public List<Group> mapToGroupList(final List<GroupDto> groupDtoList){
