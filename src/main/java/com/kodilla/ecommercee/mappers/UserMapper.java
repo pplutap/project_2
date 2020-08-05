@@ -18,14 +18,14 @@ public class UserMapper {
         return new User(
                 userDto.getId(),
                 userDto.getName(),
-                null); //orderMapper.mapToOrder(userDto.getOrderDto()));
+                orderMapper.mapToOrderList(userDto.getOrderDtoList()));
     }
 
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
                 user.getId(),
                 user.getName(),
-                null); //orderMapper.mapToOrderDto(user.getOrders()));
+                orderMapper.mapToOrderDtoList(user.getOrders()));
     }
 
     public List<UserDto> mapToUserDtoList(final List<User> userList) {
@@ -33,7 +33,7 @@ public class UserMapper {
                 .map(t -> new UserDto(
                         t.getId(),
                         t.getName(),
-                        null)) //orderMapper.mapToOrderDto(t.getOrders()))
+                        orderMapper.mapToOrderDtoList(t.getOrders())))
                 .collect(Collectors.toList());
     }
 }
