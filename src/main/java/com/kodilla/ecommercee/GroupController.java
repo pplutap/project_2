@@ -29,5 +29,4 @@ public class GroupController {
     public String updateGroup(){
         return "T-shirt blue";
     }
-
 }
