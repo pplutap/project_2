@@ -10,5 +10,7 @@ public class EcommerceeApplication {
         SpringApplication.run(EcommerceeApplication.class, args);
     }
 
+    public static class CartController {
+    }
 }
 
