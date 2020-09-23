@@ -1,26 +1,22 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "CARTS")
-public class Cart {
+@Entity(name = "ORDERS")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String value;
 
-    private Long ownerId;
-
-    @OneToMany
-    private List<GenericEntity> productsList;
-
-
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }
