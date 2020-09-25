@@ -42,9 +42,6 @@ public class UserController {
              throw new UserNotFoundException();
         }
     }
-
-
-
 }
 
 
