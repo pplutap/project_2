@@ -1,5 +1,5 @@
 package controller;
 
-public class TaskNotFoundException extends Exception {
+public class UserNotFoundException extends Exception {
 
 }
