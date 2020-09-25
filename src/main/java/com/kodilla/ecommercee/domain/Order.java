@@ -1,33 +1,26 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Entity(name = "ORDERS")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
-    private Long userId;
+  
     private LocalDate creationDate;
+  
     private boolean hasNotSent;
-
-    public Order(Long orderId, Long userId, int yearOfOrder, int monthOfOrder, int dayOfOrder) {
-        this.orderId = orderId;
-        this.userId = userId;
-        this.creationDate = LocalDate.of(yearOfOrder, monthOfOrder, dayOfOrder);
-        this.hasNotSent = true;
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public boolean isHasNotSent() {
-        return hasNotSent;
-    }
+  
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }
