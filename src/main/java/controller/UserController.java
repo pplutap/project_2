@@ -27,13 +27,21 @@ public class UserController {
         service.saveUser(userMapper.mapToUser(userDto));
     }
 
-
     @RequestMapping(method = RequestMethod.GET, value = "getUser")
-    public UserDto getUser(@RequestParam Long userId) throws UserNotFoundException {
-        return userMapper.mapToUserDto(service.getUser(userId).orElseThrow(UserNotFoundException::new));
+    public UserDto getUser(@RequestParam Long Id) throws UserNotFoundException {
+        return userMapper.mapToUserDto(service.getUser(Id).orElseThrow(UserNotFoundException::new));
     }
 
-
+    @RequestMapping(method = RequestMethod.GET, value = "getUserToken")
+    public UserDto getUserToken(@RequestParam final Long id) throws UserNotFoundException {
+        if (id == 1) {
+            return new UserDto(1L, "user", "content");
+        }
+        else
+        {
+             throw new UserNotFoundException();
+        }
+    }
 
 
 
