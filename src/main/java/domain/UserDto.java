@@ -1,6 +1,18 @@
 package domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class UserDto {
+    private Long id;
+    private String name;
+    private String content;
+}
+
+
+/*public class UserDto {
     private Long id;
     private String name;
     private String content;
@@ -23,8 +35,7 @@ public class UserDto {
     public String getContent() {
         return content;
     }
+*/
 
 
 
-
-}

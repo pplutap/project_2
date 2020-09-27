@@ -1,10 +1,32 @@
 package domain;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
+import com.kodilla.ecommercee.GenericEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Entity(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String content;
+
+}
+
+
+/*public class User {
     private Long id;
     private String name;
     private String content;
@@ -26,8 +48,7 @@ public class User {
     public String getContent() {
         return content;
     }
+*/
 
 
 
-
-}

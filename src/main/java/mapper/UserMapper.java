@@ -1,9 +1,9 @@
 package mapper;
 
+
 import domain.User;
 import domain.UserDto;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +15,7 @@ public class UserMapper {
                 userDto.getName(),
                 userDto.getContent());
     }
-    public static UserDto mapToUserDto(final User user) {
+    public UserDto mapToUserDto(final User user) {
         return new UserDto(
                 user.getId(),
                 user.getName(),
