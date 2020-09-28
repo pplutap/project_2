@@ -22,8 +22,8 @@ public class UserController {
         System.out.println("The user has been created");;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getBlockUser")
-    public void getBlockUser(@RequestParam Long Id) throws UserNotFoundException {
+    @RequestMapping(method = RequestMethod.GET, value = "blockUser")
+    public void blockUser(@RequestParam Long Id) throws UserNotFoundException {
         UserDto testingUserDto = new UserDto(1L, "user1", "userDescription");
     }
 
