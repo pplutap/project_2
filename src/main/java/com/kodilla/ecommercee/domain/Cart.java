@@ -1,11 +1,11 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,12 +15,20 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(name = "CART_ID")
     private Long id;
 
-    private Long ownerId;
 
-    @OneToMany
-    private List<GenericEntity> productsList;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-
+    @OneToMany(
+            targetEntity = Product.class,
+            mappedBy = "cart",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Product> productsList;
 }
