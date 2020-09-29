@@ -1,15 +1,11 @@
 package controller;
 
 import domain.UserDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @CrossOrigin(origins = "*")
@@ -32,6 +28,16 @@ public class UserController {
         UserDto testingUserDto = new UserDto(1L, "user1", "userDescription");
         return testingUserDto;
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "generateToken", consumes = APPLICATION_JSON_VALUE)
+    public String generateToken(String username, String password) {
+        username = "user1";
+        password ="password1";
+        return "Test token";
+    }
+
+
+
 }
 
 
