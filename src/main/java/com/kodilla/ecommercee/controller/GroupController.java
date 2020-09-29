@@ -31,7 +31,7 @@ public class GroupController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value="updateGroup")
-    public GroupDto updateGroup(@RequestParam GroupDto groupDto){
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto){
         return new GroupDto(1L,"White T-shirts", "Autumn/Winter collection");
     }
 }

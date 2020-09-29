@@ -2,10 +2,7 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.OrderDto;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,7 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateOrder")
-    public OrderDto updateOrder(@RequestParam OrderDto orderDto) {
+    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         OrderDto testOrderDto = new OrderDto(2L, 2L, 2020, 9, 23);
         return testOrderDto;
     }
