@@ -23,21 +23,12 @@ public class UserController {
         UserDto testingUserDto = new UserDto(1L, "user1", "userDescription");
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUserToken")
-    public UserDto getUserToken(@RequestParam final Long id) throws UserNotFoundException {
-        UserDto testingUserDto = new UserDto(1L, "user1", "userDescription");
-        return testingUserDto;
-    }
-
     @RequestMapping(method = RequestMethod.POST, value = "generateToken", consumes = APPLICATION_JSON_VALUE)
     public String generateToken(@RequestParam String username, String password) {
         username = "user1";
         password ="password1";
         return "Test token";
     }
-
-
-
 }
 
 
