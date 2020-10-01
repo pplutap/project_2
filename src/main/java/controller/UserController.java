@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "generateToken", consumes = APPLICATION_JSON_VALUE)
-    public String generateToken(@RequestParam String username, String password) {
+    public String generateToken(@RequestParam String username, @RequestParam String password) {
         username = "user1";
         password ="password1";
         return "Test token";
