@@ -2,11 +2,11 @@ package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 
 import java.math.BigDecimal;
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Getter
 public class ProductDto {
