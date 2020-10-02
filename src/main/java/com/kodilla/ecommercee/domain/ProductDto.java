@@ -14,12 +14,4 @@ public class ProductDto {
     private String name;
     private String description;
     private BigDecimal price;
-    private Cart cart;
-
-    public ProductDto(long id, String name, String description, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
 }
