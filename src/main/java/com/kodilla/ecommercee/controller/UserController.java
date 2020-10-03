@@ -1,5 +1,4 @@
 package com.kodilla.ecommercee.controller;
-import domain.UserDto;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
