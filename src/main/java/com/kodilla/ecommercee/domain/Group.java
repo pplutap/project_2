@@ -14,8 +14,13 @@ import java.util.List;
 public class Group {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "NAMEGROUP")
     private String nameGroup;
+
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @OneToMany(
