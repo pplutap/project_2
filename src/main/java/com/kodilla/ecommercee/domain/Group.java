@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -29,5 +30,5 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Product> productsList;
+    private List productsList = new ArrayList<>();
 }
