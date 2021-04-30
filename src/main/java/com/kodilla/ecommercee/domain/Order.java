@@ -1,6 +1,8 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,19 +11,20 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "ORDERS")
-@NoArgsConstructor
+@Setter
+@RequiredArgsConstructor
 public class Order {
     private long orderId;
     private long orderNumber;
-    private User user;
     private LocalDate created;
-    private Cart cart;
     private OrderStatus status;
+    private User user;
+    private Cart cart;
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ORDER_ID")
+    @Column(name = "ORDER_ID", unique = true)
     public long getOrderId() {
         return orderId;
     }
@@ -32,8 +35,8 @@ public class Order {
         return orderNumber;
     }
 
-    @NotNull
-    @Column(name = "USER_ID")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;
     }
@@ -44,8 +47,8 @@ public class Order {
         return created;
     }
 
-    @NotNull
-    @Column(name = "CART_ID", unique = true)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CART_ID")
     public Cart getCart() {
         return cart;
     }
@@ -55,29 +58,5 @@ public class Order {
     @Column(name = "ORDER_STATUS")
     public OrderStatus getStatus() {
         return status;
-    }
-
-    private void setOrderId(long id) {
-        this.orderId = id;
-    }
-
-    private void setOrderNumber(long orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    private void setUser(User user) {
-        this.user = user;
-    }
-
-    private void setCreated(LocalDate created) {
-        this.created = created;
-    }
-
-    private void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    private void setStatus(OrderStatus status) {
-        this.status = status;
     }
 }
