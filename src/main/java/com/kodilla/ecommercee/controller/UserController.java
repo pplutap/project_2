@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("generateKey")
-    public int generateKey() {
+    public int generateKey(UserDto userDto) {
         return 123;
     }
 }
