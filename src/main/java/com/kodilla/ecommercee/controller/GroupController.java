@@ -11,12 +11,12 @@ import java.util.List;
 @RequestMapping("v1/groups")
 public class GroupController {
 
-        @GetMapping
+        @GetMapping(value = "getGroups")
         public List<GroupDto> getGroups() {
             return new ArrayList<>();
         }
 
-        @PostMapping
+        @PostMapping(value = "createGroup")
         public void createGroup(@RequestBody GroupDto groupDto) {
         }
 
@@ -25,7 +25,7 @@ public class GroupController {
             return new GroupDto(100L, "First Group");
         }
 
-        @PutMapping
+        @PutMapping(value = "updateGroup")
         public GroupDto updateGroup( GroupDto groupDto) {
             return new GroupDto(100L, "Test content");
         }
