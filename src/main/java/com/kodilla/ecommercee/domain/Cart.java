@@ -7,16 +7,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "CARTS")
 @Setter
 @RequiredArgsConstructor
-public class User {
+public class Cart {
+
     private long id;
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "USER_ID", unique = true)
+    @Column(name = "CART_ID", unique = true)
     public long getId() {
         return id;
     }

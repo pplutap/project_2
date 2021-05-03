@@ -1,8 +1,55 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Getter
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+
+
+@Entity
+@Table(name = "ORDERS")
+@Setter
+@RequiredArgsConstructor
 public class Order {
-    private Long id;
+    private long orderId;    
+    private LocalDate created;
+    private OrderStatus status;
+    private User user;
+    private Cart cart;
+
+    @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "ORDER_ID", unique = true)
+    public long getOrderId() {
+        return orderId;
+    }  
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    public User getUser() {
+        return user;
+    }
+
+    @NotNull
+    @Column(name = "CREATION_DATE")
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CART_ID")
+    public Cart getCart() {
+        return cart;
+    }
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ORDER_STATUS")
+    public OrderStatus getStatus() {
+        return status;
+    }
 }
