@@ -14,8 +14,7 @@ import java.time.LocalDate;
 @Setter
 @RequiredArgsConstructor
 public class Order {
-    private long orderId;
-    private long orderNumber;
+    private long orderId;    
     private LocalDate created;
     private OrderStatus status;
     private User user;
@@ -27,15 +26,9 @@ public class Order {
     @Column(name = "ORDER_ID", unique = true)
     public long getOrderId() {
         return orderId;
-    }
+    }  
 
-    @NotNull
-    @Column(name = "ORDER_NUMBER")
-    public long getOrderNumber() {
-        return orderNumber;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;
