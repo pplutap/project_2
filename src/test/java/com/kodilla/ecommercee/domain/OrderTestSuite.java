@@ -1,14 +1,8 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.Order;
-import com.kodilla.ecommercee.domain.OrderStatus;
-import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.OrderRepository;
 import com.kodilla.ecommercee.repository.UserRepository;
-import com.kodilla.ecommercee.service.OrderDbService;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
