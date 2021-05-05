@@ -42,6 +42,7 @@ public class Product {
     public BigDecimal getPrice() {
         return price;
     }
+
     @ManyToOne
     @JoinColumn(name="GROUP_ID")
     public Group getGroupId() {
@@ -74,5 +75,6 @@ public class Product {
 
     public void setCarts(List<Cart> carts) {
         this.carts = carts;
+
     }
 }
