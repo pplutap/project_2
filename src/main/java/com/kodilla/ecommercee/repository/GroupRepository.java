@@ -8,7 +8,4 @@ import javax.transaction.Transactional;
 
 @Transactional
 @Repository
-public interface GroupRepository extends CrudRepository<Group, Long> {
-
-    Group save(Group group);
-}
+public interface GroupRepository extends CrudRepository<Group, Long> {}
