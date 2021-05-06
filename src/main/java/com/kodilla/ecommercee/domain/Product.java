@@ -20,7 +20,6 @@ public class Product {
     private String description;
     private BigDecimal price;
     private Group groupId;
-    private List<Cart> carts = new ArrayList<>();
 
     @Id
     @GeneratedValue
@@ -48,10 +47,6 @@ public class Product {
     public Group getGroupId() {
         return groupId;
     }
-    @ManyToMany(cascade = CascadeType.ALL)
-    public List<Cart> getCarts() {
-        return carts;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -72,22 +67,4 @@ public class Product {
     public void setGroupId(Group groupId) {
         this.groupId = groupId;
     }
-
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
-
-    }
 }
-
-//package com.kodilla.ecommercee.domain;
-//
-//import java.math.BigDecimal;
-//
-//public class Product {
-//
-//    private Long id;
-//    private String name;
-//    private String description;
-//    private BigDecimal price;
-//    private Group groupId;
-//}
