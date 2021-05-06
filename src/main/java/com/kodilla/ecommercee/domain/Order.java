@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -14,11 +13,18 @@ import java.time.LocalDate;
 @Setter
 @RequiredArgsConstructor
 public class Order {
-    private long orderId;    
+    private long orderId;
     private LocalDate created;
     private OrderStatus status;
     private User user;
     private Cart cart;
+
+    public Order(LocalDate created, OrderStatus status, User user, Cart cart) {
+        this.created = created;
+        this.status = status;
+        this.user = user;
+        this.cart = cart;
+    }
 
     @Id
     @GeneratedValue
@@ -26,7 +32,7 @@ public class Order {
     @Column(name = "ORDER_ID", unique = true)
     public long getOrderId() {
         return orderId;
-    }  
+    }
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
