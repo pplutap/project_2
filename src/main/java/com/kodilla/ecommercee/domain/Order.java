@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Table(name = "ORDERS")
 @Setter
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Order {
     private long orderId;
     private LocalDate created;
