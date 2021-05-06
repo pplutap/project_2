@@ -34,15 +34,22 @@ public class OrderDbService {
         return orderMapper.mapToOrderDtoList(orderList);
     }
 
-    public OrderDto getOrderById(Long id) throws OrderNotFoundException{
+    public OrderDto getOrderById(long id) throws OrderNotFoundException{
         Order order = orderRepository.findById(id).orElseThrow(OrderNotFoundException::new);
         return orderMapper.mapToOrderDto(order);
     }
 
-    public OrderDto updateOrder() {
+    public OrderDto updateOrder(long orderId, OrderStatus status) throws OrderNotFoundException,
+            UserNotFoundException, CartNotFoundException {
+        Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
+        order.setStatus(status);
+        OrderDto orderDto = orderMapper.mapToOrderDto(order);
+        Order savedOrder = createOrder(orderDto);
+        return orderMapper.mapToOrderDto(savedOrder);
     }
 
-    public void deleteOrder(Long id) {
+    public void deleteOrder(long id) {
         orderRepository.deleteById(id);
     }
+
 }

@@ -16,13 +16,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Order {
     private long orderId;
-    private LocalDate created;
+    private LocalDate orderCreated;
     private OrderStatus status;
     private User user;
     private Cart cart;
 
-    public Order(LocalDate created, OrderStatus status, User user, Cart cart) {
-        this.created = created;
+    public Order(LocalDate orderCreated, OrderStatus status, User user, Cart cart) {
+        this.orderCreated = orderCreated;
         this.status = status;
         this.user = user;
         this.cart = cart;
@@ -44,8 +44,8 @@ public class Order {
 
     @NotNull
     @Column(name = "CREATION_DATE")
-    public LocalDate getCreated() {
-        return created;
+    public LocalDate getOrderCreated() {
+        return orderCreated;
     }
 
     @OneToOne(fetch = FetchType.EAGER)

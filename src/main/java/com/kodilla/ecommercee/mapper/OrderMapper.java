@@ -12,7 +12,7 @@ public class OrderMapper {
     public Order mapToOrder(final OrderDto orderDto, final User user, final Cart cart) {
         return new Order(
           orderDto.getOrderId(),
-          orderDto.getCreated(),
+          orderDto.getOrderCreated(),
           orderDto.getStatus(),
           user,
           cart
@@ -22,13 +22,13 @@ public class OrderMapper {
     public OrderDto mapToOrderDto(final Order order) {
         return new OrderDto(
                 order.getOrderId(),
-                order.getCreated(),
+                order.getOrderCreated(),
                 order.getStatus(),
                 order.getUser().getId(),
                 order.getCart().getId()
         );
     }
-/// po znakiem zapytania
+
     public List<OrderDto> mapToOrderDtoList(final List<Order> orderList) {
         List<OrderDto> orderDtoList = new ArrayList<>();
         orderList.forEach(order -> orderDtoList.add(mapToOrderDto(order)));
