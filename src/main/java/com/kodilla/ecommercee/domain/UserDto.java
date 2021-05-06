@@ -6,5 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserDto {
-    private long id;
+    private Long id;
 }
