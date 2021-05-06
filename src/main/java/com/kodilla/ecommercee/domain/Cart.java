@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -7,18 +8,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "CARTS")
-@Setter
-@RequiredArgsConstructor
+@Getter
+@Table(name = "CART")
 public class Cart {
-
-    private long id;
-
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "CART_ID", unique = true)
-    public long getId() {
-        return id;
-    }
+    private Long cartId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }
