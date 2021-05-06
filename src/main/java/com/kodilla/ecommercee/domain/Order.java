@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Order {
-    private long orderId;
+    private Long orderId;
     private LocalDate orderCreated;
     private OrderStatus status;
     private User user;
@@ -32,7 +32,7 @@ public class Order {
     @GeneratedValue
     @NotNull
     @Column(name = "ORDER_ID", unique = true)
-    public long getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class OrderDto {
-    private final long orderId;
+    private final Long orderId;
     private final LocalDate orderCreated;
     private final OrderStatus status;
     private final long userId;

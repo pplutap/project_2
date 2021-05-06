@@ -12,13 +12,13 @@ import javax.validation.constraints.NotNull;
 @RequiredArgsConstructor
 public class Cart {
 
-    private long id;
+    private Long id;
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "CART_ID", unique = true)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 }
