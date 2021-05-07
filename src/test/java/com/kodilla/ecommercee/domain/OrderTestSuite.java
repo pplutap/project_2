@@ -50,6 +50,6 @@ public class OrderTestSuite {
         //CleanUp
         orderRepository.deleteById(id);
         userRepository.deleteById(user.getId());
-        cartRepository.deleteById(cart.getId());
+        cartRepository.deleteById(cart.getCartId());
     }
 }
