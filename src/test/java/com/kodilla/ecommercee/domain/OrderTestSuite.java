@@ -32,8 +32,9 @@ public class OrderTestSuite {
     @Test
     public void testOrderSave() {
         //Given
-        User user = new User();
+
         Cart cart = new Cart();
+        User user = new User("user", false, cart);
         cartRepository.save(cart);
         userRepository.save(user);
         Order order = new Order(LocalDate.now(), OrderStatus.EXPECTING_PAYMENT,
