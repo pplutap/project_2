@@ -8,5 +8,5 @@ import lombok.Getter;
 public class GroupDto {
 
     private Long groupId;
-    private String name;
+    private String groupName;
 }

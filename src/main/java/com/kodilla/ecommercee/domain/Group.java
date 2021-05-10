@@ -23,7 +23,7 @@ public class Group {
 
     @NotNull
     @Column(name = "GROUP_NAME")
-    private String name;
+    private String groupName;
 
     @OneToMany(
             targetEntity = Product.class,
@@ -33,8 +33,8 @@ public class Group {
     )
     private List<Product> productList = new ArrayList<>();
 
-    public Group(@NotNull Long groupId, @NotNull String name) {
+    public Group(@NotNull Long groupId, @NotNull String groupName) {
         this.groupId = groupId;
-        this.name = name;
+        this.groupName = groupName;
     }
 }
