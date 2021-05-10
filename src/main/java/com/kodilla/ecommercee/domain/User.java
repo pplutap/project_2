@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class User {
 
-    private long id;
+    private Long id;
     private String username;
     private boolean status;
     private int userKey;

@@ -34,19 +34,13 @@ public class OrderTestSuite {
     public void testOrderSave() {
         //Given
         User user = new User("user", false);
-        user.setId(userRepository.count() + 1);
-        userRepository.save(user);
         Cart cart = new Cart();
         cart.setUser(user);
+        userRepository.save(user);
+        user.setCart(cart);
+        cartRepository.save(cart);
         Order order = new Order(LocalDate.now(), OrderStatus.EXPECTING_PAYMENT,
                 user, cart);
-        user.getOrders().add(order);
-        user.setCart(cart);
-
-        cartRepository.save(cart);
-        userRepository.save(user);
-
-
 
         //When
         orderRepository.save(order);
