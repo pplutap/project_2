@@ -30,20 +30,21 @@ public class OrderTestSuite {
     @Autowired
     private CartRepository cartRepository;
 
-    @Transactional
     @Test
     public void testOrderSave() {
         //Given
         User user = new User("user", false);
+        user.setId(userRepository.count() + 1);
+        userRepository.save(user);
         Cart cart = new Cart();
         cart.setUser(user);
         Order order = new Order(LocalDate.now(), OrderStatus.EXPECTING_PAYMENT,
                 user, cart);
         user.getOrders().add(order);
         user.setCart(cart);
-        user.setId(userRepository.count() + 1);
-        userRepository.save(user);
+
         cartRepository.save(cart);
+        userRepository.save(user);
 
 
 
