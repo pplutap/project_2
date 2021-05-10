@@ -25,7 +25,7 @@ public class OrderMapper {
                 order.getOrderCreated(),
                 order.getStatus(),
                 order.getUser().getId(),
-                order.getCart().getId()
+                order.getCart().getCartId()
         );
     }
 
