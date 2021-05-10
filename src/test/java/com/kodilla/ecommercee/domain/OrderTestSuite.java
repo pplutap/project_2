@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -32,11 +33,12 @@ public class OrderTestSuite {
     @Test
     public void testOrderSave() {
         //Given
-
+        User user = new User("user", false);
         Cart cart = new Cart();
-        User user = new User("user", false, cart);
-        cartRepository.save(cart);
+        cart.setUser(user);
         userRepository.save(user);
+        user.setCart(cart);
+        cartRepository.save(cart);
         Order order = new Order(LocalDate.now(), OrderStatus.EXPECTING_PAYMENT,
                 user, cart);
 
@@ -50,7 +52,7 @@ public class OrderTestSuite {
 
         //CleanUp
         orderRepository.deleteById(id);
-        userRepository.deleteById(user.getId());
         cartRepository.deleteById(cart.getCartId());
+        userRepository.deleteById(order.getUser().getId());
     }
 }

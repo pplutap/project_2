@@ -13,24 +13,24 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 public class User {
-    private long id;
+
+    private Long id;
     private String username;
     private boolean status;
     private int userKey;
     private Cart cart;
     private List<Order> orders = new ArrayList<>();
 
-    public User(String username, boolean status, Cart cart) {
+    public User(String username, boolean status) {
         this.username = username;
         this.status = status;
-        this.cart = cart;
     }
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "USER_ID", unique = true)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -46,7 +46,7 @@ public class User {
         return status;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     @JoinColumn(name = "CART_ID")
     public Cart getCart() {
         return cart;
