@@ -11,7 +11,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class GroupDbService {
-    @Autowired
     private final GroupRepository groupRepository;
 
     public Optional<Group> getGroupById(final Long id){
