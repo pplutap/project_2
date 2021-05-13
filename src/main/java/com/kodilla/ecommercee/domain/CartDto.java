@@ -1,10 +1,19 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@Getter
-@AllArgsConstructor
 public class CartDto {
-    private Long id;
+
+    private Long cartId;
+
+    public CartDto(Long cartId){
+        this.cartId = cartId;
+    }
+
+    public Long getCardId(){
+        return cartId;
+    }
+
+    public void setCartId(Long cartId){
+        this.cartId = cartId;
+    }
 }
