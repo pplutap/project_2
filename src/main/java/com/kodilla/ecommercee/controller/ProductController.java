@@ -8,6 +8,8 @@ import com.kodilla.ecommercee.exception.ProductNotFoundException;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductDbService;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -38,12 +40,14 @@ public class ProductController {
         );
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) throws GroupNotFoundException {
         Product product = productMapper.mapToProduct(productDto);
         productDbService.saveProduct(product);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(value = "updateProduct")
     public ProductDto updateProduct(@RequestBody ProductDto productDto) throws GroupNotFoundException {
         Product product = productMapper.mapToProduct(productDto);
@@ -51,6 +55,7 @@ public class ProductController {
         return productMapper.mapToProductDto(savedProduct);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(value = "deleteProduct")
         public void deleteProduct(@RequestParam Long productId){
         productDbService.deleteProduct(productId);

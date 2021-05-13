@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,21 +23,16 @@ import java.util.List;
 public class OrderController {
 
     private final OrderDbService service;
-    private final UserDbService userService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
     @GetMapping(value = "getOrders")
     public List<OrderDto> getOrders() {
         return service.getOrders();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "createOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createOrder(@RequestBody OrderDto orderDto, @RequestParam Long key) throws UserNotFoundException, CartNotFoundException {
-        if(userService.isKeyAssignedToUser(key)) {
+    public void createOrder(@RequestBody OrderDto orderDto) throws UserNotFoundException, CartNotFoundException {
             service.createOrder(orderDto);
-        } else {
-            LOGGER.error("Invalid key inserted");
-        }
     }
 
     @GetMapping(value = "getOrder")
@@ -44,12 +40,14 @@ public class OrderController {
         return service.getOrderById(orderId);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestParam long orderId, @RequestParam OrderStatus status) throws CartNotFoundException,
             OrderNotFoundException, UserNotFoundException {
         return service.updateOrder(orderId, status);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam long orderId) {
         service.deleteOrder(orderId);

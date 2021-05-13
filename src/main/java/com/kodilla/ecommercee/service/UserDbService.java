@@ -1,15 +1,13 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.domain.UserDto;
 import com.kodilla.ecommercee.exception.CartNotFoundException;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.repository.UserRepository;
+import com.kodilla.ecommercee.security.UsersDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,25 +22,20 @@ import java.util.Optional;
 public class UserDbService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final CartDbService cartDbService;
-    private OrderDbService orderDbService;
+
     private final UserMapper userMapper;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public User getOriginalUser(Long id) throws UserNotFoundException{
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
-    public boolean isKeyAssignedToUser(Long key) {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .anyMatch(user -> user.getUserKey() == key);
-    }
-
-    public User createUser(UserDto userDto) throws CartNotFoundException {
-        Cart cart = cartDbService.getOriginalCart(userDto.getCartId());
-        List<Order> orders = orderDbService.getOrdersBelongToUser(userDto.getId());
-        User user = userMapper.mapToUser(userDto, cart, orders);
+    public User createUser(UserDto userDto) {
+        User user = userMapper.mapToPureUser(userDto);
         user.setRole("USER");
+        String encryptedPwd = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPwd);
         return userRepository.save(user);
     }
 

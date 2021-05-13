@@ -22,6 +22,19 @@ public class UserMapper {
         );
     }
 
+    public User mapToPureUser(UserDto userDto) {
+        return new User(
+                userDto.getId(),
+                userDto.getUsername(),
+                userDto.getPassword(),
+                userDto.getRole(),
+                userDto.isStatus(),
+                userDto.getUserKey(),
+                null,
+                null
+        );
+    }
+
     public UserDto mapToUserDto(User user, CartDto cartDto, List<Long> ordersIdList) {
         return new UserDto(
                 user.getId(),

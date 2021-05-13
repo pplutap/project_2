@@ -28,7 +28,7 @@ public class User {
 
     public User(String username, boolean status, String password) {
         this.username = username;
-        this.status = status;
+//        this.status = status;
         this.password = password;
     }
 

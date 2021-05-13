@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.service;
+package com.kodilla.ecommercee.security;
 
 import com.kodilla.ecommercee.domain.User;
 import org.springframework.security.core.GrantedAuthority;
