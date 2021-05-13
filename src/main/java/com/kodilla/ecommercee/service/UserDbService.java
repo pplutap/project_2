@@ -1,8 +1,12 @@
 package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.domain.Cart;
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.exception.CartNotFoundException;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
+import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +23,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserDbService implements UserDetailsService {
 
-
     private final UserRepository userRepository;
+    private final CartDbService cartDbService;
+    private OrderDbService orderDbService;
+    private final UserMapper userMapper;
 
     public User getOriginalUser(Long id) throws UserNotFoundException{
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
@@ -32,8 +38,12 @@ public class UserDbService implements UserDetailsService {
                 .anyMatch(user -> user.getUserKey() == key);
     }
 
-    public User createUser(UserDto userDto) {
-        return userRepository.save(userDto);
+    public User createUser(UserDto userDto) throws CartNotFoundException {
+        Cart cart = cartDbService.getOriginalCart(userDto.getCartId());
+        List<Order> orders = orderDbService.getOrdersBelongToUser(userDto.getId());
+        User user = userMapper.mapToUser(userDto, cart, orders);
+        user.setRole("USER");
+        return userRepository.save(user);
     }
 
     @Override

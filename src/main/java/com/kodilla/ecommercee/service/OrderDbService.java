@@ -39,6 +39,10 @@ public class OrderDbService {
         return orderMapper.mapToOrderDto(order);
     }
 
+    public List<Order> getOrdersBelongToUser(long userId) {
+        return orderRepository.retrieveOrdersBelongToUser(userId);
+    }
+
     public OrderDto updateOrder(long orderId, OrderStatus status) throws OrderNotFoundException,
             UserNotFoundException, CartNotFoundException {
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);

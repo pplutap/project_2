@@ -26,9 +26,10 @@ public class User {
     private Cart cart;
     private List<Order> orders = new ArrayList<>();
 
-    public User(String username, boolean status) {
+    public User(String username, boolean status, String password) {
         this.username = username;
         this.status = status;
+        this.password = password;
     }
 
     @Id
@@ -66,11 +67,13 @@ public class User {
         return orders;
     }
 
+    @NotNull
     @Column(name = "USER_PASSWORD")
     public String getPassword() {
         return password;
     }
 
+    @NotNull
     @Column(name = "USER_ROLE")
     public String getRole() {
         return role;

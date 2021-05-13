@@ -15,6 +15,6 @@ public class UserDto {
     private String role;
     private boolean status;
     private int userKey;
-    private CartDto cart;
-    private List<OrderDto> orders = new ArrayList<>();
+    private long cartId;
+    private List<Long> ordersId;
 }

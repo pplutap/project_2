@@ -9,6 +9,12 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 
+@NamedNativeQuery(
+        name = "Order.retrieveOrdersBelongToUser",
+        query = "SELECT * FROM ORDERS WHERE user_id = :USER_ID",
+        resultClass = Order.class
+)
+
 @Entity
 @Table(name = "ORDERS")
 @Setter

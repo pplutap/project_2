@@ -33,8 +33,9 @@ public class OrderTestSuite {
     @Test
     public void testOrderSave() {
         //Given
-        User user = new User("user", false);
+        User user = new User("user", false, "1234");
         Cart cart = new Cart();
+        user.setRole("ADMIN");
         cart.setUser(user);
         userRepository.save(user);
         user.setCart(cart);

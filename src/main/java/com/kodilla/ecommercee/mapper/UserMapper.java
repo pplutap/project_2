@@ -22,7 +22,7 @@ public class UserMapper {
         );
     }
 
-    public UserDto mapToUserDto(User user, CartDto cartDto, List<OrderDto> ordersDto) {
+    public UserDto mapToUserDto(User user, CartDto cartDto, List<Long> ordersIdList) {
         return new UserDto(
                 user.getId(),
                 user.getUsername(),
@@ -30,8 +30,8 @@ public class UserMapper {
                 user.getRole(),
                 user.isStatus(),
                 user.getUserKey(),
-                cartDto,
-                ordersDto
+                user.getCart().getCartId(),
+                ordersIdList
         );
     }
 }
