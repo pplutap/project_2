@@ -2,7 +2,6 @@ package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -28,7 +27,7 @@ public class User {
 
     public User(String username, boolean status, String password) {
         this.username = username;
-//        this.status = status;
+        this.status = status;
         this.password = password;
     }
 

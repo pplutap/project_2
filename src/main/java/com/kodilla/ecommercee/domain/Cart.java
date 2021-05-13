@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
