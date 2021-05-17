@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +31,7 @@ public class ProductDbService {
     public void deleteProduct(final Long productId){
         productRepository.deleteById(productId);
     }
-
+    public List<Product> getProductsByPartOfTheName(String nameParts) {
+        return productRepository.findByPartOfTheName(nameParts);
+    }
 }

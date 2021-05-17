@@ -10,7 +10,6 @@ import com.kodilla.ecommercee.service.ProductDbService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -54,5 +53,5 @@ public class ProductController {
     @DeleteMapping(value = "deleteProduct")
         public void deleteProduct(@RequestParam Long productId){
         productDbService.deleteProduct(productId);
-        }
+    }
 }
