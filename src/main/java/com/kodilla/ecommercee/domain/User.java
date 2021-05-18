@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,19 +12,23 @@ import java.util.List;
 @Entity
 @Table(name = "USERS")
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     private Long id;
     private String username;
+    private String password;
+    private String role;
     private boolean status;
     private int userKey;
     private Cart cart;
     private List<Order> orders = new ArrayList<>();
 
-    public User(String username, boolean status) {
+    public User(String username, boolean status, String password) {
         this.username = username;
         this.status = status;
+        this.password = password;
     }
 
     @Id
@@ -59,6 +64,18 @@ public class User {
     )
     public List<Order> getOrders() {
         return orders;
+    }
+
+    @NotNull
+    @Column(name = "USER_PASSWORD")
+    public String getPassword() {
+        return password;
+    }
+
+    @NotNull
+    @Column(name = "USER_ROLE")
+    public String getRole() {
+        return role;
     }
 
     @Transient

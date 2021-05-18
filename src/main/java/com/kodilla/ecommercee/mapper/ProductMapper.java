@@ -12,7 +12,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductMapper {
-    private GroupDbService groupDbService;
+
+
+    private  final GroupDbService groupDbService;
+
+    public ProductMapper(GroupDbService groupDbService) {
+        this.groupDbService = groupDbService;
+    }
 
     public Product mapToProduct(final ProductDto productDto) throws GroupNotFoundException {
        Group group = groupDbService.getGroupById(productDto.getGroupId()).orElseThrow(GroupNotFoundException::new);
