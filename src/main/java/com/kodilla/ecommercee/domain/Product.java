@@ -1,16 +1,20 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="Product")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Product {
 
     private Long id;
@@ -18,11 +22,20 @@ public class Product {
     private String description;
     private BigDecimal price;
     private Group groupId;
+    private List<Cart> carts = new ArrayList<>();
+
+    public Product(Long id, String name, String description, BigDecimal price, Group groupId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.groupId = groupId;
+    }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name="ID",unique = true)
+    @Column(name="PRODUCT_ID",unique = true)
     public Long getId() {
         return id;
     }
@@ -40,6 +53,14 @@ public class Product {
         return price;
     }
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
     @ManyToOne
     @JoinColumn(name="GROUP_ID")
     public Group getGroupId() {
