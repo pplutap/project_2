@@ -7,6 +7,7 @@ import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.service.GroupDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("v1/groups")
 public class GroupController {
+
 
     private final GroupMapper groupMapper;
     private final GroupDbService groupDbService;
@@ -25,16 +27,17 @@ public class GroupController {
     }
 
     @GetMapping("getGroup")
-    public GroupDto getGroup(@RequestBody Long groupId ) throws GroupNotFoundException {
+    public GroupDto getGroup(@RequestParam Long groupId ) throws GroupNotFoundException {
         return groupMapper.mapToGroupDto(groupDbService.getGroupById(groupId).orElseThrow(GroupNotFoundException::new));
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "createGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createGroup(@RequestBody GroupDto groupDto) {
         groupDbService.save(groupMapper.mapToGroup(groupDto));
     }
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(value = "updateGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
     public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
         Group groupUpdated = groupMapper.mapToGroup(groupDto);

@@ -8,9 +8,9 @@ import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.service.OrderDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,9 +25,10 @@ public class OrderController {
         return service.getOrders();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "createOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createOrder(@RequestBody OrderDto orderDto) throws UserNotFoundException, CartNotFoundException {
-        service.createOrder(orderDto);
+            service.createOrder(orderDto);
     }
 
     @GetMapping(value = "getOrder")
@@ -35,12 +36,14 @@ public class OrderController {
         return service.getOrderById(orderId);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestParam long orderId, @RequestParam OrderStatus status) throws CartNotFoundException,
             OrderNotFoundException, UserNotFoundException {
         return service.updateOrder(orderId, status);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam long orderId) {
         service.deleteOrder(orderId);

@@ -9,7 +9,6 @@ import com.kodilla.ecommercee.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,6 +36,10 @@ public class OrderDbService {
     public OrderDto getOrderById(long id) throws OrderNotFoundException{
         Order order = orderRepository.findById(id).orElseThrow(OrderNotFoundException::new);
         return orderMapper.mapToOrderDto(order);
+    }
+
+    public List<Order> getOrdersBelongToUser(long userId) {
+        return orderRepository.retrieveOrdersBelongToUser(userId);
     }
 
     public OrderDto updateOrder(long orderId, OrderStatus status) throws OrderNotFoundException,

@@ -24,7 +24,8 @@ public class UserTestSuite {
     @Test
     public void testSavaUser(){
         //Given
-        User user = new User("user",false);
+        User user = new User("user",false, "123");
+        user.setRole("USER");
         //When
         userRepository.save(user);
         //Then
@@ -37,7 +38,8 @@ public class UserTestSuite {
     @Test
     public void findByStatus(){
         //Given
-        User user = new User("user",false);
+        User user = new User("user",false, "123");
+        user.setRole("USER");
         userRepository.save(user);
         boolean status = user.isStatus();
         //When
