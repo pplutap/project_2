@@ -57,4 +57,10 @@ public class ProductController {
         public void deleteProduct(@RequestParam Long productId){
         productDbService.deleteProduct(productId);
     }
+
+    @GetMapping(value = "getProductsList")
+    public List<ProductDto> getProductsList(@RequestParam String nameParts) {
+        List<Product> productsList = productDbService.getProductsByPartOfTheName("");
+        return productMapper.mapToProductDtoList(productsList);
+    }
 }
