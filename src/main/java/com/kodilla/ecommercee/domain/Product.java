@@ -21,6 +21,13 @@ public class Product {
     private BigDecimal price;
     private Group groupId;
 
+    public Product(String name, String description, BigDecimal price, Group groupId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.groupId = groupId;
+    }
+
     @Id
     @GeneratedValue
     @NotNull

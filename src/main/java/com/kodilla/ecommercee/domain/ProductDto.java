@@ -19,4 +19,6 @@ public class ProductDto {
     private BigDecimal price;
     private Long groupId;
 
+
+
 }
