@@ -22,7 +22,7 @@ public class OrderDbService {
 
     public Order createOrder(OrderDto orderDto) throws UserNotFoundException, CartNotFoundException {
         User user = userDbService.getOriginalUser(orderDto.getUserId());
-        Cart cart = cartDbService.getOriginalCart(orderDto.getCartId());
+        Cart cart = cartDbService.getCartById(orderDto.getCartId());
         Order order = orderMapper.mapToOrder(orderDto, user, cart);
 
         return orderRepository.save(order);
