@@ -10,6 +10,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Product.findByPartOfTheName",
+        query = "FROM Product WHERE name LIKE CONCAT('%', :NAME, '%')"
+)
 @Entity
 @Table(name="Product")
 @AllArgsConstructor
