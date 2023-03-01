@@ -12,12 +12,12 @@ import java.util.Collections;
 public class ProductController {
 
     @GetMapping()
-    public ResponseEntity<List<Product>> getProducts(); {
+    public ResponseEntity<List<ProductDto>> getProducts(); {
         return ResponseEntity.ok(Collections.emptyList());
     }
 
     @GetMapping(value = {productId})
-    public ResponseEntity<Product> getProduct(@PathVariable Long productId) {
+    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) {
         return ResponseEntity.ok(null);
     }
 
@@ -27,12 +27,12 @@ public class ProductController {
     }
 
     @PutMapping(value = "product", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> updateProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping("product")
-    public ResponseEntity<Void> deleteProduct(Long productId) {
+    @DeleteMapping(value = {productId})
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
         return ResponseEntity.ok().build();
     }
 }
