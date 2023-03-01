@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.domain.UserDto;
-import com.kodilla.ecommercee.domain.UserKeyDto;
+import com.kodilla.ecommercee.dto.UserDTO;
+import com.kodilla.ecommercee.dto.UserKeyDTO;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @PostMapping(value = "user", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<Void> createUser(@RequestBody UserDTO userDto){
         return ResponseEntity.ok().build();
     }
     @PutMapping(value = "/{id}/block")
@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping(value = "keygenerate")
-    public ResponseEntity<UserKeyDto> generateKey() {
+    public ResponseEntity<UserKeyDTO> generateKey() {
         return ResponseEntity.ok(null);
     }
 }
