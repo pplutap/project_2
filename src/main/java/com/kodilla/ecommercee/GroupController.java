@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class GroupController {
 
-    @GetMapping("getGroups")
+    @GetMapping()
     public ResponseEntity<List<GroupDto>>getGroups(){
         return ResponseEntity.ok(Collections.emptyList());
     }
