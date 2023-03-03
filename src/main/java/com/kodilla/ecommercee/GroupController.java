@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.Dto.GroupDto;
+import com.kodilla.ecommercee.dto.GroupDTO;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +15,19 @@ public class GroupController {
     String name = "name";
 
     @GetMapping()
-    public ResponseEntity<List<GroupDto>>getGroups(){
+    public ResponseEntity<List<GroupDTO>>getGroups(){
         return ResponseEntity.ok(Collections.emptyList());
     }
     @GetMapping("{groupId}")
-    public ResponseEntity<GroupDto> getGroupById(@PathVariable Long groupId) {
+    public ResponseEntity<GroupDTO> getGroupById(@PathVariable Long groupId) {
         return ResponseEntity.ok(null);
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void>createGroup(@RequestBody GroupDto groupDto){
+    public ResponseEntity<Void>createGroup(@RequestBody GroupDTO groupDto){
         return ResponseEntity.ok().build();
     }
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GroupDto>groupUpdate(@RequestBody GroupDto groupDto){
+    public ResponseEntity<GroupDTO>groupUpdate(@RequestBody GroupDTO groupDto){
         return ResponseEntity.ok(null);
 
     }
