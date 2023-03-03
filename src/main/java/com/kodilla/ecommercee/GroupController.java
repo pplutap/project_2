@@ -12,8 +12,6 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 public class GroupController {
-    String name = "name";
-
     @GetMapping()
     public ResponseEntity<List<GroupDTO>>getGroups(){
         return ResponseEntity.ok(Collections.emptyList());
