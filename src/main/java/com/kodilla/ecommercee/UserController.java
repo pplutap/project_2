@@ -14,10 +14,12 @@ public class UserController {
     public ResponseEntity<Void> createUser(@RequestBody UserDTO userDTO){
         return ResponseEntity.ok().build();
     }
+
     @PutMapping(value = "/{id}/block")
     public ResponseEntity<Void> blockUser(Long userId){
         return ResponseEntity.ok().build();
     }
+
     @PostMapping(value = "keygenerate")
     public ResponseEntity<UserKeyDTO> generateKey() {
         return ResponseEntity.ok(null);

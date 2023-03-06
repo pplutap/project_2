@@ -16,18 +16,22 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getProducts() {
         return ResponseEntity.ok(Collections.emptyList());
     }
+
     @GetMapping(value = "{productId}")
     public ResponseEntity<ProductDTO> getProduct(@PathVariable Long productId) {
         return ResponseEntity.ok(null);
     }
+
     @PostMapping(value = "product", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok().build();
     }
+
     @PutMapping(value = "product", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(null);
     }
+
     @DeleteMapping(value = "{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
         return ResponseEntity.ok().build();
