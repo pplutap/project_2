@@ -20,15 +20,15 @@ public class GroupController {
     public ResponseEntity<GroupDTO> getGroupById(@PathVariable Long groupId) {
         return ResponseEntity.ok(null);
     }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void>createGroup(@RequestBody GroupDTO groupDto){
         return ResponseEntity.ok().build();
     }
+
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GroupDTO>groupUpdate(@RequestBody GroupDTO groupDto){
+    public ResponseEntity<GroupDTO>updateGroup(@RequestBody GroupDTO groupDto){
         return ResponseEntity.ok(null);
 
     }
-
-
 }
