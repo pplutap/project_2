@@ -22,12 +22,12 @@ public class ProductController {
         return ResponseEntity.ok(null);
     }
 
-    @PostMapping(value = "product", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(value = "product", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(null);
     }
