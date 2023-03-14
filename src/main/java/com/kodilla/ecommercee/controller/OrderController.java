@@ -1,12 +1,14 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.kodilla.ecommercee.dto.OrderDTO;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/v1/orders")
