@@ -3,6 +3,7 @@ package com.kodilla.ecommercee;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.GroupRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -22,7 +24,6 @@ public class GropuTestSuite {
 
     @Autowired
     private GroupRepository groupRepository;
-
     private Group group1;
     private Group group2;
     private Product product1;
@@ -31,13 +32,8 @@ public class GropuTestSuite {
 
          group1 = new Group(0,"group1",new ArrayList<>());
          group2 = new Group(0,"group2",new ArrayList<>());
-         product1 = new Product(0,"product1",12.2,5,null);
-         product2 = new Product(0,"product2",122.2,7,null);
-    }
-
-    private void deleteTestData() {
-        groupRepository.delete(group2);
-        groupRepository.delete(group1);
+         product1 = new Product(0,"product1",12.2,5,group1);
+         product2 = new Product(0,"product2",122.2,7,group2);
     }
 
     @Test
@@ -56,7 +52,7 @@ public class GropuTestSuite {
         assertThat(savedGroup2.getGroupId()).isEqualTo(2L);
 
         //CleanUp
-        deleteTestData();
+        groupRepository.deleteAll();
     }
 
     @Test
@@ -77,8 +73,9 @@ public class GropuTestSuite {
         assertEquals("group2AfterChange", saveGroup2.getName());
         assertEquals(2, saveGroup1.getProducts().size());
 
+
         //CleanUp
-        deleteTestData();
+        groupRepository.deleteAll();
     }
 
     @Test
@@ -90,17 +87,19 @@ public class GropuTestSuite {
         //When
        groupRepository.save(group1);
        groupRepository.save(group2);
-       groupRepository.deleteById(1L);
-       Optional<Group> deletedGroup1 = groupRepository.findById(1L);
-       Optional<Group> Group2 = groupRepository.findById(2L);
+       groupRepository.deleteById(group1.getGroupId());
+       Optional<Group> deletedGroup1 = groupRepository.findById(group1.getGroupId());
 
         //Then
         assertFalse(deletedGroup1.isPresent());
-        assertTrue(Group2.isPresent());
+        assertEquals(1,groupRepository.count());
+
+        //CleanUp
+        groupRepository.deleteAll();
     }
 
     @Test
-    public void testFindGroupById(){
+    public void testFindAllGroups(){
 
         //Given
         dataForTests();
@@ -108,13 +107,30 @@ public class GropuTestSuite {
         //When
         groupRepository.save(group1);
         groupRepository.save(group2);
-        Optional<Group> findById = groupRepository.findById(1L);
 
         //Then
-        assertTrue(findById.isPresent());
+        assertEquals(2,groupRepository.count());
 
         //CleanUp
-        deleteTestData();
+        groupRepository.deleteAll();
+    }
+
+    @Test
+    public void testFindGroupById(){
+        //Given
+        dataForTests();
+
+        //When
+        groupRepository.save(group1);
+        groupRepository.save(group2);
+        Optional<Group> retriveById = groupRepository.findById(group1.getGroupId());
+
+        //Then
+        assertEquals("group1",retriveById.orElse(new Group()).getName());
+        assertTrue(retriveById.isPresent());
+
+        //CleanUp
+        groupRepository.deleteAll();
     }
 
 
