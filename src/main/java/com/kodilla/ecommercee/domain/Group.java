@@ -1,8 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "groups")
 public class Group {
@@ -22,6 +20,11 @@ public class Group {
     @NotNull
     @Column
     private String name;
+
+    public Group(String name, List<Product> products) {
+        this.name = name;
+        this.products = products;
+    }
 
     @OneToMany(targetEntity = Product.class,
             mappedBy = "group",

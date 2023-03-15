@@ -16,7 +16,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}/block")
-    public ResponseEntity<Void> blockUser(Long userId){
+    public ResponseEntity<Void> blockUser(long userId){
         return ResponseEntity.ok().build();
     }
 

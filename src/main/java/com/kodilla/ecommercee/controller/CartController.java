@@ -16,7 +16,7 @@ public class CartController {
     }
 
     @GetMapping(value = "{cartId}")
-    public ResponseEntity<CartDTO> getCartById(@PathVariable Long cartId){
+    public ResponseEntity<CartDTO> getCartById(@PathVariable long cartId){
         return ResponseEntity.ok(null);
     }
 
@@ -26,12 +26,12 @@ public class CartController {
     }
 
     @DeleteMapping(value = "/{cartId}")
-    public ResponseEntity<Void> deleteItemFromCart(@PathVariable Long cartId, @RequestParam Long productId) {
+    public ResponseEntity<Void> deleteItemFromCart(@PathVariable long cartId, @RequestParam Long productId) {
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(value = "/{cartId}/order")
-    public ResponseEntity<Void> createOrderFromCart(@PathVariable Long cartId, @RequestBody OrderDTO orderDTO){
+    public ResponseEntity<Void> createOrderFromCart(@PathVariable long cartId, @RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok().build();
     }
 }

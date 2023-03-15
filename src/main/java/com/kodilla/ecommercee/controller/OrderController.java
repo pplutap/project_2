@@ -20,10 +20,10 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> getOrders() { return ResponseEntity.ok(Collections.emptyList()); }
 
     @GetMapping(value = "{orderId}")
-    public ResponseEntity<OrderDTO> getOrder(@PathVariable Long orderId) { return ResponseEntity.ok(null); }
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable long orderId) { return ResponseEntity.ok(null); }
 
     @DeleteMapping(value = "{orderId}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long orderId) { return ResponseEntity.ok(null); }
+    public ResponseEntity<Void> deleteOrder(@PathVariable long orderId) { return ResponseEntity.ok(null); }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderDTO> updateOrder(@RequestBody OrderDTO orderDTO) {
