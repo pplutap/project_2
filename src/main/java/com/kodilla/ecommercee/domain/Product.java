@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue
-    private Long productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long productId;
 
     @Column
     private String name;
