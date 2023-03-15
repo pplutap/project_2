@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "products")
@@ -30,4 +29,11 @@ public class Product {
     @NotNull
     @JoinColumn(name = "group_id")
     private Group group;
+
+    public Product(String name, double price, int quantity, Group group) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.group = group;
+    }
 }

@@ -8,19 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "groups")
 public class Group {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long groupId;
 
     @NotNull
     @Column
     private String name;
+
+    public Group(String name, List<Product> products) {
+        this.name = name;
+        this.products = products;
+    }
 
     @OneToMany(targetEntity = Product.class,
             mappedBy = "group",

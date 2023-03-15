@@ -3,7 +3,6 @@ package com.kodilla.ecommercee;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.GroupRepository;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -30,10 +28,10 @@ public class GropuTestSuite {
     private Product product2;
     private void dataForTests(){
 
-         group1 = new Group(0,"group1",new ArrayList<>());
-         group2 = new Group(0,"group2",new ArrayList<>());
-         product1 = new Product(0,"product1",12.2,5,group1);
-         product2 = new Product(0,"product2",122.2,7,group2);
+         group1 = new Group("group1",new ArrayList<>());
+         group2 = new Group("group2",new ArrayList<>());
+         product1 = new Product("product1",12.2,5,group1);
+         product2 = new Product("product2",122.2,7,group2);
     }
 
     @Test
