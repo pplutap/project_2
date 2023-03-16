@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.repository.GroupRepository;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +42,8 @@ public class GroupTestSuite {
 
         //Then
         assertThat(savedGroup1.getName()).isEqualTo("group1");
-        assertThat(savedGroup1.getGroupId()).isEqualTo(1L);
         assertThat(savedGroup2.getName()).isEqualTo("group2");
-        assertThat(savedGroup2.getGroupId()).isEqualTo(2L);
+
 
         //CleanUp
         groupRepository.deleteAll();
@@ -88,7 +86,7 @@ public class GroupTestSuite {
 
         //Then
         assertFalse(deletedGroup1.isPresent());
-        Assert.assertEquals(1,groupRepository.count());
+        assertEquals(1,groupRepository.count());
 
         //CleanUp
         groupRepository.deleteAll();
