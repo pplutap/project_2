@@ -1,8 +1,7 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.Group;
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.GroupRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +88,7 @@ public class GroupTestSuite {
 
         //Then
         assertFalse(deletedGroup1.isPresent());
-        assertEquals(1,groupRepository.count());
+        Assert.assertEquals(1,groupRepository.count());
 
         //CleanUp
         groupRepository.deleteAll();
