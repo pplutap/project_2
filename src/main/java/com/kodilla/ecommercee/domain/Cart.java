@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "carts")
@@ -18,10 +16,15 @@ public class Cart {
     @GeneratedValue
     private Long cartId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,
+                   fetch = FetchType.EAGER)
     @JoinTable(
             name = "join_carts_products",
             joinColumns = {@JoinColumn(name = "cart_id")},
             inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> products = new ArrayList<>();
+
+    public Cart(List<Product> products) {
+        this.products = products;
+    }
 }
