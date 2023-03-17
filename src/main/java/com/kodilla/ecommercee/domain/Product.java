@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "products")
@@ -22,10 +23,11 @@ public class Product {
 
     private double price;
 
-     private int quantity;
+    private int quantity;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "group_id")
     private Group group;
+
 }
