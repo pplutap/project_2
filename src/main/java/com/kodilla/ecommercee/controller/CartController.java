@@ -21,7 +21,6 @@ public class CartController {
     private final CartService cartService;
     private final OrderService orderService;
 
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createCart(CartDTO cartDto) {
         Cart creatCart = cartMapper.mapToCart(cartDto);
@@ -29,11 +28,13 @@ public class CartController {
         return ResponseEntity.ok().build();
     }
 
+
     @GetMapping(value = "{cartId}")
     public ResponseEntity<CartDTO> getCartById(@PathVariable long cartId) throws CartNotFoundException {
         Cart cart = cartService.getCartById(cartId);
         return ResponseEntity.ok(cartMapper.mapToCartDTO(cart));
     }
+
 
     @PutMapping
     public ResponseEntity<CartDTO> updateCart(@RequestBody CartDTO cartDto) {
@@ -42,15 +43,17 @@ public class CartController {
         return ResponseEntity.ok(cartMapper.mapToCartDTO(saveCart));
     }
 
+
     @DeleteMapping(value = "/{cartId}")
     public ResponseEntity<Void> deleteProductFromCart(@PathVariable long cartId, @RequestParam Long productId) throws CartNotFoundException {
         cartService.removeFromCart(cartId, productId);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(value = "/{cartId}/{userId}")
-    public ResponseEntity<Void> createOrderFromCart(@PathVariable long cartId, @PathVariable long userId) {
-        orderService.createOrderBasedOnCart(cartId, userId);
+    @PostMapping(value = "/{cartId}")
+    public ResponseEntity<Void> createOrderFromCart(@PathVariable long cartId) {
+        orderService.createOrderBasedOnCart(cartId);
         return ResponseEntity.ok().build();
     }
 }
+
